@@ -86,5 +86,4 @@ public class UserCore {
         return (aBoolean);
     }
 
-
 }

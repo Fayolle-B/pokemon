@@ -9,6 +9,10 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.HttpURLConnection;
 
+/**
+ * @deprecated Use @ref PokemonDAO instead
+ */
+
 public class Pokerequest {
     /**
      the base of all pokeapi request

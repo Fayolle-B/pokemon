@@ -28,7 +28,7 @@ public class PossessionDAO extends _Generic<PossessionEntity>{
         }catch (SQLException error) {
             error.printStackTrace();
         }
-        return null;
+        return obj;
     }
 
     @Override

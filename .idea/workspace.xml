@@ -4,17 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="25e00e35-0ef9-4fc6-8b40-571894da2689" name="Changes" comment="Push existing project to GitLab">
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/uca/core/PokemonCore.java" afterDir="false" />
+    <list default="true" id="25e00e35-0ef9-4fc6-8b40-571894da2689" name="Changes" comment="Ajout du pokemon : aléatoire,">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uca/StartServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/StartServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/uca/core/PossessionCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/core/PossessionCore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/core/SessionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/core/SessionManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/uca/core/UserCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/core/UserCore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uca/dao/ConnectPokeAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/dao/PokemonDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uca/entity/Pokemon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/entity/PokemonEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uca/gui/UserGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/gui/UserGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/dao/Pokerequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/dao/Pokerequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/dao/PossessionDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/dao/PossessionDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/entity/Echange.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/entity/Trade.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +47,23 @@
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="application" type="c8890929:TasksNode$1" />
               </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Pokemon" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Pokemon" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="other" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Pokemon" type="f1a62948:ProjectNode" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
+              </path>
             </expand>
             <select />
           </tree_state>
@@ -74,28 +88,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/bfayolle/Documents/Pokemon",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/bfayolle/Documents/Pokemon&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "h2"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;h2&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -148,7 +162,8 @@
       <workItem from="1682447603849" duration="64000" />
       <workItem from="1682447680728" duration="1115000" />
       <workItem from="1682448817210" duration="4756000" />
-      <workItem from="1682503799833" duration="4177000" />
+      <workItem from="1682503799833" duration="7738000" />
+      <workItem from="1682527098685" duration="1014000" />
     </task>
     <task id="LOCAL-00001" summary="Push existing project to GitLab">
       <created>1682504133404</created>
@@ -157,7 +172,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682504133404</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Ajout du pokemon : aléatoire,">
+      <created>1682508102601</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1682508102601</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -165,6 +187,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Push existing project to GitLab" />
-    <option name="LAST_COMMIT_MESSAGE" value="Push existing project to GitLab" />
+    <MESSAGE value="Ajout du pokemon : aléatoire," />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout du pokemon : aléatoire," />
   </component>
 </project>
