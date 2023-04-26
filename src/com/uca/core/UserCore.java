@@ -2,11 +2,14 @@ package com.uca.core;
 
 
 import com.uca.dao.UserDAO;
+import com.uca.entity.PokemonEntity;
 import com.uca.entity.UserEntity;
 import com.uca.entity.PossessionEntity;
 
+import javax.management.InvalidAttributeValueException;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Random;
 
 
 /**
@@ -29,8 +32,9 @@ public class UserCore {
      @param lastname the lastname of the new user
      @return the newly created UserEntity object
      */
-    public static UserEntity create(String firstname, String lastname, String login, String pwd, String  email){
+    public static UserEntity newUser(String firstname, String lastname, String login, String pwd, String  email){
         UserEntity newUser = new UserEntity();
+        PokemonEntity pkmn;
         System.out.println(firstname + "+ "+ lastname);
 
         newUser.setFirstName(firstname);
@@ -42,7 +46,13 @@ public class UserCore {
         newUser.setEmail(email);
         newUser.setPoints(PossessionEntity.nb_point);
         newUser = new UserDAO().create(newUser);
-        PossessionCore.create(newUser,2);
+
+        try {
+            pkmn = PokemonCore.getPokemon(new Random().nextLong(PokemonEntity.MAX_POKEMON_ID+1));
+        } catch (InvalidAttributeValueException e) {
+            throw new RuntimeException(e);
+        }
+        PossessionCore.addOwnership(newUser,pkmn);
         return newUser;
 
     }
@@ -75,5 +85,6 @@ public class UserCore {
         System.out.println("can be logged in  : "+ aBoolean);
         return (aBoolean);
     }
+
 
 }

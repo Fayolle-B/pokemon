@@ -1,15 +1,15 @@
 package com.uca.entity;
 
-import java.sql.Timestamp;
+public class PokemonEntity {
 
-public class Pokemon {
+    public static long MAX_POKEMON_ID = 10008;
     private String name;
     private int id;
     private String iconSource;
 
 
 
-    public Pokemon(String pokemonName, int pokemonNumber,String img) {
+    public PokemonEntity(String pokemonName, int pokemonNumber, String img) {
         this.name = pokemonName;
         this.id = pokemonNumber;
         this.iconSource=img;
@@ -18,4 +18,7 @@ public class Pokemon {
         return this.name;
     }
 
+    public int getId() {
+        return id;
+    }
 }

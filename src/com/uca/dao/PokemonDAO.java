@@ -1,24 +1,23 @@
 package com.uca.dao;
 
 
-import com.uca.entity.Pokemon;
+import com.uca.entity.PokemonEntity;
 
 import java.io.IOException;
 import java.net.*;
-import java.util.Random;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
+public class PokemonDAO {
+    public PokemonDAO() {
+    }
 
-public class ConnectPokeAPI {
-    public static Pokemon Catch(long numPok) {
-        // Choose a random Pokemon ID between 1 and 1008 (the number of Pokemon currently in the PokeAPI)
-        Random random = new Random();
-        int pokemonId = random.nextInt(1008) + 1;
+    public  PokemonEntity requestAPIFromId(long pokemonId) {
+        // Choose a random Pokémon ID between 1 and 1008 (the number of Pokemon currently in the PokeAPI)
 
-        // Construct the URL for the Pokemon API
+        // Construct the URL for the Pokémon API
         String pokemonUrl = "https://pokeapi.co/api/v2/pokemon-species/" + pokemonId;
 
         // Make a GET request to the Pokemon API
@@ -59,20 +58,19 @@ public class ConnectPokeAPI {
         assert pokemonNode != null;
         String pokemonName = pokemonNode.get("names").get(4).get("name").asText();
         int pokemonNumber = pokemonNode.get("id").asInt();
-        String img = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+pokemonId+".png";
+        String img = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + pokemonId + ".png";
         //String imc = pokemonNode.get("sprites").asText();
 
 
-
-
-        // Return a "rogue" Pokemon (level 1, no owner, not regestered in the database)
+        // Return a "rogue" Pokemon (level 1, no owner, not registered in the database)
         System.out.println(pokemonName);
         System.out.println(pokemonNumber);
         System.out.println(img);
 
-        return new Pokemon(pokemonName, pokemonNumber,img);
+        return new PokemonEntity(pokemonName, pokemonNumber, img);
 
     }
+
 
 }
 

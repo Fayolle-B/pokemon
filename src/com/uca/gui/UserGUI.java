@@ -2,8 +2,7 @@
 
 import com.uca.core.PossessionCore;
 import com.uca.core.UserCore;
-import com.uca.dao.ConnectPokeAPI;
-import com.uca.dao.Pokerequest;
+import com.uca.dao.PokemonDAO;
 import com.uca.entity.PossessionEntity;
 import com.uca.entity.UserEntity;
 import freemarker.template.Configuration;
@@ -13,7 +12,6 @@ import freemarker.template.TemplateException;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -74,9 +72,8 @@ public class UserGUI {
         template.setOutputEncoding("UTF-8");
         template.process(input,output);
         for(PossessionEntity p:ownerships){
-            System.out.println(ConnectPokeAPI.Catch(p.getNumPok()).getPokemonName());
+            System.out.println(new PokemonDAO().requestAPIFromId(p.getNumPok()).getPokemonName());
         }
-        PossessionCore.getAllOwnership();
 
 
         return output.toString();

@@ -31,7 +31,7 @@ public class StartServer {
             String login = req.queryParams("login");
             String pwd = req.queryParams("password");
             String email = req.queryParams("email");
-            UserCore.create(firstname,lastname,login,pwd,email);
+            UserCore.newUser(firstname,lastname,login,pwd,email);
             res.redirect("/users");
             return null;
         });
