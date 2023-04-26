@@ -1,0 +1,42 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+plugins {
+    id 'java'
+}
+
+
+apply plugin: 'application'
+
+mainClassName='com.uca.StartServer'
+
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies{
+    implementation 'org.freemarker:freemarker:2.3.32'
+    implementation 'com.sparkjava:spark-core:2.9.4'
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.0'
+    implementation 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+    implementation 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    implementation 'com.h2database:h2:2.1.212'
+    implementation 'org.mindrot:jbcrypt:0.4'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.15.0'
+    implementation 'org.slf4j:slf4j-simple:2.0.7'
+}
+test {
+    useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Quickstart',
+                'Implementation-Version': '1.0.0',
+                'Main-Class': 'com.uca.StartServer'
+    }
+}
+
+sourceSets.main.java.srcDirs = ['src']
+sourceSets.test.java.srcDirs = ['src']
