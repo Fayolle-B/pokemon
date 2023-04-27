@@ -7,8 +7,8 @@ import com.uca.entity.UserEntity;
 import com.uca.entity.PossessionEntity;
 
 import javax.management.InvalidAttributeValueException;
-import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 
 
@@ -40,7 +40,7 @@ public class UserCore {
         newUser.setFirstName(firstname);
         newUser.setLastName(lastname);
         long millis=System.currentTimeMillis();
-        newUser.setDateConnexion(new Date(millis));
+        newUser.setDateConnexion(new Date());
         newUser.setLogin(login);
         newUser.setPwd(pwd);
         newUser.setEmail(email);
