@@ -11,6 +11,7 @@ public class _Initializer {
             PreparedStatement stat2;
             PreparedStatement statement;
             PreparedStatement statement_Friends;
+            PreparedStatement statement_Trade;
 
 
             //Init articles table
@@ -19,7 +20,6 @@ public class _Initializer {
             statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS possession(idPoss int PRIMARY KEY AUTO_INCREMENT,numPkmn long NOT NULL ,level int, dateAcquisition DATE NOT NULL, datePerte DATE, owner_id int, FOREIGN KEY (owner_id) REFERENCES  users(id)); ");
             statement.execute();
 
-            //Todo Remove me !
 
             statement_Friends = connection.prepareStatement("CREATE TABLE IF NOT EXISTS friends (id1 int , id2 int , FOREIGN KEY (id1) REFERENCES users(id), FOREIGN KEY (id2) REFERENCES  users(id)); ");
             statement_Friends.executeUpdate();
@@ -32,6 +32,10 @@ public class _Initializer {
             stat2.setDate(7,new java.sql.Date(System.currentTimeMillis()));
             stat2.setString(6,"truc@gmail.com");
             stat2.executeUpdate();
+
+
+
+            statement_Trade= connection.prepareStatement("CREATE TABLE IF NOT EXISTS trades(id int, appOwnID int, recOwnID int, submitDate  Date , acceptDate Date , )");
 
         } catch (Exception e){
             throw new RuntimeException("could not create database !");
