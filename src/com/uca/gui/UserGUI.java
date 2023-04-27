@@ -2,7 +2,6 @@
 
 import com.uca.core.PossessionCore;
 import com.uca.core.UserCore;
-import com.uca.dao.PokemonDAO;
 import com.uca.entity.PossessionEntity;
 import com.uca.entity.UserEntity;
 import freemarker.template.Configuration;
@@ -73,7 +72,7 @@ public class UserGUI {
         template.setOutputEncoding("UTF-8");
         template.process(input,output);
         for(PossessionEntity p:possessions){
-            System.out.println(new PokemonDAO().requestAPIFromId(p.getNumPok()).getPokemonName());
+            System.out.println(p.getPokemon().getName());
         }
 
 

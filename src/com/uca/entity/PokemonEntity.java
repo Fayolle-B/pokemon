@@ -14,7 +14,7 @@ public class PokemonEntity {
         this.id = pokemonNumber;
         this.iconSource=img;
     }
-    public String getPokemonName(){
+    public String getName(){
         return this.name;
     }
 

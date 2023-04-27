@@ -10,7 +10,7 @@ public  class PossessionEntity {
 
     private UserEntity owner;
     private int idPos;
-    private long numPok;
+    private PokemonEntity pokemon;
     private int level;
     private Date dateAcqui;
 
@@ -26,7 +26,7 @@ public  class PossessionEntity {
     @Override
     public String toString() {
         String stringBuilder = "La possession n°" + idPos + "appartient à " +
-                owner.getId() + "et correspond au pokemon " + numPok + "\n";
+                owner.getId() + "et correspond au pokemon " + pokemon.getName() + "\n";
         return stringBuilder;
     }
 
@@ -41,8 +41,8 @@ public  class PossessionEntity {
     public int getIdPos(){
         return this.idPos;
     }
-    public long getNumPok(){
-        return this.numPok;
+    public PokemonEntity getPokemon(){
+        return this.pokemon;
     }
     public int getLevel(){
         return this.level;
@@ -54,8 +54,8 @@ public  class PossessionEntity {
     public void setIdPos(int pos){
         this.idPos = pos;
     }
-    public void setNumPok(long pok){
-        this.numPok = pok;
+    public void setPokemon(PokemonEntity pok){
+        this.pokemon = pok;
     }
     public void setLevel(int lev){
         this.level= lev;

@@ -27,6 +27,7 @@ public class _Initializer {
 
             statement_Friends = connection.prepareStatement("CREATE TABLE IF NOT EXISTS friends (id1 int , id2 int , FOREIGN KEY (id1) REFERENCES users(id), FOREIGN KEY (id2) REFERENCES  users(id), PRIMARY KEY (id1,id2)); ");
             statement_Friends.executeUpdate();
+            /*
             stat2 = connection.prepareStatement("INSERT INTO users(Firstname, lastname,login,pwd, points, email,DateConnexion) VALUES(?,?,?,?,?,?,?);");
             stat2.setString(1, "Truc");
             stat2.setString(2, "Muillerez");
@@ -36,7 +37,7 @@ public class _Initializer {
             stat2.setDate(7,new java.sql.Date(System.currentTimeMillis()));
             stat2.setString(6,"truc@gmail.com");
             stat2.executeUpdate();
-
+*/
 
 
 

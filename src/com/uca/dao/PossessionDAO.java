@@ -2,6 +2,7 @@ package com.uca.dao;
 
 import com.uca.entity.PossessionEntity;
 import com.uca.entity.UserEntity;
+import com.uca.dao.PokemonDAO;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -17,7 +18,7 @@ public class PossessionDAO extends _Generic<PossessionEntity>{
         try {
             PreparedStatement statement =  this.connect.prepareStatement("INSERT INTO possession (level,numPkmn, AQUIREDATE,LOSEDATE, owner_id ) VALUES(?,?,?,?,?);");
             statement.setInt(1, obj.getLevel());
-            statement.setLong(2, obj.getNumPok());
+            statement.setLong(2, obj.getPokemon().getId());
             statement.setDate(3, new java.sql.Date(obj.getDateAqui().getTime()));
             statement.setDate(4, null);
             statement.setInt(5,obj.getOwner().getId());
@@ -51,7 +52,7 @@ public class PossessionDAO extends _Generic<PossessionEntity>{
         possessionEntity.setDateAqui(new java.util.Date(resultSet.getDate("DATEACQUISITION").getTime()));
         possessionEntity.setDatePerte(new java.util.Date(resultSet.getDate("DATEPERTE").getTime()));
         possessionEntity.setOwner(new UserDAO().getUserById(resultSet.getInt("OWNER_ID")));
-        possessionEntity.setNumPok(resultSet.getInt("NUMPKMN"));
+        possessionEntity.setPokemon(new PokemonDAO().requestAPIFromId( resultSet.getInt("NUMPKMN")));
 
         return possessionEntity;
 
@@ -87,7 +88,7 @@ public class PossessionDAO extends _Generic<PossessionEntity>{
                 entity.setLevel(resultSet.getInt("level"));
                 entity.setIdPos(resultSet.getInt("idposs"));
                 entity.setDateAqui(new Date(resultSet.getDate("AQUIREDATE").getTime()));
-                entity.setNumPok(resultSet.getInt("numPkmn"));
+                entity.setPokemon(new PokemonDAO().requestAPIFromId(resultSet.getInt("numPkmn")));
                 java.sql.Date sqlDate = resultSet.getDate("LOSEDATE");
                 if (sqlDate==null){
                     entity.setDatePerte(null);

@@ -1,5 +1,7 @@
 package com.uca;
 
+import com.uca.core.PokemonCore;
+import com.uca.core.PossessionCore;
 import com.uca.core.UserCore;
 import com.uca.dao._Initializer;
 import com.uca.entity.UserEntity;
@@ -57,6 +59,11 @@ public class StartServer {
             return null;
         }));
 
+        get("/profile/:userid/add/:pkmnid",((request, response) -> {
+            PossessionCore.addPossession(UserCore.getUserFromId(Integer.parseInt(request.params(":userid"))), Integer.parseInt(request.params(":pkmnid")));
+            response.redirect("/profile/"+request.params("userid"));
+            return null;
+        } ));
 
     }
 

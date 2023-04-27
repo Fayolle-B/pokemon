@@ -28,7 +28,7 @@ nombre de possession : ${numberOfPossessions!"0"}
     <#list possessions as possession>
         <tr>
             <th scope="row">${possession.idPos}</th>
-            <td>${possession.numPok}</td>
+            <td>${possession.pokemon.name}</td>
             <td>${possession.level}</td>
             <td>${possession.getDateAcquiAsString()}</td>
         </tr>

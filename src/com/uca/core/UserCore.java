@@ -53,7 +53,7 @@ public class UserCore {
         } catch (InvalidAttributeValueException e) {
             throw new RuntimeException(e);
         }
-        System.out.println(pkmn.getPokemonName());
+        System.out.println(pkmn.getName());
         PossessionCore.addPossession(newUser,pkmn);
         return newUser;
 
