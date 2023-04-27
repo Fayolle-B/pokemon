@@ -3,15 +3,16 @@ package com.uca.entity;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Trade {
+public class TradeEntity {
     private int id;
     private PossessionEntity applicantOwnership;
     private PossessionEntity recipiantOwnership;
     private Date submitDate;
-    private Date cceptDate;
+    private Date acceptDate;
     private ArrayList<PossessionEntity> appliances = new ArrayList<PossessionEntity>();
+
     //TODO:
-    public boolean send(PossessionEntity other){
+    public boolean send(PossessionEntity other) {
         return true;
     }
 
@@ -32,11 +33,14 @@ public class Trade {
         return submitDate;
     }
 
-    public Date getCceptDate() {
-        return cceptDate;
+    public Date getAcceptDate() {
+        return acceptDate;
     }
 
     public ArrayList<PossessionEntity> getAppliances() {
         return appliances;
     }
+
 }
+
+
