@@ -4,13 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="25e00e35-0ef9-4fc6-8b40-571894da2689" name="Changes" comment="debut de Trade.java">
-      <change afterPath="$PROJECT_DIR$/src/com/uca/core/TradeCore.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/uca/dao/TradeDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/uca/entity/TradeStatus.java" afterDir="false" />
+    <list default="true" id="25e00e35-0ef9-4fc6-8b40-571894da2689" name="Changes" comment="ajout de la BDD des trades, (pas fonctionnels">
+      <change afterPath="$PROJECT_DIR$/src/com/uca/gui/PossessionGUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/views/Possessions/possession.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3bce7248-ed53-498f-ae1d-c57d53b539ae.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3bce7248-ed53-498f-ae1d-c57d53b539ae.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/core/PossessionCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/core/PossessionCore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/core/TradeCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/core/TradeCore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/core/UserCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/core/UserCore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/dao/Pokerequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/dao/Pokerequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/dao/PossessionDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/dao/PossessionDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/dao/TradeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/dao/TradeDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/dao/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/dao/_Generic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/dao/_Generic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/uca/dao/_Initializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/dao/_Initializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/entity/PokemonEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/entity/PokemonEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/entity/PossessionEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/entity/PossessionEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/uca/entity/TradeEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/entity/TradeEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/gui/UserGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/gui/UserGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/profile/profile.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/profile/profile.ftl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +135,7 @@
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
+        <option name="scriptParameters" value="--stacktrace" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -167,7 +179,10 @@
       <workItem from="1682536891195" duration="4199000" />
       <workItem from="1682599996261" duration="3410000" />
       <workItem from="1682603438380" duration="94000" />
-      <workItem from="1682603548801" duration="1515000" />
+      <workItem from="1682603548801" duration="1978000" />
+      <workItem from="1682611911838" duration="2880000" />
+      <workItem from="1682620089435" duration="4950000" />
+      <workItem from="1682626847474" duration="2438000" />
     </task>
     <task id="LOCAL-00001" summary="Push existing project to GitLab">
       <created>1682504133404</created>
@@ -197,17 +212,44 @@
       <option name="project" value="LOCAL" />
       <updated>1682600432585</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="début de trace core et de tradeDAO, debut de l'ajout de la bdd">
+      <created>1682605235054</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1682605235054</updated>
+    </task>
+    <task id="LOCAL-00006" summary="ajout de la BDD des trades, (pas fonctionnels">
+      <created>1682618137270</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1682618137270</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Push existing project to GitLab" />
     <MESSAGE value="Ajout du pokemon : aléatoire," />
     <MESSAGE value="debut de trade" />
     <MESSAGE value="debut de Trade.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="debut de Trade.java" />
+    <MESSAGE value="début de trace core et de tradeDAO, debut de l'ajout de la bdd" />
+    <MESSAGE value="ajout de la BDD des trades, (pas fonctionnels" />
+    <option name="LAST_COMMIT_MESSAGE" value="ajout de la BDD des trades, (pas fonctionnels" />
   </component>
 </project>

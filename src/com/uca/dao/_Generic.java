@@ -1,6 +1,7 @@
 package com.uca.dao;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 public abstract class _Generic<T> {
 
@@ -11,7 +12,7 @@ public abstract class _Generic<T> {
      * par rapport à un objet
      * @param obj
      */
-    public abstract T create(T obj);
+    public abstract T create(T obj) throws SQLException;
 
     /**
      * Permet la suppression d'une entrée de la base

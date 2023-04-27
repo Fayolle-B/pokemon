@@ -12,7 +12,7 @@ import java.net.HttpURLConnection;
 /**
  * @deprecated Use @ref PokemonDAO instead
  */
-
+@Deprecated
 public class Pokerequest {
     /**
      the base of all pokeapi request

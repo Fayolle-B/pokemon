@@ -15,11 +15,11 @@ public class PossessionDAO extends _Generic<PossessionEntity>{
     @Override
     public PossessionEntity create(PossessionEntity obj) {
         try {
-            PreparedStatement statement =  this.connect.prepareStatement("INSERT INTO possession (level,numPkmn, dateAcquisition,datePerte, owner_id ) VALUES(?,?,?,?,?);");
+            PreparedStatement statement =  this.connect.prepareStatement("INSERT INTO possession (level,numPkmn, AQUIREDATE,LOSEDATE, owner_id ) VALUES(?,?,?,?,?);");
             statement.setInt(1, obj.getLevel());
             statement.setLong(2, obj.getNumPok());
             statement.setDate(3, new java.sql.Date(obj.getDateAqui().getTime()));
-            statement.setString(4, null);
+            statement.setDate(4, null);
             statement.setInt(5,obj.getOwner().getId());
             statement.executeUpdate();
             System.out.println("ON ajout un pokemon à l'utilisateur n°"+ obj.getOwner().getId());
@@ -37,8 +37,26 @@ public class PossessionDAO extends _Generic<PossessionEntity>{
 
     }
 
-    public void getAllOwnership()
 
+    public PossessionEntity getPossessionById(int id) throws SQLException {
+        PossessionEntity possessionEntity = new PossessionEntity();
+        PreparedStatement preparedStatement = this.connect.prepareStatement("SELECT IDPOSS, NUMPKMN, LEVEL, DATEACQUISITION, DATEPERTE, OWNER_ID from POSSESSION where IDPOSS = ?");
+        preparedStatement.setInt(1,id);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if(!resultSet.next()){
+            throw new SQLException("Can't resolve any possession for this ID");
+        }
+        possessionEntity.setIdPos(id);
+        possessionEntity.setLevel(resultSet.getInt("LEVEL"));
+        possessionEntity.setDateAqui(new java.util.Date(resultSet.getDate("DATEACQUISITION").getTime()));
+        possessionEntity.setDatePerte(new java.util.Date(resultSet.getDate("DATEPERTE").getTime()));
+        possessionEntity.setOwner(new UserDAO().getUserById(resultSet.getInt("OWNER_ID")));
+        possessionEntity.setNumPok(resultSet.getInt("NUMPKMN"));
+
+        return possessionEntity;
+
+    }
+    public void getAllPossessions()
     {
         System.out.println("On va essayer de lire toutes les possessionss");
         try {
@@ -60,7 +78,7 @@ public class PossessionDAO extends _Generic<PossessionEntity>{
         ArrayList<PossessionEntity> entities = new ArrayList<>();
 
         try {
-            PreparedStatement preparedStatement = this.connect.prepareStatement("SELECT * from possession where owner_id=?");
+            PreparedStatement preparedStatement = this.connect.prepareStatement("SELECT IDPOSS, NUMPKMN, LEVEL, AQUIREDATE, LOSEDATE, OWNER_ID from possession where owner_id=?");
             preparedStatement.setInt(1,user.getId());
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -68,9 +86,9 @@ public class PossessionDAO extends _Generic<PossessionEntity>{
                 entity.setOwner(user);
                 entity.setLevel(resultSet.getInt("level"));
                 entity.setIdPos(resultSet.getInt("idposs"));
-                entity.setDateAqui(new Date(resultSet.getDate("dateAcquisition").getTime()));
+                entity.setDateAqui(new Date(resultSet.getDate("AQUIREDATE").getTime()));
                 entity.setNumPok(resultSet.getInt("numPkmn"));
-                java.sql.Date sqlDate = resultSet.getDate("datePerte");
+                java.sql.Date sqlDate = resultSet.getDate("LOSEDATE");
                 if (sqlDate==null){
                     entity.setDatePerte(null);
                 }else {

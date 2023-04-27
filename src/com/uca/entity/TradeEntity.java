@@ -4,20 +4,23 @@ import java.util.Date;
 
 public class TradeEntity {
     private int id;
-    private PossessionEntity applicantOwnership;
-    private PossessionEntity recipientOwnership;
+    private PossessionEntity applicantPossession;
+    private PossessionEntity recipientPossession;
     private Date submitDate;
     private Date acceptDate;
  //   private ArrayList<PossessionEntity> appliances = new ArrayList<PossessionEntity>();
 
     private TradeStatus status;
 
-    public TradeEntity(PossessionEntity applicantOwnership, PossessionEntity recipiantOwnership) {
-        this.applicantOwnership = applicantOwnership;
-        this.recipientOwnership =recipiantOwnership;
+    public TradeEntity(PossessionEntity applicantPossession, PossessionEntity recipientPossession) {
+        this.applicantPossession = applicantPossession;
+        this.recipientPossession =recipientPossession;
         this.submitDate=new Date();
         this.acceptDate=null;
         this.status=TradeStatus.PENDING;
+    }
+    public TradeEntity(){
+
     }
 
     //TODO:
@@ -27,12 +30,12 @@ public class TradeEntity {
         return id;
     }
 
-    public PossessionEntity getApplicantOwnership() {
-        return applicantOwnership;
+    public PossessionEntity getApplicantPossession() {
+        return applicantPossession;
     }
 
-    public PossessionEntity getRecipientOwnership() {
-        return recipientOwnership;
+    public PossessionEntity getRecipientPossession() {
+        return recipientPossession;
     }
 
     public Date getSubmitDate() {
@@ -59,6 +62,20 @@ public class TradeEntity {
         this.acceptDate = acceptDate;
     }
     //TODO : equals, trouver "l'ame soeur d'une enttité trade"
+
+
+    public void setApplicantPossession(PossessionEntity applicantPossession) {
+        this.applicantPossession = applicantPossession;
+    }
+
+    public void setRecipientPossession(PossessionEntity recipientPossession) {
+        this.recipientPossession = recipientPossession;
+    }
+
+    public void setSubmitDate(Date submitDate) {
+        this.submitDate = submitDate;
+    }
 }
+
 
 

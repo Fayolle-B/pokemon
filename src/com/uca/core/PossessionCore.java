@@ -6,11 +6,12 @@ import com.uca.entity.PossessionEntity;
 import com.uca.entity.UserEntity;
 
 import javax.management.InvalidAttributeValueException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class PossessionCore {
-    public static PossessionEntity addOwnership(UserEntity user, PokemonEntity pokemon) {
+    public static PossessionEntity addPossession(UserEntity user, PokemonEntity pokemon) {
         PossessionEntity possessionEntity = new PossessionEntity();
         possessionEntity.setOwner(user);
         possessionEntity.setDateAqui(new Date());
@@ -20,11 +21,11 @@ public class PossessionCore {
         return new PossessionDAO().create(possessionEntity);
     }
 
-    public static PossessionEntity addOwnership(UserEntity user, int pokemonId) {
+    public static PossessionEntity addPossession(UserEntity user, int pokemonId) {
         PossessionEntity possessionEntity;
         try {
             PokemonEntity pokemon = PokemonCore.getPokemon(pokemonId);
-            possessionEntity = PossessionCore.addOwnership(user, pokemon);
+            possessionEntity = PossessionCore.addPossession(user, pokemon);
         } catch (InvalidAttributeValueException e) {
             throw new RuntimeException(e);
         }
@@ -32,12 +33,19 @@ public class PossessionCore {
     }
 
     public static ArrayList<PossessionEntity> possessionOf(UserEntity user) {
-        ArrayList<PossessionEntity> possessionEntities = new PossessionDAO().possessionOf(user);
-        return possessionEntities;
+        return new PossessionDAO().possessionOf(user);
     }
 
-    public static void getAllOwnership() {
-        new PossessionDAO().getAllOwnership();
+    public static void getAllPossessions() {
+        new PossessionDAO().getAllPossessions();
     }
 
+    public static PossessionEntity getPossessionById(int id) {
+        try {
+            return new PossessionDAO().getPossessionById(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
 }

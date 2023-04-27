@@ -2,7 +2,7 @@ package com.uca.entity;
 
 public class PokemonEntity {
 
-    public static long MAX_POKEMON_ID = 10008;
+    public static long MAX_POKEMON_ID = 1008;
     private String name;
     private int id;
     private String iconSource;

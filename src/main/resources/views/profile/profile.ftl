@@ -12,24 +12,29 @@
 
 Prénom  : ${user.getFirstName()}
 Nom : ${user.getLastName()}
-nombre de possession : ${numberOfOwnership!"0"}
+nombre de possession : ${numberOfPossessions!"0"}
 
 <table>
     <caption>Les possessions de ${user.firstName}</caption>
     <tr>
         <th scope="col">id de la possessions</th>
         <th scope="col">numero du PKMN</th>
+        <th scope="col">Niveau du pokémon</th>
+        <th scope="col">Date d'acuisition</th>
+
 
     </tr>
 
-    <#list ownerships as ownership>
+    <#list possessions as possession>
         <tr>
-            <th scope="row">${ownership.idPos}</th>
-            <td>${ownership.numPok}</td>
+            <th scope="row">${possession.idPos}</th>
+            <td>${possession.numPok}</td>
+            <td>${possession.level}</td>
+            <td>${possession.getDateAcquiAsString()}</td>
         </tr>
 
     </#list>
-    Possession : ${ownership!"null"};
+    Possession : ${possession!"null"};
 
 </table>
 </body>

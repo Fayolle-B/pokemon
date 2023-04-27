@@ -34,24 +34,20 @@ public class UserDAO extends _Generic<UserEntity> {
 
     @Override
     /* ----------------------------------------- Ajouter ou creer un un user------------------------------------------------------------------------------------------------------------  */
-    public UserEntity create(UserEntity user) {
-        try {
-            PreparedStatement statement = this.connect.prepareStatement("INSERT INTO users (FirstName,LastName, login, pwd ,email,points, DateConnexion) VALUES(?, ?,?,?,?,?,?);", PreparedStatement.RETURN_GENERATED_KEYS);
+    public UserEntity create(UserEntity user) throws SQLException {
+        PreparedStatement statement = this.connect.prepareStatement("INSERT INTO users (FirstName,LastName, login, pwd ,email,points, DateConnexion) VALUES(?, ?,?,?,?,?,?);", PreparedStatement.RETURN_GENERATED_KEYS);
 
-            statement.setString(1, user.getFirstName());
-            statement.setString(2, user.getLastName());
-            statement.setString(3, user.getLogin());
-            statement.setString(4, user.getPwd());
-            statement.setString(5, user.getEmail());
-            statement.setInt(6, user.getPoints());
-            statement.setDate(7, new java.sql.Date(user.getDateConnexion().getTime()));
-            statement.executeUpdate();
-            ResultSet rs = statement.getGeneratedKeys();
-            if (rs.next()) {
-                user.setId(rs.getInt(1));
-            }
-        } catch (SQLException error) {
-            error.printStackTrace();
+        statement.setString(1, user.getFirstName());
+        statement.setString(2, user.getLastName());
+        statement.setString(3, user.getLogin());
+        statement.setString(4, user.getPwd());
+        statement.setString(5, user.getEmail());
+        statement.setInt(6, user.getPoints());
+        statement.setDate(7, new java.sql.Date(user.getDateConnexion().getTime()));
+        statement.executeUpdate();
+        ResultSet rs = statement.getGeneratedKeys();
+        if (rs.next()) {
+            user.setId(rs.getInt(1));
         }
         return user;
     }
@@ -75,21 +71,16 @@ public class UserDAO extends _Generic<UserEntity> {
      *
      * @param userEntity the "new" user (updated ver. of the user
      */
-    public void update(UserEntity userEntity) {
-        try {
-            PreparedStatement preparedStatement = this.connect.prepareStatement("UPDATE users SET FIRSTNAME = ?, LastName = ?, pwd = ?, login =? email=? WHERE id = ?");
+    public void update(UserEntity userEntity) throws SQLException {
+        PreparedStatement preparedStatement = this.connect.prepareStatement("UPDATE users SET FIRSTNAME = ?, LastName = ?, pwd = ?, login =?, email=? WHERE id = ?");
 
-            preparedStatement.setString(1, userEntity.getFirstName());
-            preparedStatement.setString(2, userEntity.getLastName());
-            preparedStatement.setString(3, userEntity.getPwd());
-            preparedStatement.setString(4, userEntity.getLogin());
-            preparedStatement.setString(5, userEntity.getEmail());
-            preparedStatement.setInt(6, userEntity.getId());
-            preparedStatement.executeUpdate();
-        } catch (SQLException error) {
-            error.printStackTrace();
-        }
-
+        preparedStatement.setString(1, userEntity.getFirstName());
+        preparedStatement.setString(2, userEntity.getLastName());
+        preparedStatement.setString(3, userEntity.getPwd());
+        preparedStatement.setString(4, userEntity.getLogin());
+        preparedStatement.setString(5, userEntity.getEmail());
+        preparedStatement.setInt(6, userEntity.getId());
+        preparedStatement.executeUpdate();
     }
 
 

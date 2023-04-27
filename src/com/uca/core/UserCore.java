@@ -7,6 +7,7 @@ import com.uca.entity.UserEntity;
 import com.uca.entity.PossessionEntity;
 
 import javax.management.InvalidAttributeValueException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
@@ -32,7 +33,7 @@ public class UserCore {
      @param lastname the lastname of the new user
      @return the newly created UserEntity object
      */
-    public static UserEntity newUser(String firstname, String lastname, String login, String pwd, String  email){
+    public static UserEntity newUser(String firstname, String lastname, String login, String pwd, String  email) throws SQLException {
         UserEntity newUser = new UserEntity();
         PokemonEntity pkmn;
         System.out.println(firstname + "+ "+ lastname);
@@ -52,7 +53,8 @@ public class UserCore {
         } catch (InvalidAttributeValueException e) {
             throw new RuntimeException(e);
         }
-        PossessionCore.addOwnership(newUser,pkmn);
+        System.out.println(pkmn.getPokemonName());
+        PossessionCore.addPossession(newUser,pkmn);
         return newUser;
 
     }
@@ -70,7 +72,12 @@ public class UserCore {
      @param userEntity the UserEntity object to be updated
      */
     public static void update(UserEntity userEntity) {
-        new UserDAO().update(userEntity);
+        try {
+            new UserDAO().update(userEntity);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
 
 

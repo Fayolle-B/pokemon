@@ -56,22 +56,23 @@ public class UserGUI {
         UserEntity userEntity=UserCore.getUserFromId(id);
 
         input.put("user",userEntity);
-        ArrayList<PossessionEntity> ownerships=null;
+        ArrayList<PossessionEntity> possessions=null;
         try {
-            ownerships= PossessionCore.possessionOf(userEntity);
+            possessions= PossessionCore.possessionOf(userEntity);
+            System.out.println(possessions);
         }catch(Exception e){
-            System.err.println("Cannot retrieve the ownership list, printing the Stack Trace ");
+            System.err.println("Cannot retrieve the possession list, printing the Stack Trace ");
             e.printStackTrace();
         }
-        if (ownerships == null) throw new AssertionError();
-        input.put("ownerships", ownerships);
+        if (possessions == null) throw new AssertionError();
+        input.put("possessions", possessions);
         System.out.println("Le pseudo est : "+ userEntity.getLogin());
-        input.put("numberOfOwnership",ownerships.size());
+        input.put("numberOfPossessions",possessions.size());
         Writer output = new StringWriter();
         Template template = configuration.getTemplate("profile/profile.ftl");
         template.setOutputEncoding("UTF-8");
         template.process(input,output);
-        for(PossessionEntity p:ownerships){
+        for(PossessionEntity p:possessions){
             System.out.println(new PokemonDAO().requestAPIFromId(p.getNumPok()).getPokemonName());
         }
 

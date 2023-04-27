@@ -71,4 +71,8 @@ public  class PossessionEntity {
     public void setDatePerte(Date datePerte) {
         this.datePerte = datePerte;
     }
+
+    public String getDateAcquiAsString(){
+        return this.dateAcqui.toString();
+    }
 }
