@@ -26,9 +26,9 @@ dependencies{
     implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.15.0'
     implementation 'org.slf4j:slf4j-simple:2.0.7'
 }
-test {
-    useJUnitPlatform()
-}
+//test {
+//    useJUnitPlatform()
+//}
 
 jar {
     manifest {

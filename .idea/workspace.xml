@@ -4,17 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="25e00e35-0ef9-4fc6-8b40-571894da2689" name="Changes" comment="modif mineurs sur les BDD, ajout de la date d'acusition dans l'affichage , ajout de fonctionnalité pour les échanges, (pas encore testés)">
+    <list default="true" id="25e00e35-0ef9-4fc6-8b40-571894da2689" name="Changes" comment="la possession contient maintenant une ref vers un pokemon( et non plus seulement le numéro)">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/succes.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/uca/StartServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/StartServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uca/core/PossessionCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/core/PossessionCore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uca/core/UserCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/core/UserCore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uca/dao/PossessionDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/dao/PossessionDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uca/dao/_Initializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/dao/_Initializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uca/entity/PokemonEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/entity/PokemonEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uca/entity/PossessionEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/entity/PossessionEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uca/gui/UserGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/gui/UserGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/views/profile/profile.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/profile/profile.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/core/SessionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/core/SessionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/accueil.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,15 +74,18 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Enum" />
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="SET_USER_NAME_GLOBALLY" value="false" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectId" id="2OujYgKOolzuZZGqPj4iROnKSRR" />
   <component name="ProjectViewState">
@@ -121,7 +121,29 @@
       <recent name="$PROJECT_DIR$/com" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Gradle.Pokemon [build]">
+    <configuration name="Pokemon [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
+      <method v="2" />
+    </configuration>
     <configuration name="Pokemon [run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -146,6 +168,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.Pokemon [build]" />
         <item itemvalue="Gradle.Pokemon [run]" />
       </list>
     </recent_temporary>
@@ -174,7 +197,8 @@
       <workItem from="1682603548801" duration="1978000" />
       <workItem from="1682611911838" duration="2880000" />
       <workItem from="1682620089435" duration="4950000" />
-      <workItem from="1682626847474" duration="4123000" />
+      <workItem from="1682626847474" duration="6616000" />
+      <workItem from="1682667309679" duration="10832000" />
     </task>
     <task id="LOCAL-00001" summary="Push existing project to GitLab">
       <created>1682504133404</created>
@@ -225,7 +249,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682629525226</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="la possession contient maintenant une ref vers un pokemon( et non plus seulement le numéro)">
+      <created>1682631992282</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1682631992282</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -250,6 +281,7 @@
     <MESSAGE value="début de trace core et de tradeDAO, debut de l'ajout de la bdd" />
     <MESSAGE value="ajout de la BDD des trades, (pas fonctionnels" />
     <MESSAGE value="modif mineurs sur les BDD, ajout de la date d'acusition dans l'affichage , ajout de fonctionnalité pour les échanges, (pas encore testés)" />
-    <option name="LAST_COMMIT_MESSAGE" value="modif mineurs sur les BDD, ajout de la date d'acusition dans l'affichage , ajout de fonctionnalité pour les échanges, (pas encore testés)" />
+    <MESSAGE value="la possession contient maintenant une ref vers un pokemon( et non plus seulement le numéro)" />
+    <option name="LAST_COMMIT_MESSAGE" value="la possession contient maintenant une ref vers un pokemon( et non plus seulement le numéro)" />
   </component>
 </project>

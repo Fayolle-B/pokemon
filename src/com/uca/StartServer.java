@@ -2,10 +2,15 @@ package com.uca;
 
 import com.uca.core.PokemonCore;
 import com.uca.core.PossessionCore;
+import com.uca.core.SessionManager;
 import com.uca.core.UserCore;
+import com.uca.dao.UserDAO;
 import com.uca.dao._Initializer;
 import com.uca.entity.UserEntity;
 import com.uca.gui.UserGUI;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpSession;
 
 import static spark.Spark.*;
 
@@ -23,7 +28,11 @@ public class StartServer {
             return UserGUI.getAllUsers();
         });
         get("/", (req, res) -> {
-            res.redirect("index.html");
+            System.out.println("La reque : " +req.session(false));
+            if(req.session(false)!=null){
+                res.redirect("/profile/"+((UserEntity)(req.session(false).attribute("user"))).getId());
+            };
+            res.redirect("accueil.html");
             return null;
         });
 
@@ -52,16 +61,21 @@ public class StartServer {
         }));
 
         post("/login", ((request, response) -> {
-            UserEntity user= new UserEntity();
-            user.setPwd(request.queryParams("password"));
-            user.setEmail(request.queryParams("email"));
-            UserCore.canBeLoggedIn(user);
+            SessionManager.tryToConnect(request,response);
             return null;
         }));
 
         get("/profile/:userid/add/:pkmnid",((request, response) -> {
             PossessionCore.addPossession(UserCore.getUserFromId(Integer.parseInt(request.params(":userid"))), Integer.parseInt(request.params(":pkmnid")));
             response.redirect("/profile/"+request.params("userid"));
+            return null;
+        } ));
+        get("/logOut", ((request, response) -> {
+            HttpSession httpSession = request.session().raw();
+            httpSession.invalidate();
+            response.redirect("/accueil");
+
+
             return null;
         } ));
 
