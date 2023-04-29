@@ -50,7 +50,7 @@ nombre de possession : ${numberOfPossessions!"0"}
             </td>
             <td> ${trade.status}</td>
             <td>${trade.applicantPossession}</td>
-            <td> ${recipientPossession}</td>
+            <td> ${trade.recipientPossession}</td>
         </tr>
 
     </#list>
