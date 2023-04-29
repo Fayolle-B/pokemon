@@ -58,7 +58,6 @@ public class UserGUI {
         ArrayList<PossessionEntity> possessions=null;
         try {
             possessions= PossessionCore.possessionOf(userEntity);
-            System.out.println(possessions);
         }catch(Exception e){
             System.err.println("Cannot retrieve the possession list, printing the Stack Trace ");
             e.printStackTrace();
@@ -71,9 +70,7 @@ public class UserGUI {
         Template template = configuration.getTemplate("profile/profile.ftl");
         template.setOutputEncoding("UTF-8");
         template.process(input,output);
-        for(PossessionEntity p:possessions){
-            System.out.println(p.getPokemon().getName());
-        }
+
 
 
         return output.toString();

@@ -230,7 +230,7 @@ ID2</ColNames>
       <Position>1</Position>
       <SequenceInline>1</SequenceInline>
       <SequenceDasType>INTEGER|0s</SequenceDasType>
-      <SequenceSequenceIdentity>1(1)</SequenceSequenceIdentity>
+      <SequenceSequenceIdentity>1(5)</SequenceSequenceIdentity>
       <SequenceStartValue>1</SequenceStartValue>
     </column>
     <column id="178" parent="166" name="NUMPKMN">
@@ -278,9 +278,14 @@ ID2</ColNames>
       <Primary>1</Primary>
     </key>
     <column id="187" parent="167" name="ID">
+      <ColumnKind>generated-stored</ColumnKind>
       <DasType>INTEGER|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
+      <SequenceInline>1</SequenceInline>
+      <SequenceDasType>INTEGER|0s</SequenceDasType>
+      <SequenceSequenceIdentity>1(2)</SequenceSequenceIdentity>
+      <SequenceStartValue>1</SequenceStartValue>
     </column>
     <column id="188" parent="167" name="APPOWNID">
       <DasType>INTEGER|0s</DasType>
@@ -339,7 +344,7 @@ ID2</ColNames>
       <Position>3</Position>
       <SequenceInline>1</SequenceInline>
       <SequenceDasType>INTEGER|0s</SequenceDasType>
-      <SequenceSequenceIdentity>1(9)</SequenceSequenceIdentity>
+      <SequenceSequenceIdentity>1(4)</SequenceSequenceIdentity>
       <SequenceStartValue>1</SequenceStartValue>
     </column>
     <column id="200" parent="168" name="LOGIN">

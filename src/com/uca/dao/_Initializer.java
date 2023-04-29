@@ -20,7 +20,7 @@ public class _Initializer {
             statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS possession(idPoss int PRIMARY KEY AUTO_INCREMENT,numPkmn long NOT NULL ,level int, aquireDate DATE NOT NULL, loseDate DATE, owner_id int, FOREIGN KEY (owner_id) REFERENCES  users(id)); ");
             statement.execute();
 
-            statement_Trade= connection.prepareStatement("CREATE TABLE IF NOT EXISTS trades(id int PRIMARY KEY , appOwnID int , recOwnID int, submitDate  Date , acceptDate Date , status varchar(100), FOREIGN KEY (appOwnID) References  POSSESSION(IDPOSS))");
+            statement_Trade= connection.prepareStatement("CREATE TABLE IF NOT EXISTS trades(id int PRIMARY KEY  AUTO_INCREMENT, appOwnID int , recOwnID int, submitDate  Date , acceptDate Date , status varchar(100), FOREIGN KEY (appOwnID) References  POSSESSION(IDPOSS))");
             statement_Trade.execute();
 
 

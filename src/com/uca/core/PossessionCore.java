@@ -40,12 +40,12 @@ public class PossessionCore {
         new PossessionDAO().getAllPossessions();
     }
 
-    public static PossessionEntity getPossessionById(int id) {
+    public static PossessionEntity getPossessionById(int id) throws SQLException {
         try {
             return new PossessionDAO().getPossessionById(id);
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException(e);
+            throw new RuntimeException("Cannot recover any Possession for id="+id);
         }
     }
 }

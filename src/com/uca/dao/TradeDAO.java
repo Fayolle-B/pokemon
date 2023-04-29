@@ -13,12 +13,17 @@ public class TradeDAO extends _Generic<TradeEntity> {
     @Override
     public TradeEntity create(TradeEntity obj) throws SQLException {
         //TODO: le faire quoi
-        PreparedStatement statement = this.connect.prepareStatement("INSERT INTO TRADES ( APPOWNID, RECOWNID, SUBMITDATE, ACCEPTDATE, STATUS) VALUES ( ?,?,?,?,?,? )", PreparedStatement.RETURN_GENERATED_KEYS);
+        PreparedStatement statement = this.connect.prepareStatement("INSERT INTO TRADES ( APPOWNID, RECOWNID, SUBMITDATE, ACCEPTDATE, STATUS) VALUES ( ?,?,?,?,? )", PreparedStatement.RETURN_GENERATED_KEYS);
         statement.setInt(1, obj.getApplicantPossession().getIdPos());
         statement.setInt(2, obj.getRecipientPossession().getIdPos());
         statement.setDate(3, new java.sql.Date(obj.getSubmitDate().getTime()));
-        statement.setDate(4, new java.sql.Date(obj.getAcceptDate().getTime()));
+        try {
+            statement.setDate(4, new java.sql.Date(obj.getAcceptDate().getTime()));
+        }catch (NullPointerException e){
+            statement.setDate(4,null);
+        }
         statement.setString(5,obj.getStatus().toString());
+        //statement.setInt(6,obj.getId());
         statement.executeUpdate();
         ResultSet resultSet = statement.getGeneratedKeys();
         if(resultSet.next()){
@@ -45,7 +50,7 @@ public class TradeDAO extends _Generic<TradeEntity> {
         PreparedStatement preparedStatement = this.connect.prepareStatement("SELECT ID, APPOWNID, RECOWNID, SUBMITDATE, ACCEPTDATE, STATUS from TRADES where id=?");
         ResultSet resultSet = preparedStatement.executeQuery();
         if(resultSet.isLast()){
-            throw new SQLException("Cannot recover a Trade from this ID");
+            throw new SQLException("There is no trade with this ID");
         }
         resultSet.next();
         PossessionDAO possessionDAO = new PossessionDAO();

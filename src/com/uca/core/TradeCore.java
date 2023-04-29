@@ -8,8 +8,8 @@ import java.sql.SQLException;
 
 public class TradeCore {
 
-    public TradeEntity newTrade(PossessionEntity applicantPossession, PossessionEntity recipiantPossession){
-        TradeEntity tradeEntity =new TradeEntity(applicantPossession,recipiantPossession);
+    public static TradeEntity newTrade(PossessionEntity applicantPossession, PossessionEntity recipientPossession){
+        TradeEntity tradeEntity =new TradeEntity(applicantPossession,recipientPossession);
         try {
             tradeEntity = new TradeDAO().create(tradeEntity);
         } catch (SQLException e) {
@@ -19,4 +19,14 @@ public class TradeCore {
 
         return tradeEntity;
     };
+    public static TradeEntity newTradeFromIDs(int id1, int id2){
+        PossessionEntity applicantPossession, recipientPossession;
+        try{
+            applicantPossession=PossessionCore.getPossessionById(id1);
+            recipientPossession=PossessionCore.getPossessionById(id2);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return newTrade(applicantPossession, recipientPossession);
+    }
 }

@@ -41,7 +41,7 @@ public class PossessionDAO extends _Generic<PossessionEntity>{
 
     public PossessionEntity getPossessionById(int id) throws SQLException {
         PossessionEntity possessionEntity = new PossessionEntity();
-        PreparedStatement preparedStatement = this.connect.prepareStatement("SELECT IDPOSS, NUMPKMN, LEVEL, DATEACQUISITION, DATEPERTE, OWNER_ID from POSSESSION where IDPOSS = ?");
+        PreparedStatement preparedStatement = this.connect.prepareStatement("SELECT IDPOSS, NUMPKMN, LEVEL, AQUIREDATE, LOSEDATE, OWNER_ID from POSSESSION where IDPOSS = ?");
         preparedStatement.setInt(1,id);
         ResultSet resultSet = preparedStatement.executeQuery();
         if(!resultSet.next()){
@@ -49,8 +49,12 @@ public class PossessionDAO extends _Generic<PossessionEntity>{
         }
         possessionEntity.setIdPos(id);
         possessionEntity.setLevel(resultSet.getInt("LEVEL"));
-        possessionEntity.setDateAqui(new java.util.Date(resultSet.getDate("DATEACQUISITION").getTime()));
-        possessionEntity.setDatePerte(new java.util.Date(resultSet.getDate("DATEPERTE").getTime()));
+        possessionEntity.setDateAqui(new java.util.Date(resultSet.getDate("AQUIREDATE").getTime()));
+        try {
+            possessionEntity.setDatePerte(new java.util.Date(resultSet.getDate("LOSEDATE").getTime()));
+        }catch (NullPointerException e){
+            possessionEntity.setDatePerte(null);
+        }
         possessionEntity.setOwner(new UserDAO().getUserById(resultSet.getInt("OWNER_ID")));
         possessionEntity.setPokemon(new PokemonDAO().requestAPIFromId( resultSet.getInt("NUMPKMN")));
 

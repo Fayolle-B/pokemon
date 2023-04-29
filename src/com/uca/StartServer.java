@@ -1,9 +1,7 @@
 package com.uca;
 
-import com.uca.core.PokemonCore;
-import com.uca.core.PossessionCore;
-import com.uca.core.SessionManager;
-import com.uca.core.UserCore;
+import com.uca.controller.tradesController;
+import com.uca.core.*;
 import com.uca.dao.UserDAO;
 import com.uca.dao._Initializer;
 import com.uca.entity.UserEntity;
@@ -28,14 +26,22 @@ public class StartServer {
             return UserGUI.getAllUsers();
         });
         get("/", (req, res) -> {
-            System.out.println("La reque : " +req.session(false));
-            if(req.session(false)!=null){
-                res.redirect("/profile/"+((UserEntity)(req.session(false).attribute("user"))).getId());
+            if(SessionManager.isConnected(req, res)){
+                res.redirect("/myProfile");
             };
             res.redirect("accueil.html");
             return null;
         });
-
+        get("/myProfile", (request, response) -> {
+            if(request.session(false)!=null){
+                response.redirect("/profile/"+((UserEntity)(request.session(false).attribute("user"))).getId());
+            }
+            else {
+                halt(401,"Il vous faut créer un compte pour accéder à votre profile");
+                response.redirect("/");
+            }
+            return null;
+        } );
         post("/register",(req,res) -> {
             String firstname = req.queryParams("firstname");
             String lastname = req.queryParams("lastname");
@@ -78,6 +84,9 @@ public class StartServer {
 
             return null;
         } ));
+
+
+        tradesController.tradesRoutes();
 
     }
 
