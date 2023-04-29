@@ -36,6 +36,26 @@ nombre de possession : ${numberOfPossessions!"0"}
     </#list>
     Possession : ${possession!"null"};
 
+
+    <table>
+<caption>Les trades</caption>
+        <tr>
+            <th scope="col"> id du trade </th>
+            <th scope="col">id de la possession de </th>
+        </tr>
+    <#list  trades as trade>
+        <tr>
+            <td>
+                ${trade.getId()}
+            </td>
+            <td> ${trade.status}</td>
+            <td>${trade.applicantPossession}</td>
+            <td> ${recipientPossession}</td>
+        </tr>
+
+    </#list>
+    </table>
+
 </table>
 </body>
 </html>

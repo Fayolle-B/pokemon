@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class UserDAO extends _Generic<UserEntity> {
 
-    public ArrayList<UserEntity> getAllUsers() {
+    public ArrayList<UserEntity> getAllUsers() throws SQLException {
         ArrayList<UserEntity> entities = new ArrayList<>();
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement("SELECT * FROM users ORDER BY id ASC;");
@@ -26,7 +26,7 @@ public class UserDAO extends _Generic<UserEntity> {
                 entities.add(entity);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw e;
         }
 
         return entities;

@@ -1,11 +1,15 @@
 package com.uca.dao;
 
+import com.uca.entity.PossessionEntity;
 import com.uca.entity.TradeEntity;
 import com.uca.entity.TradeStatus;
+import com.uca.entity.UserEntity;
+import org.h2.engine.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class TradeDAO extends _Generic<TradeEntity> {
@@ -58,15 +62,50 @@ public class TradeDAO extends _Generic<TradeEntity> {
         tradeEntity.setApplicantPossession(possessionDAO.getPossessionById(resultSet.getInt("APPOWNID")));
         tradeEntity.setRecipientPossession(possessionDAO.getPossessionById(resultSet.getInt("RECOWNID")));
         tradeEntity.setSubmitDate(new Date(resultSet.getDate("SUBMITDATE").getTime()));
-        tradeEntity.setAcceptDate(new Date(resultSet.getDate("ACCEPTDATE").getTime()));
-        try {
-
-            tradeEntity.setStatus(TradeStatus.valueOf(resultSet.getString("STATUS")));
-        }catch (SQLException e){
-            e.printStackTrace();
-            throw  e;
+        if(resultSet.getDate("ACCEPTDATE")==null){
+            tradeEntity.setAcceptDate(null);
+        }else{
+            tradeEntity.setAcceptDate(new Date(resultSet.getDate("ACCEPTDATE").getTime()));
         }
+        tradeEntity.setStatus(TradeStatus.valueOf(resultSet.getString("STATUS")));
         return  tradeEntity;
 
+    }
+
+    public ArrayList<TradeEntity> getAllTradesOf(UserEntity userEntity) {
+        ArrayList<TradeEntity> tradeEntities = new ArrayList<>();
+        ResultSet resultSet;
+        PreparedStatement preparedStatement = null;
+        PossessionDAO possessionDAO = new PossessionDAO();
+        try {
+            preparedStatement = this.connect.prepareStatement("SELECT ID, APPOWNID, RECOWNID, SUBMITDATE, ACCEPTDATE, STATUS from TRADES");
+            resultSet = preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            while(resultSet.next()){
+                TradeEntity tradeEntity = new TradeEntity();
+
+                PossessionEntity appPoss = possessionDAO.getPossessionById(resultSet.getInt("APPOWNID"));
+                PossessionEntity recPoss= possessionDAO.getPossessionById(resultSet.getInt("RECOWNID"));
+                if(appPoss.getOwner().equals(userEntity) || recPoss.getOwner().equals(userEntity)){
+                    tradeEntity.setId(resultSet.getInt("ID"));
+                    tradeEntity.setApplicantPossession(appPoss);
+                    tradeEntity.setRecipientPossession(recPoss);
+                    tradeEntity.setSubmitDate(new Date(resultSet.getDate("SUBMITDATE").getTime()));
+                    if(resultSet.getDate("ACCEPTDATE")==null){
+                        tradeEntity.setAcceptDate(null);
+                    }else{
+                        tradeEntity.setAcceptDate(new Date(resultSet.getDate("ACCEPTDATE").getTime()));
+                    }
+                    tradeEntity.setStatus(TradeStatus.valueOf(resultSet.getString("STATUS")));
+                    tradeEntities.add(tradeEntity);
+                }
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return  tradeEntities;
     }
 }

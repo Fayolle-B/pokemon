@@ -4,21 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="25e00e35-0ef9-4fc6-8b40-571894da2689" name="Changes" comment="fini">
-      <change afterPath="$PROJECT_DIR$/src/com/uca/controller/profileController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/uca/controller/tradesController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/uca/exception/IllegalRouteException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/successfullLogin.ftl" afterDir="false" />
+    <list default="true" id="25e00e35-0ef9-4fc6-8b40-571894da2689" name="Changes" comment="changement de l'organisation des routes (pour pas tout mettre dans le même fichiers )&#10;puis j'ai avancé les trades (fonctionne pas tout a fait)">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/favicon.ico" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/3bce7248-ed53-498f-ae1d-c57d53b539ae.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3bce7248-ed53-498f-ae1d-c57d53b539ae.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uca/StartServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/StartServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uca/core/PossessionCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/core/PossessionCore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uca/core/SessionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/core/SessionManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/uca/core/TradeCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/core/TradeCore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uca/dao/PossessionDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/dao/PossessionDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/core/UserCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/core/UserCore.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/uca/dao/TradeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/dao/TradeDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uca/dao/_Initializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/dao/_Initializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uca/gui/PossessionGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/gui/PossessionGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/dao/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/entity/TradeEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/entity/TradeEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/gui/UserGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/gui/UserGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/profile/profile.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/profile/profile.ftl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +108,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "settings.editor.selected.configurable": "preferences.keymap",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -128,7 +124,7 @@
       <recent name="$PROJECT_DIR$/com" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.Pokemon [build]">
+  <component name="RunManager" selected="Gradle.Pokemon [run]">
     <configuration name="Pokemon [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -156,7 +152,7 @@
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--stacktrace" />
+        <option name="scriptParameters" value="--info" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -210,7 +206,8 @@
       <workItem from="1682683599962" duration="159000" />
       <workItem from="1682683775692" duration="64000" />
       <workItem from="1682683848510" duration="299000" />
-      <workItem from="1682715968798" duration="10474000" />
+      <workItem from="1682715968798" duration="10764000" />
+      <workItem from="1682766561607" duration="7056000" />
     </task>
     <task id="LOCAL-00001" summary="Push existing project to GitLab">
       <created>1682504133404</created>
@@ -275,7 +272,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682678801434</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="changement de l'organisation des routes (pour pas tout mettre dans le même fichiers )&#10;puis j'ai avancé les trades (fonctionne pas tout a fait)">
+      <created>1682727169987</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1682727169987</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -302,6 +306,18 @@
     <MESSAGE value="modif mineurs sur les BDD, ajout de la date d'acusition dans l'affichage , ajout de fonctionnalité pour les échanges, (pas encore testés)" />
     <MESSAGE value="la possession contient maintenant une ref vers un pokemon( et non plus seulement le numéro)" />
     <MESSAGE value="fini" />
-    <option name="LAST_COMMIT_MESSAGE" value="fini" />
+    <MESSAGE value="changement de l'organisation des routes (pour pas tout mettre dans le même fichiers )&#10;puis j'ai avancé les trades (fonctionne pas tout a fait)" />
+    <option name="LAST_COMMIT_MESSAGE" value="changement de l'organisation des routes (pour pas tout mettre dans le même fichiers )&#10;puis j'ai avancé les trades (fonctionne pas tout a fait)" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/uca/dao/TradeDAO.java</url>
+          <line>108</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

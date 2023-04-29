@@ -3,8 +3,10 @@ package com.uca.core;
 import com.uca.dao.TradeDAO;
 import com.uca.entity.PossessionEntity;
 import com.uca.entity.TradeEntity;
+import com.uca.entity.UserEntity;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class TradeCore {
 
@@ -28,5 +30,9 @@ public class TradeCore {
             throw new RuntimeException(e);
         }
         return newTrade(applicantPossession, recipientPossession);
+    }
+
+    public static ArrayList<TradeEntity> getAllTradesOf(UserEntity userEntity){
+        return new TradeDAO().getAllTradesOf(userEntity);
     }
 }

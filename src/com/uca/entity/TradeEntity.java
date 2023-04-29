@@ -23,7 +23,6 @@ public class TradeEntity {
 
     }
 
-    //TODO:
 
 
     public int getId() {

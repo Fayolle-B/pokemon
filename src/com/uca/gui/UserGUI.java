@@ -1,6 +1,7 @@
  package com.uca.gui;
 
 import com.uca.core.PossessionCore;
+import com.uca.core.TradeCore;
 import com.uca.core.UserCore;
 import com.uca.entity.PossessionEntity;
 import com.uca.entity.UserEntity;
@@ -59,13 +60,14 @@ public class UserGUI {
         try {
             possessions= PossessionCore.possessionOf(userEntity);
         }catch(Exception e){
-            System.err.println("Cannot retrieve the possession list, printing the Stack Trace ");
+            System.err.println("Cannot retrieve the possession list, przinting the Stack Trace ");
             e.printStackTrace();
         }
         if (possessions == null) throw new AssertionError();
         input.put("possessions", possessions);
         System.out.println("Le pseudo est : "+ userEntity.getLogin());
         input.put("numberOfPossessions",possessions.size());
+        input.put("trades", TradeCore.getAllTradesOf(userEntity));
         Writer output = new StringWriter();
         Template template = configuration.getTemplate("profile/profile.ftl");
         template.setOutputEncoding("UTF-8");

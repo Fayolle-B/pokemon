@@ -24,7 +24,11 @@ public class UserCore {
      @return an ArrayList of UserEntity objects
      */
     public static ArrayList<UserEntity> getAllUsers() {
-        return new UserDAO().getAllUsers();
+        try {
+            return new UserDAO().getAllUsers();
+    } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
