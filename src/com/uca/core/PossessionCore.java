@@ -37,6 +37,18 @@ public class PossessionCore {
         return new PossessionDAO().possessionOf(user);
     }
 
+    public static ArrayList<PossessionEntity> activPossessionOf(UserEntity user){
+        ArrayList<PossessionEntity> possessionEntities = possessionOf(user);
+        possessionEntities.removeIf(possessionEntity -> possessionEntity.getDatePerte() != null);
+        return possessionEntities;
+    }
+
+    public static ArrayList<PossessionEntity> oldPossessionOf(UserEntity user) {
+        ArrayList<PossessionEntity> possessionEntities = possessionOf(user);
+        possessionEntities.removeIf(possessionEntity -> possessionEntity.getDatePerte()==null);
+        return  possessionEntities;
+    }
+
     public static void getAllPossessions() {
         new PossessionDAO().getAllPossessions();
     }

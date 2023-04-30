@@ -10,7 +10,7 @@
 <body>
 
 <table>
-    <caption>Les trades</caption>
+    <caption>Vos échanges en cours</caption>
     <tr>
         <th scope="col"> ID de l'échange</th>
         <th scope="col">Status de l'échange</th>
@@ -18,7 +18,7 @@
         <th scope="col">ID de la possession du receveur</th>
 
     </tr>
-    <#list  trades as trade>
+    <#list  pendingTrades as trade>
         <tr id="trade#${trade_index}">
             <td id="id">
                 ${trade.getId()}

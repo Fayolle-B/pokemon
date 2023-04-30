@@ -4,6 +4,7 @@ import com.uca.core.PossessionCore;
 import com.uca.core.TradeCore;
 import com.uca.core.UserCore;
 import com.uca.entity.PossessionEntity;
+import com.uca.entity.TradeStatus;
 import com.uca.entity.UserEntity;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -56,18 +57,18 @@ public class UserGUI {
         UserEntity userEntity=UserCore.getUserFromId(id);
 
         input.put("user",userEntity);
-        ArrayList<PossessionEntity> possessions=null;
+        ArrayList<PossessionEntity> activePossessions=null;
         try {
-            possessions= PossessionCore.possessionOf(userEntity);
+            activePossessions= PossessionCore.activPossessionOf(userEntity);
         }catch(Exception e){
             System.err.println("Cannot retrieve the possession list, przinting the Stack Trace ");
             e.printStackTrace();
         }
-        if (possessions == null) throw new AssertionError();
-        input.put("possessions", possessions);
+        if (activePossessions == null) throw new AssertionError();
+        input.put("activePossessions", activePossessions);
         System.out.println("Le pseudo est : "+ userEntity.getLogin());
-        input.put("numberOfPossessions",possessions.size());
-        input.put("trades", TradeCore.getAllTradesOf(userEntity));
+        input.put("numberOfActivePossessions",activePossessions.size());
+        input.put("pendingTrades", TradeCore.getTradesOfHavingStatus(userEntity, TradeStatus.PENDING));
         Writer output = new StringWriter();
         Template template = configuration.getTemplate("profile/profile.ftl");
         template.setOutputEncoding("UTF-8");
@@ -86,17 +87,28 @@ public class UserGUI {
         UserEntity userEntity=UserCore.getUserFromId(id);
 
         input.put("user",userEntity);
-        ArrayList<PossessionEntity> possessions=null;
+        ArrayList<PossessionEntity> activePossessions=null;
         try {
-            possessions= PossessionCore.possessionOf(userEntity);
+            activePossessions= PossessionCore.activPossessionOf(userEntity);
         }catch(Exception e){
-            System.err.println("Cannot retrieve the possession list, przinting the Stack Trace ");
+            System.err.println("Cannot retrieve the active possessions list, przinting the Stack Trace ");
             e.printStackTrace();
         }
-        if (possessions == null) throw new AssertionError();
-        input.put("possessions", possessions);
+        if (activePossessions == null) throw new AssertionError();
+        input.put("activePossessions", activePossessions);
+              ArrayList<PossessionEntity> oldPossessions=null;
+        try {
+            oldPossessions= PossessionCore.oldPossessionOf(userEntity);
+        }catch(Exception e){
+            System.err.println("Cannot retrieve the old possessions list, przinting the Stack Trace ");
+            e.printStackTrace();
+        }
+        if (oldPossessions == null) throw new AssertionError();
+        input.put("oldPossessions", oldPossessions);
+
+
         System.out.println("Le pseudo est : "+ userEntity.getLogin());
-        input.put("numberOfPossessions",possessions.size());
+        input.put("numberOfPossessions",activePossessions.size());
         input.put("trades", TradeCore.getAllTradesOf(userEntity));
         Writer output = new StringWriter();
         Template template = configuration.getTemplate("profile/my.ftl");
@@ -114,7 +126,14 @@ public class UserGUI {
         Configuration configuration = _FreeMarkerInitializer.getContext();
         Map<String,Object>input = new HashMap<>();
         input.put("user",userEntity);
-        input.put("trades", TradeCore.getAllTradesOf(userEntity));
+        try {
+            input.put("pendingTrades", TradeCore.getTradesOfHavingStatus(userEntity, TradeStatus.PENDING));
+            input.put("acceptedTrades", TradeCore.getTradesOfHavingStatus(userEntity, TradeStatus.ACCEPTED));
+            input.put("refusedTrades", TradeCore.getTradesOfHavingStatus(userEntity, TradeStatus.REFUSED));
+        }catch(Exception e){
+            e.printStackTrace();
+            throw  new RuntimeException("Can't retrieve the complete list of trade of this user");
+        }
         Writer output = new StringWriter();
         try {
             Template template = configuration.getTemplate("profile/trades.ftl");

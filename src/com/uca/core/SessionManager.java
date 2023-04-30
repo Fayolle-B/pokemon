@@ -1,12 +1,15 @@
 package com.uca.core;
 
 import com.uca.dao.UserDAO;
+import com.uca.entity.PokemonEntity;
+import com.uca.entity.PossessionEntity;
 import com.uca.entity.UserEntity;
 
 import spark.Request;
 import spark.Response;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 
 public class SessionManager {
 //TODO
@@ -22,6 +25,13 @@ public class SessionManager {
             HttpSession session = request.session().raw();
             session.setAttribute("user", user);
             session.setMaxInactiveInterval(30 * 60);
+
+            //Let's handle the points number (used to pex everyday)
+            if (!user.getDateConnexion().equals(new Date())){
+                user.setPoints(PossessionEntity.nb_point);
+                user.setDateConnexion(new Date());
+                UserCore.update(user);
+            }
             return true;
         } else {
             System.out.println("User or password incorrect");

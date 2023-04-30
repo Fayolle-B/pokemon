@@ -45,7 +45,9 @@ public class TradeDAO extends _Generic<TradeEntity> {
         PreparedStatement preparedStatement = this.connect.prepareStatement("UPDATE TRADES set ACCEPTDATE = ?, STATUS = ? where ID=?");
         preparedStatement.setDate(1,new java.sql.Date(tradeEntity.getAcceptDate().getTime()));
         preparedStatement.setString(2,tradeEntity.getStatus().toString());
+        System.out.println("Le status est : " + tradeEntity.getStatus().toString());
         preparedStatement.setInt(3, tradeEntity.getId());
+        preparedStatement.executeUpdate();
 
     }
 

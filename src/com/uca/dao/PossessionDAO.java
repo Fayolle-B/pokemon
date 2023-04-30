@@ -107,9 +107,7 @@ public class PossessionDAO extends _Generic<PossessionEntity>{
                 }else {
                     entity.setDatePerte(new Date((sqlDate).getTime()));
                 }
-
                 entities.add(entity);
-                System.out.println("On a ajouté");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

@@ -75,7 +75,7 @@ public class StartServer {
             response.redirect("/profile/"+request.params("userid"));
             return null;
         } ));
-        get("/logOut", ((request, response) -> {
+        get("/logout", ((request, response) -> {
             HttpSession httpSession = request.session().raw();
             httpSession.invalidate();
             response.redirect("/");

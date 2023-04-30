@@ -8,11 +8,15 @@
     <title>Mon profil</title>
 </head>
 <body>
+<#include "../menu.ftl">
 <h1>Mon profil : </h1>
+
 
 Prénom  : ${user.getFirstName()}
 Nom : ${user.getLastName()}
 <#include "possessions.ftl">
+
+<a href="/profile/${user.id}/trades"> Mes échanges </a>
 
 </body>
 </html>

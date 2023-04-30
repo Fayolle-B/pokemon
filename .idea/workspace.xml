@@ -4,14 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="25e00e35-0ef9-4fc6-8b40-571894da2689" name="Changes" comment="on fait la différence entre le profile de la personne connecté et les autres. &#10;Début de l'acceptation des échanges (fonctionne pas )">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/profile/possessionPicker.ftl" afterDir="false" />
+    <list default="true" id="25e00e35-0ef9-4fc6-8b40-571894da2689" name="Changes" comment="séparation entre les possessions actuelle / archivées, et les échanges en cours/refusé/acceptés dans l'affivhage">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/views/menu.ftl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/3bce7248-ed53-498f-ae1d-c57d53b539ae.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3bce7248-ed53-498f-ae1d-c57d53b539ae.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uca/controller/profileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/controller/profileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uca/controller/tradesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/controller/tradesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/StartServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/StartServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/core/PossessionCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/core/PossessionCore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/core/SessionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/core/SessionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/core/TradeCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/core/TradeCore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/dao/PossessionDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/dao/PossessionDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/dao/TradeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/dao/TradeDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/entity/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/entity/UserEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/uca/gui/UserGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/gui/UserGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/succes.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/succes.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/profile/my.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/profile/my.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/profile/possessions.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/profile/possessions.ftl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/views/profile/profile.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/profile/profile.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/profile/trades.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/profile/trades.ftl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +114,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -204,7 +213,7 @@
       <workItem from="1682683775692" duration="64000" />
       <workItem from="1682683848510" duration="299000" />
       <workItem from="1682715968798" duration="10764000" />
-      <workItem from="1682766561607" duration="38836000" />
+      <workItem from="1682766561607" duration="50834000" />
     </task>
     <task id="LOCAL-00001" summary="Push existing project to GitLab">
       <created>1682504133404</created>
@@ -311,7 +320,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682868058281</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="les trades fonctionne, les routes ne sont peut être pas encore très bonne, mais ca marche">
+      <created>1682876557345</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1682876557345</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -344,7 +360,9 @@
     <MESSAGE value="on peut afficher les trades, modificaton des routes, début des méthodes pour accetper/refuser les échanges" />
     <MESSAGE value="on peut maintenant accepter les échanges (normalement)" />
     <MESSAGE value="on fait la différence entre le profile de la personne connecté et les autres. &#10;Début de l'acceptation des échanges (fonctionne pas )" />
-    <option name="LAST_COMMIT_MESSAGE" value="on fait la différence entre le profile de la personne connecté et les autres. &#10;Début de l'acceptation des échanges (fonctionne pas )" />
+    <MESSAGE value="les trades fonctionne, les routes ne sont peut être pas encore très bonne, mais ca marche" />
+    <MESSAGE value="séparation entre les possessions actuelle / archivées, et les échanges en cours/refusé/acceptés dans l'affivhage" />
+    <option name="LAST_COMMIT_MESSAGE" value="séparation entre les possessions actuelle / archivées, et les échanges en cours/refusé/acceptés dans l'affivhage" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

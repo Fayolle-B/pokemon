@@ -76,7 +76,6 @@ public class UserEntity {
         // voir plus tard comment creer l'objet date
         this.dateConnexion = date;
     }
-
     public void setPwd(String pwd) {
         this.pwd = pwd;
     }

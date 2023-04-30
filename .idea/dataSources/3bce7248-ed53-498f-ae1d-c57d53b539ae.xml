@@ -230,7 +230,7 @@ ID2</ColNames>
       <Position>1</Position>
       <SequenceInline>1</SequenceInline>
       <SequenceDasType>INTEGER|0s</SequenceDasType>
-      <SequenceSequenceIdentity>1(3)</SequenceSequenceIdentity>
+      <SequenceSequenceIdentity>1(45)</SequenceSequenceIdentity>
       <SequenceStartValue>1</SequenceStartValue>
     </column>
     <column id="178" parent="166" name="NUMPKMN">
@@ -284,7 +284,7 @@ ID2</ColNames>
       <Position>1</Position>
       <SequenceInline>1</SequenceInline>
       <SequenceDasType>INTEGER|0s</SequenceDasType>
-      <SequenceSequenceIdentity>1(3)</SequenceSequenceIdentity>
+      <SequenceSequenceIdentity>1(2)</SequenceSequenceIdentity>
       <SequenceStartValue>1</SequenceStartValue>
     </column>
     <column id="188" parent="167" name="APPOWNID">
