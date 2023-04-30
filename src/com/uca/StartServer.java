@@ -1,5 +1,6 @@
 package com.uca;
 
+import com.uca.controller.profileController;
 import com.uca.controller.tradesController;
 import com.uca.core.*;
 import com.uca.dao.UserDAO;
@@ -57,9 +58,6 @@ public class StartServer {
             return null;
         });
 
-        get("/profile/:id",(req,res)->{
-            return UserGUI.displayProfile(Integer.parseInt(req.params(":id")));
-        });
 
         get("/login", ((request, response) -> {
             response.redirect("login.html");
@@ -67,8 +65,8 @@ public class StartServer {
         }));
 
         post("/login", ((request, response) -> {
-            SessionManager.tryToConnect(request,response);
-            return null;
+            if(SessionManager.tryToConnect(request,response))response.redirect("/");
+            return false;
         }));
 
         get("/profile/:userid/add/:pkmnid",((request, response) -> {
@@ -79,12 +77,13 @@ public class StartServer {
         get("/logOut", ((request, response) -> {
             HttpSession httpSession = request.session().raw();
             httpSession.invalidate();
-            response.redirect("/accueil");
+            response.redirect("/");
 
 
             return null;
         } ));
 
+        profileController.profileRoute();
 
         tradesController.tradesRoutes();
 

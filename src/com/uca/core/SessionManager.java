@@ -12,7 +12,7 @@ public class SessionManager {
 //TODO
 
 //TODO : move TryToConnect in another place,
-    public static void tryToConnect(Request request, Response response) {
+    public static boolean tryToConnect(Request request, Response response) {
         UserEntity user = new UserEntity();
         user.setPwd(request.queryParams("password"));
         user.setEmail(request.queryParams("email"));
@@ -22,17 +22,16 @@ public class SessionManager {
             HttpSession session = request.session().raw();
             session.setAttribute("user", user);
             session.setMaxInactiveInterval(30 * 60);
-            response.redirect("succes.html");
-
-
+            return true;
         } else {
             System.out.println("User or password incorrect");
+            return false;
         }
     }
 
     public static UserEntity getConnectedUser(Request request, Response response) throws IllegalAccessException {
         if (!isConnected(request, response)) {
-            throw new IllegalAccessException("Can't get id if not connected");
+            throw new IllegalAccessException("User is not connected, cannot retrieve user id ");
         }
         return ((UserEntity)(request.session(false).attribute("user")));
     }

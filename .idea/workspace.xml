@@ -4,15 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="25e00e35-0ef9-4fc6-8b40-571894da2689" name="Changes" comment="changement de l'organisation des routes (pour pas tout mettre dans le même fichiers )&#10;puis j'ai avancé les trades (fonctionne pas tout a fait)">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3bce7248-ed53-498f-ae1d-c57d53b539ae.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3bce7248-ed53-498f-ae1d-c57d53b539ae.xml" afterDir="false" />
+    <list default="true" id="25e00e35-0ef9-4fc6-8b40-571894da2689" name="Changes" comment="correction du template">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/views/profile/trades.ftl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/StartServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/StartServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/controller/profileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/controller/profileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/controller/tradesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/controller/tradesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/core/SessionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/core/SessionManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/uca/core/TradeCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/core/TradeCore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uca/core/UserCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/core/UserCore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uca/dao/TradeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/dao/TradeDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uca/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/dao/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uca/entity/TradeEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/entity/TradeEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/uca/gui/UserGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/gui/UserGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/views/profile/profile.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/profile/profile.ftl" afterDir="false" />
     </list>
@@ -207,7 +206,7 @@
       <workItem from="1682683775692" duration="64000" />
       <workItem from="1682683848510" duration="299000" />
       <workItem from="1682715968798" duration="10764000" />
-      <workItem from="1682766561607" duration="7056000" />
+      <workItem from="1682766561607" duration="22471000" />
     </task>
     <task id="LOCAL-00001" summary="Push existing project to GitLab">
       <created>1682504133404</created>
@@ -279,7 +278,21 @@
       <option name="project" value="LOCAL" />
       <updated>1682727169987</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="affichage de trades">
+      <created>1682776090220</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1682776090220</updated>
+    </task>
+    <task id="LOCAL-00012" summary="correction du template">
+      <created>1682776643747</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1682776643747</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -307,7 +320,9 @@
     <MESSAGE value="la possession contient maintenant une ref vers un pokemon( et non plus seulement le numéro)" />
     <MESSAGE value="fini" />
     <MESSAGE value="changement de l'organisation des routes (pour pas tout mettre dans le même fichiers )&#10;puis j'ai avancé les trades (fonctionne pas tout a fait)" />
-    <option name="LAST_COMMIT_MESSAGE" value="changement de l'organisation des routes (pour pas tout mettre dans le même fichiers )&#10;puis j'ai avancé les trades (fonctionne pas tout a fait)" />
+    <MESSAGE value="affichage de trades" />
+    <MESSAGE value="correction du template" />
+    <option name="LAST_COMMIT_MESSAGE" value="correction du template" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

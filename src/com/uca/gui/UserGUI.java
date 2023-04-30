@@ -8,6 +8,7 @@ import com.uca.entity.UserEntity;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import org.h2.engine.User;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -78,6 +79,30 @@ public class UserGUI {
         return output.toString();
 
     }
+
+
+
+
+    public static  String displayProfileTrad(UserEntity userEntity){
+        Configuration configuration = _FreeMarkerInitializer.getContext();
+        Map<String,Object>input = new HashMap<>();
+        input.put("user",userEntity);
+        input.put("trades", TradeCore.getAllTradesOf(userEntity));
+        Writer output = new StringWriter();
+        try {
+            Template template = configuration.getTemplate("profile/trades.ftl");
+            template.setOutputEncoding("UTF-8");
+            template.process(input,output);
+        } catch (TemplateException | IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        return output.toString();
+
+
+    }
+
 
 
 

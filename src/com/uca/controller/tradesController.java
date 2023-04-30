@@ -7,18 +7,19 @@ import com.uca.entity.PossessionEntity;
 import com.uca.exception.IllegalRouteException;
 
 import static spark.Spark.get;
+import static spark.Spark.post;
 
 public class tradesController {
 
     public static void tradesRoutes(){
-        get("/trade/:id1/:id2",((request, response) -> {
+        post("/trade",((request, response) -> {
             System.out.println("on veut créer un trade");
             PossessionEntity poss1;
             PossessionEntity poss2;
             int id1, id2;
             try{
-                id1=Integer.parseInt(request.params(":id1"));
-                id2=Integer.parseInt(request.params(":id2"));
+                id1=Integer.parseInt(request.queryParams("applicantPossessionID"));
+                id2=Integer.parseInt(request.queryParams("recipientPossessionID"));
 
             }catch (NumberFormatException e) {
                 throw  new IllegalRouteException("Cannot use [ "+ request.params(":id1")+ " ] and [ "+request.params(":id2")+" ] as possessions id to setup a trade");
@@ -43,6 +44,9 @@ public class tradesController {
             }
             return null;
         } ));
+
+
+
 
     }
 }
