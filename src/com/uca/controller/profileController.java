@@ -37,7 +37,7 @@ public class profileController {
 
         get("/profile/:id/trades", (request, response) -> {
             if (SessionManager.getConnectedUser(request, response).equals(UserCore.getUserFromId(Integer.parseInt(request.params(":id"))))) {
-                return UserGUI.displayProfileTrad(UserCore.getUserFromId(Integer.parseInt(request.params(":id"))));
+                return UserGUI.displayProfileTrade(UserCore.getUserFromId(Integer.parseInt(request.params(":id"))));
             }
             response.redirect("/profile/"+request.params(":id"));
             return null;

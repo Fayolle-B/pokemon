@@ -4,19 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="25e00e35-0ef9-4fc6-8b40-571894da2689" name="Changes" comment="on peut maintenant accepter les échanges (normalement)">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/profile/possessions.ftl" afterDir="false" />
+    <list default="true" id="25e00e35-0ef9-4fc6-8b40-571894da2689" name="Changes" comment="on fait la différence entre le profile de la personne connecté et les autres. &#10;Début de l'acceptation des échanges (fonctionne pas )">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/views/profile/possessionPicker.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3bce7248-ed53-498f-ae1d-c57d53b539ae.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3bce7248-ed53-498f-ae1d-c57d53b539ae.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uca/StartServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/StartServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/controller/profileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/controller/profileController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/uca/controller/tradesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/controller/tradesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uca/core/TradeCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/core/TradeCore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uca/dao/PokemonDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/dao/PokemonDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uca/dao/PossessionDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/dao/PossessionDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uca/dao/TradeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/dao/TradeDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/views/profile/my.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/profile/my.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/gui/UserGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/gui/UserGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/views/profile/profile.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/profile/profile.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/views/profile/trades.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/profile/trades.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/views/users/users.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/users/users.ftl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -209,7 +204,7 @@
       <workItem from="1682683775692" duration="64000" />
       <workItem from="1682683848510" duration="299000" />
       <workItem from="1682715968798" duration="10764000" />
-      <workItem from="1682766561607" duration="30912000" />
+      <workItem from="1682766561607" duration="38836000" />
     </task>
     <task id="LOCAL-00001" summary="Push existing project to GitLab">
       <created>1682504133404</created>
@@ -309,7 +304,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682863711757</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="on fait la différence entre le profile de la personne connecté et les autres. &#10;Début de l'acceptation des échanges (fonctionne pas )">
+      <created>1682868058281</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1682868058281</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -341,6 +343,23 @@
     <MESSAGE value="correction du template" />
     <MESSAGE value="on peut afficher les trades, modificaton des routes, début des méthodes pour accetper/refuser les échanges" />
     <MESSAGE value="on peut maintenant accepter les échanges (normalement)" />
-    <option name="LAST_COMMIT_MESSAGE" value="on peut maintenant accepter les échanges (normalement)" />
+    <MESSAGE value="on fait la différence entre le profile de la personne connecté et les autres. &#10;Début de l'acceptation des échanges (fonctionne pas )" />
+    <option name="LAST_COMMIT_MESSAGE" value="on fait la différence entre le profile de la personne connecté et les autres. &#10;Début de l'acceptation des échanges (fonctionne pas )" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/uca/controller/tradesController.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/uca/controller/tradesController.java</url>
+          <line>29</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

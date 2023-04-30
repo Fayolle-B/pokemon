@@ -7,6 +7,7 @@ import com.uca.entity.PossessionEntity;
 import com.uca.entity.TradeEntity;
 import com.uca.entity.UserEntity;
 import com.uca.exception.IllegalRouteException;
+import com.uca.gui.UserGUI;
 
 import static spark.Spark.halt;
 import static spark.Spark.post;
@@ -16,15 +17,21 @@ public class tradesController {
     public static void tradesRoutes(){
         post("/trade",((request, response) -> {
             System.out.println("on veut créer un trade");
+            if(request.queryParams("applicantPossessionID")==null){
+                System.err.println("There is not applicantPossessionID, so we display possessionPicker"+ request.queryParams());
+                return UserGUI.possessionPicker(SessionManager.getConnectedUser(request,response), Integer.parseInt(request.queryParams("recipientPossessionID")));
+            }
             PossessionEntity poss1;
             PossessionEntity poss2;
             int id1, id2;
+            System.err.println("There is ");
+
             try{
                 id1=Integer.parseInt(request.queryParams("applicantPossessionID"));
                 id2=Integer.parseInt(request.queryParams("recipientPossessionID"));
 
             }catch (NumberFormatException e) {
-                throw  new IllegalRouteException("Cannot use [ "+ request.params(":id1")+ " ] and [ "+request.params(":id2")+" ] as possessions id to setup a trade");
+                throw  new IllegalRouteException("Cannot use [ "+request.queryParams("recipientPossessionID")+ " ] and [ "+request.queryParams("applicantPossessionID")+" ] as possessions id to setup a trade");
             }
 
             try{
@@ -36,7 +43,7 @@ public class tradesController {
             }
             if(SessionManager.isConnected(request, response)&& (SessionManager.getConnectedUser(request,response).equals(poss1.getOwner())||SessionManager.getConnectedUser(request,response)==poss2.getOwner())) {
                 //coneected user is a part of the trade
-                TradeCore.newTradeFromIDs(Integer.parseInt(request.params(":id1")), Integer.parseInt(request.params(":id2")));
+                TradeCore.newTradeFromIDs(id1,id2);
             }else {
                 System.out.println("Not a part, abort");
                 System.out.println(SessionManager.isConnected(request,response));
@@ -44,8 +51,11 @@ public class tradesController {
                 System.out.println(poss1.getOwner().getId());
 
             }
+            response.redirect("/");
             return null;
         } ));
+
+
 
         post("/profile/trades/accept", ((request, response) -> {
             int tradeId = Integer.parseInt(request.queryParams("tradeID"));

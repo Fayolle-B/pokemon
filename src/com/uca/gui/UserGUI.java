@@ -110,7 +110,7 @@ public class UserGUI {
 
 
 
-    public static  String displayProfileTrad(UserEntity userEntity){
+    public static  String displayProfileTrade(UserEntity userEntity){
         Configuration configuration = _FreeMarkerInitializer.getContext();
         Map<String,Object>input = new HashMap<>();
         input.put("user",userEntity);
@@ -126,6 +126,35 @@ public class UserGUI {
 
 
         return output.toString();
+
+
+    }
+
+    public static String possessionPicker(UserEntity userEntity, int recipientPossessionID){
+        Configuration configuration= _FreeMarkerInitializer.getContext();
+        Map<String, Object> input = new HashMap<>();
+        ArrayList<PossessionEntity> possessions=null;
+        try {
+            possessions= PossessionCore.possessionOf(userEntity);
+        }catch(Exception e){
+            System.err.println("Cannot retrieve the possession list, przinting the Stack Trace ");
+            e.printStackTrace();
+        }
+        input.put("user", userEntity);
+        input.put("possessions", possessions);
+        input.put("recipientPossessionID", recipientPossessionID);
+        Writer output = new StringWriter();
+        try {
+            Template template = configuration.getTemplate("profile/possessionPicker.ftl");
+            template.setOutputEncoding("UTF-8");
+            template.process(input,output);
+        } catch (TemplateException | IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        return output.toString();
+
 
 
     }
