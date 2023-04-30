@@ -12,30 +12,7 @@
 
 Prénom  : ${user.getFirstName()}
 Nom : ${user.getLastName()}
-nombre de possession : ${numberOfPossessions!"0"}
+<#include "possessions.ftl">
 
-<table>
-    <caption>Mes possessions</caption>
-    <tr>
-        <th scope="col">id de la possessions</th>
-        <th scope="col">numero du Pokemon</th>
-        <th scope="col">Niveau du pokémon</th>
-        <th scope="col">Date d'acuisition</th>
-
-
-    </tr>
-
-    <#list possessions as possession>
-        <tr>
-            <th scope="row">${possession.idPos}</th>
-            <td>${possession.pokemon.name}</td>
-            <td>${possession.level}</td>
-            <td>${possession.getDateAcquiAsString()}</td>
-        </tr>
-
-    </#list>
-
-
-</table>
 </body>
 </html>

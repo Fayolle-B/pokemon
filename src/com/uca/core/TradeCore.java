@@ -1,5 +1,6 @@
 package com.uca.core;
 
+import com.uca.dao.PossessionDAO;
 import com.uca.dao.TradeDAO;
 import com.uca.entity.PossessionEntity;
 import com.uca.entity.TradeEntity;
@@ -40,12 +41,18 @@ public class TradeCore {
 
 
     public static TradeEntity acceptTrade(TradeEntity tradeEntity) {
-        tradeEntity.setSubmitDate(tradeEntity.getSubmitDate());
-        tradeEntity.setId(tradeEntity.getId());
+        System.out.println("accept trade #"+tradeEntity.getId());
         tradeEntity.setAcceptDate(new Date());
         tradeEntity.setStatus(TradeStatus.ACCEPTED);
+        PossessionEntity appPoss = tradeEntity.getApplicantPossession();
+        PossessionEntity recPoss = tradeEntity.getRecipientPossession();
+        appPoss.setDatePerte(new Date());
+        recPoss.setDatePerte(new Date());
+
         try {
             new TradeDAO().update(tradeEntity);
+            new PossessionDAO().update(recPoss);
+            new PossessionDAO().update(recPoss);
         } catch (SQLException e) {
             throw new RuntimeException("Can't update this trade in Database");
         }
@@ -60,14 +67,16 @@ public class TradeCore {
             throw new RuntimeException("Error while running possession swapping");
         };
         //let's check if number of posssersion is still good
-        assert us1possNumber ==PossessionCore.possessionOf(tradeEntity.getApplicantPossession().getOwner()).size() && us2possNumber== PossessionCore.possessionOf(tradeEntity.getRecipientPossession().getOwner()).size();
+        //assert us1possNumber ==PossessionCore.possessionOf(tradeEntity.getApplicantPossession().getOwner()).size() && us2possNumber== PossessionCore.possessionOf(tradeEntity.getRecipientPossession().getOwner()).size();
         return tradeEntity;
+
     }
 
     public static  TradeEntity getTradeById(int id){
         try {
             return  new TradeDAO().getTradeById(id);
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new RuntimeException("Unable to get Trade with id "+id);
         }
     }

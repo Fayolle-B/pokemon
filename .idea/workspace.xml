@@ -4,18 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="25e00e35-0ef9-4fc6-8b40-571894da2689" name="Changes" comment="on peut afficher les trades, modificaton des routes, début des méthodes pour accetper/refuser les échanges">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/profile/my.ftl" afterDir="false" />
+    <list default="true" id="25e00e35-0ef9-4fc6-8b40-571894da2689" name="Changes" comment="on peut maintenant accepter les échanges (normalement)">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/views/profile/possessions.ftl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/uca/StartServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/StartServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uca/controller/profileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/controller/profileController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/uca/controller/tradesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/controller/tradesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uca/core/PossessionCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/core/PossessionCore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uca/core/SessionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/core/SessionManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/uca/core/TradeCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/core/TradeCore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uca/core/UserCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/core/UserCore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uca/gui/UserGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/gui/UserGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/dao/PokemonDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/dao/PokemonDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/dao/PossessionDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/dao/PossessionDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uca/dao/TradeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uca/dao/TradeDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/profile/my.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/profile/my.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/profile/profile.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/profile/profile.ftl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/views/profile/trades.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/profile/trades.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/users/users.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/users/users.ftl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +90,7 @@
     <option name="SET_USER_NAME_GLOBALLY" value="false" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2OujYgKOolzuZZGqPj4iROnKSRR" />
   <component name="ProjectViewState">
@@ -208,7 +209,7 @@
       <workItem from="1682683775692" duration="64000" />
       <workItem from="1682683848510" duration="299000" />
       <workItem from="1682715968798" duration="10764000" />
-      <workItem from="1682766561607" duration="26669000" />
+      <workItem from="1682766561607" duration="30912000" />
     </task>
     <task id="LOCAL-00001" summary="Push existing project to GitLab">
       <created>1682504133404</created>
@@ -301,7 +302,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682858681029</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="on peut maintenant accepter les échanges (normalement)">
+      <created>1682863711757</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1682863711757</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -332,17 +340,7 @@
     <MESSAGE value="affichage de trades" />
     <MESSAGE value="correction du template" />
     <MESSAGE value="on peut afficher les trades, modificaton des routes, début des méthodes pour accetper/refuser les échanges" />
-    <option name="LAST_COMMIT_MESSAGE" value="on peut afficher les trades, modificaton des routes, début des méthodes pour accetper/refuser les échanges" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/uca/controller/profileController.java</url>
-          <line>17</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="on peut maintenant accepter les échanges (normalement)" />
+    <option name="LAST_COMMIT_MESSAGE" value="on peut maintenant accepter les échanges (normalement)" />
   </component>
 </project>

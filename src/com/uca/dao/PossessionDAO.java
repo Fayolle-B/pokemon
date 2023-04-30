@@ -39,6 +39,14 @@ public class PossessionDAO extends _Generic<PossessionEntity>{
     }
 
 
+    public PossessionEntity update(PossessionEntity obj) throws  SQLException{
+        PreparedStatement preparedStatement = this.connect.prepareStatement("UPDATE POSSESSION SET LOSEDATE =?, LEVEL = ? where IDPOSS=?");
+        preparedStatement.setDate(1,new Date(obj.getDatePerte().getTime()));
+        preparedStatement.setInt(2,obj.getLevel());
+        preparedStatement.setInt(3,obj.getIdPos());
+        preparedStatement.executeUpdate();
+        return obj;
+    }
     public PossessionEntity getPossessionById(int id) throws SQLException {
         PossessionEntity possessionEntity = new PossessionEntity();
         PreparedStatement preparedStatement = this.connect.prepareStatement("SELECT IDPOSS, NUMPKMN, LEVEL, AQUIREDATE, LOSEDATE, OWNER_ID from POSSESSION where IDPOSS = ?");

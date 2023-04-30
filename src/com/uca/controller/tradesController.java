@@ -8,9 +8,8 @@ import com.uca.entity.TradeEntity;
 import com.uca.entity.UserEntity;
 import com.uca.exception.IllegalRouteException;
 
-import java.net.UnknownServiceException;
-
-import static spark.Spark.*;
+import static spark.Spark.halt;
+import static spark.Spark.post;
 
 public class tradesController {
 
@@ -48,7 +47,7 @@ public class tradesController {
             return null;
         } ));
 
-        post("/profile/${user.id}/trades/accept", ((request, response) -> {
+        post("/profile/trades/accept", ((request, response) -> {
             int tradeId = Integer.parseInt(request.queryParams("tradeID"));
             TradeEntity trade = TradeCore.getTradeById(tradeId);
             UserEntity applicant = trade.getApplicantPossession().getOwner();
@@ -56,7 +55,7 @@ public class tradesController {
             if(SessionManager.getConnectedUser(request, response).equals(recipiant)){
                 System.out.println("Trying to accept the trade #"+tradeId);
                 TradeCore.acceptTrade(trade);
-
+                response.redirect("/");
             }
             else {
                 halt(401,"Not connected as recipiant, can't accept this trade");

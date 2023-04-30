@@ -62,10 +62,6 @@ public class PokemonDAO {
         //String imc = pokemonNode.get("sprites").asText();
 
 
-        // Return a "rogue" Pokemon (level 1, no owner, not registered in the database)
-        System.out.println(pokemonName);
-        System.out.println(pokemonNumber);
-        System.out.println(img);
 
         return new PokemonEntity(pokemonName, pokemonNumber, img);
 

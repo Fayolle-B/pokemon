@@ -29,6 +29,7 @@ public class StartServer {
         get("/", (req, res) -> {
             if(SessionManager.isConnected(req, res)){
                 res.redirect("/myProfile");
+                return null;
             };
             res.redirect("accueil.html");
             return null;

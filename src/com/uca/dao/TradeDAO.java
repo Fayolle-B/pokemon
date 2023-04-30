@@ -52,6 +52,7 @@ public class TradeDAO extends _Generic<TradeEntity> {
     public TradeEntity getTradeById(int id) throws SQLException {
         TradeEntity tradeEntity = new TradeEntity(null,null);
         PreparedStatement preparedStatement = this.connect.prepareStatement("SELECT ID, APPOWNID, RECOWNID, SUBMITDATE, ACCEPTDATE, STATUS from TRADES where id=?");
+        preparedStatement.setInt(1,id);
         ResultSet resultSet = preparedStatement.executeQuery();
         if(resultSet.isLast()){
             throw new SQLException("There is no trade with this ID");
