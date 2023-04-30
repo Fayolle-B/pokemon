@@ -8,7 +8,6 @@ import com.uca.entity.UserEntity;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
-import org.h2.engine.User;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -51,7 +50,7 @@ public class UserGUI {
 
 
 
-    public static String displayProfile(int id) throws IOException, TemplateException{
+    public static String displayOtherProfile(int id) throws IOException, TemplateException{
         Configuration configuration = _FreeMarkerInitializer.getContext();
         Map<String,Object>input = new HashMap<>();
         UserEntity userEntity=UserCore.getUserFromId(id);
@@ -78,6 +77,34 @@ public class UserGUI {
 
         return output.toString();
 
+    }
+
+    public static String displayMyProfile(int id) throws IOException, TemplateException {
+
+        Configuration configuration = _FreeMarkerInitializer.getContext();
+        Map<String,Object>input = new HashMap<>();
+        UserEntity userEntity=UserCore.getUserFromId(id);
+
+        input.put("user",userEntity);
+        ArrayList<PossessionEntity> possessions=null;
+        try {
+            possessions= PossessionCore.possessionOf(userEntity);
+        }catch(Exception e){
+            System.err.println("Cannot retrieve the possession list, przinting the Stack Trace ");
+            e.printStackTrace();
+        }
+        if (possessions == null) throw new AssertionError();
+        input.put("possessions", possessions);
+        System.out.println("Le pseudo est : "+ userEntity.getLogin());
+        input.put("numberOfPossessions",possessions.size());
+        input.put("trades", TradeCore.getAllTradesOf(userEntity));
+        Writer output = new StringWriter();
+        Template template = configuration.getTemplate("profile/my.ftl");
+        template.setOutputEncoding("UTF-8");
+        template.process(input,output);
+
+
+        return  output.toString();
     }
 
 

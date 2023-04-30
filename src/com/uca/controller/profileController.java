@@ -2,9 +2,7 @@ package com.uca.controller;
 
 import com.uca.core.SessionManager;
 import com.uca.core.UserCore;
-import com.uca.entity.UserEntity;
 import com.uca.gui.UserGUI;
-import org.h2.engine.User;
 import spark.Filter;
 import spark.Request;
 import spark.Response;
@@ -35,19 +33,23 @@ public class profileController {
             }
         };
 
-        before("/profile/*",isConnectedFilter);
+        before("/profile/*", isConnectedFilter);
 
         get("/profile/:id/trades", (request, response) -> {
-            if(SessionManager.getConnectedUser(request,response).equals(UserCore.getUserFromId(Integer.parseInt(request.params(":id"))))){
+            if (SessionManager.getConnectedUser(request, response).equals(UserCore.getUserFromId(Integer.parseInt(request.params(":id"))))) {
                 return UserGUI.displayProfileTrad(UserCore.getUserFromId(Integer.parseInt(request.params(":id"))));
             }
-            response.redirect("/");
-            return  null;
+            response.redirect("/profile/"+request.params(":id"));
+            return null;
 
 
         });
-        get("/profile/:id",(req,res)->{
-            return UserGUI.displayProfile(Integer.parseInt(req.params(":id")));
+        get("/profile/:id", (request, response) -> {
+            if (SessionManager.getConnectedUser(request, response).equals(UserCore.getUserFromId(Integer.parseInt(request.params(":id"))))) {
+
+                return UserGUI.displayMyProfile(SessionManager.getConnectedUser(request, response).getId());
+            }
+            return UserGUI.displayOtherProfile(Integer.parseInt(request.params(":id")));
         });
     }
 }

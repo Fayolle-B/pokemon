@@ -38,19 +38,39 @@ public class TradeCore {
         return new TradeDAO().getAllTradesOf(userEntity);
     }
 
+
     public static TradeEntity acceptTrade(TradeEntity tradeEntity) {
-        PossessionEntity poss1 = tradeEntity.getApplicantPossession();
-        PossessionEntity poss2 = tradeEntity.getRecipientPossession();
-        TradeEntity newTradeEntity = new TradeEntity(tradeEntity.getApplicantPossession(),tradeEntity.getRecipientPossession());
-        newTradeEntity.setSubmitDate(tradeEntity.getSubmitDate());
-        newTradeEntity.setId(tradeEntity.getId());
-        newTradeEntity.setAcceptDate(new Date());
-        newTradeEntity.setStatus(TradeStatus.ACCEPTED);
+        tradeEntity.setSubmitDate(tradeEntity.getSubmitDate());
+        tradeEntity.setId(tradeEntity.getId());
+        tradeEntity.setAcceptDate(new Date());
+        tradeEntity.setStatus(TradeStatus.ACCEPTED);
         try {
-            new TradeDAO().update(newTradeEntity);
+            new TradeDAO().update(tradeEntity);
         } catch (SQLException e) {
             throw new RuntimeException("Can't update this trade in Database");
         }
-        return newTradeEntity;
+            int us1possNumber = PossessionCore.possessionOf(tradeEntity.getApplicantPossession().getOwner()).size();
+        int us2possNumber = PossessionCore.possessionOf(tradeEntity.getRecipientPossession().getOwner()).size();
+
+        try{
+            PossessionCore.addPossession(tradeEntity.getRecipientPossession().getOwner(), tradeEntity.getApplicantPossession().getPokemon(),tradeEntity.getApplicantPossession().getLevel());
+            PossessionCore.addPossession(tradeEntity.getApplicantPossession().getOwner(), tradeEntity.getRecipientPossession().getPokemon(), tradeEntity.getRecipientPossession().getLevel());
+        }
+        catch (Exception e){
+            throw new RuntimeException("Error while running possession swapping");
+        };
+        //let's check if number of posssersion is still good
+        assert us1possNumber ==PossessionCore.possessionOf(tradeEntity.getApplicantPossession().getOwner()).size() && us2possNumber== PossessionCore.possessionOf(tradeEntity.getRecipientPossession().getOwner()).size();
+        return tradeEntity;
+    }
+
+    public static  TradeEntity getTradeById(int id){
+        try {
+            return  new TradeDAO().getTradeById(id);
+        } catch (SQLException e) {
+            throw new RuntimeException("Unable to get Trade with id "+id);
+        }
     }
 }
+
+

@@ -58,7 +58,7 @@ public class UserCore {
             throw new RuntimeException(e);
         }
         System.out.println(pkmn.getName());
-        PossessionCore.addPossession(newUser,pkmn);
+        PossessionCore.addPossession(newUser,pkmn,0);
         return newUser;
 
     }

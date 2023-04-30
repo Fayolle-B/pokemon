@@ -70,7 +70,7 @@ public class StartServer {
         }));
 
         get("/profile/:userid/add/:pkmnid",((request, response) -> {
-            PossessionCore.addPossession(UserCore.getUserFromId(Integer.parseInt(request.params(":userid"))), Integer.parseInt(request.params(":pkmnid")));
+            PossessionCore.addPossession(UserCore.getUserFromId(Integer.parseInt(request.params(":userid"))), Integer.parseInt(request.params(":pkmnid")),0);
             response.redirect("/profile/"+request.params("userid"));
             return null;
         } ));

@@ -39,6 +39,7 @@ public class SessionManager {
         return request.session(false) != null;
     }
 
+
 }
 
 

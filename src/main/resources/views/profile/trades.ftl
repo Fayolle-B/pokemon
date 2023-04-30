@@ -28,9 +28,9 @@
             <td id="recipientPossession"> ${trade.recipientPossession.idPos}</td>
             <td>
 
-                <form id="trade-form">
-                    <input type="hidden" name="applicantPossession" value="{trade.applicantPossession}">
-                    <input type="hidden" name="recipientPossession" value="{trade.recipientPossession}">
+                <form id="trade-form" action="/profile/${user.id}/trade/accept" method="post">
+                    <input type="hidden" name="tradeID" value="${trade.id}">
+
                     <button type="submit">Make Trade</button>
                 </form>
             </td>

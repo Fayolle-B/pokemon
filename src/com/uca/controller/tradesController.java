@@ -4,10 +4,13 @@ import com.uca.core.PossessionCore;
 import com.uca.core.SessionManager;
 import com.uca.core.TradeCore;
 import com.uca.entity.PossessionEntity;
+import com.uca.entity.TradeEntity;
+import com.uca.entity.UserEntity;
 import com.uca.exception.IllegalRouteException;
 
-import static spark.Spark.get;
-import static spark.Spark.post;
+import java.net.UnknownServiceException;
+
+import static spark.Spark.*;
 
 public class tradesController {
 
@@ -42,6 +45,25 @@ public class tradesController {
                 System.out.println(poss1.getOwner().getId());
 
             }
+            return null;
+        } ));
+
+        post("/profile/${user.id}/trades/accept", ((request, response) -> {
+            int tradeId = Integer.parseInt(request.queryParams("tradeID"));
+            TradeEntity trade = TradeCore.getTradeById(tradeId);
+            UserEntity applicant = trade.getApplicantPossession().getOwner();
+            UserEntity recipiant = trade.getRecipientPossession().getOwner();
+            if(SessionManager.getConnectedUser(request, response).equals(recipiant)){
+                System.out.println("Trying to accept the trade #"+tradeId);
+                TradeCore.acceptTrade(trade);
+
+            }
+            else {
+                halt(401,"Not connected as recipiant, can't accept this trade");
+            }
+
+
+
             return null;
         } ));
 

@@ -4,6 +4,7 @@ import com.uca.dao.PossessionDAO;
 import com.uca.entity.PokemonEntity;
 import com.uca.entity.PossessionEntity;
 import com.uca.entity.UserEntity;
+import org.h2.engine.User;
 
 import javax.management.InvalidAttributeValueException;
 import java.sql.SQLException;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class PossessionCore {
-    public static PossessionEntity addPossession(UserEntity user, PokemonEntity pokemon) {
+    public static PossessionEntity addPossession(UserEntity user, PokemonEntity pokemon, int level) {
         PossessionEntity possessionEntity = new PossessionEntity();
         possessionEntity.setOwner(user);
         possessionEntity.setDateAqui(new Date());
@@ -21,11 +22,11 @@ public class PossessionCore {
         return new PossessionDAO().create(possessionEntity);
     }
 
-    public static PossessionEntity addPossession(UserEntity user, int pokemonId) {
+    public static PossessionEntity addPossession(UserEntity user, int pokemonId, int level) {
         PossessionEntity possessionEntity;
         try {
             PokemonEntity pokemon = PokemonCore.getPokemon(pokemonId);
-            possessionEntity = PossessionCore.addPossession(user, pokemon);
+            possessionEntity = PossessionCore.addPossession(user, pokemon,level);
         } catch (InvalidAttributeValueException e) {
             throw new RuntimeException(e);
         }
