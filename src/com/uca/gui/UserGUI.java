@@ -1,6 +1,7 @@
  package com.uca.gui;
 
 import com.uca.core.PossessionCore;
+import com.uca.core.SessionManager;
 import com.uca.core.TradeCore;
 import com.uca.core.UserCore;
 import com.uca.entity.PossessionEntity;
@@ -9,6 +10,8 @@ import com.uca.entity.UserEntity;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import spark.Request;
+import spark.Session;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -51,7 +54,7 @@ public class UserGUI {
 
 
 
-    public static String displayOtherProfile(int id) throws IOException, TemplateException{
+    public static String displayOtherProfile(int id, UserEntity connectedUser) throws IOException, TemplateException{
         Configuration configuration = _FreeMarkerInitializer.getContext();
         Map<String,Object>input = new HashMap<>();
         UserEntity userEntity=UserCore.getUserFromId(id);
@@ -66,7 +69,9 @@ public class UserGUI {
         }
         if (activePossessions == null) throw new AssertionError();
         input.put("activePossessions", activePossessions);
-        System.out.println("Le pseudo est : "+ userEntity.getLogin());
+
+        System.out.println("Le nombre de points de l'utilsateur connecté : "+ connectedUser.getPoints());
+        input.put("connectedUser", connectedUser);
         input.put("numberOfActivePossessions",activePossessions.size());
         input.put("pendingTrades", TradeCore.getTradesOfHavingStatus(userEntity, TradeStatus.PENDING));
         Writer output = new StringWriter();
@@ -110,6 +115,7 @@ public class UserGUI {
         System.out.println("Le pseudo est : "+ userEntity.getLogin());
         input.put("numberOfPossessions",activePossessions.size());
         input.put("trades", TradeCore.getAllTradesOf(userEntity));
+        input.put("connectedUser", userEntity);
         Writer output = new StringWriter();
         Template template = configuration.getTemplate("profile/my.ftl");
         template.setOutputEncoding("UTF-8");

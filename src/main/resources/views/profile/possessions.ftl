@@ -1,3 +1,4 @@
+<#-- @ftlvariable name="connectedUser" type="com.uca.entity.UserEntity" -->
 <#-- @ftlvariable name="oldPossessions" type="java.util.Collection<com.uca.entity.PossessionEntity>" -->
 <#-- @ftlvariable name="activePossessions" type="java.util.Collection<com.uca.entity.PossessionEntity>" -->
 <#-- @ftlvariable name="user" type="com.uca.entity.UserEntity" -->
@@ -21,8 +22,9 @@
             <td>${possession.getDateAcquiAsString()}</td>
             <td>${possession.datePerte!"En votre possession"}</td>
             <td>
+
                 <form action="/pex" method="post">
-                    <button value="${possession.idPos}" name="possessionID">Pex</button>
+                    <button value="${possession.idPos}" name="possessionID" <#if (connectedUser.points==0)>disabled style="color: red;background-color: darkgray; cursor: not-allowed" </#if>>Pex</button>
                 </form>
             </td>
         </tr>

@@ -11,7 +11,7 @@
 <body>
 <ul>
     <#list users as user>
-        <li><a href="profile/${user.id}">
+        <li><a href="/profile/${user.id}">
                 ${user.id} - ${user.firstName} ${user.lastName} -login : ${user.login} - mot de passe : ${user.pwd} ${user.email}
                 ${user.dateConnexion?date}
             </a>

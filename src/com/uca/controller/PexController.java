@@ -7,6 +7,8 @@ import com.uca.entity.PossessionEntity;
 import com.uca.entity.UserEntity;
 import spark.Request;
 import spark.Response;
+
+import static spark.route.HttpMethod.before;
 import static spark.route.HttpMethod.post;
 
 import spark.Filter;
@@ -17,6 +19,7 @@ import static spark.Spark.*;
 
 public class PexController {
     public static void pexRoute(){
+        //before("/pex", profileController.isConnectedFilter);
         post("/pex", ((request, response) -> {
             int possID = 0;
 

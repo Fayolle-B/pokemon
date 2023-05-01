@@ -22,7 +22,7 @@ public class StartServer {
         _Initializer.Init();
 
         //Defining our routes
-        get("/users", (req, res) -> {
+        get("/profile/all", (req, res) -> {
             return UserGUI.getAllUsers();
         });
         get("/", (req, res) -> {

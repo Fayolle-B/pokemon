@@ -2,36 +2,35 @@ package com.uca.controller;
 
 import com.uca.core.SessionManager;
 import com.uca.core.UserCore;
+import com.uca.entity.UserEntity;
 import com.uca.gui.UserGUI;
 import spark.Filter;
 import spark.Request;
 import spark.Response;
+import spark.Session;
 
 import static spark.Spark.*;
 
 public class profileController {
+    public static Filter  concernedUserFilter = new Filter() {
+        @Override
+        public void handle(Request request, Response response) throws Exception {
+            if (!(SessionManager.getConnectedUser(request, response).getId() == Integer.parseInt(request.params(":id")))) {
+                halt(401, "Unauthorized");
+            }
+
+        }
+    };
+
+    public static Filter isConnectedFilter = (request, response) -> {
+        if (request.session(false) == null) {
+            //response.redirect("/",401);
+            response.redirect("/");
+        }
+
+    };
+
     public static void profileRoute() {
-
-        Filter concernedUserFilter = new Filter() {
-            @Override
-            public void handle(Request request, Response response) throws Exception {
-                if (!(SessionManager.getConnectedUser(request, response).getId() == Integer.parseInt(request.params(":id")))) {
-                    halt(401, "Unauthorized");
-                }
-
-            }
-        };
-
-        Filter isConnectedFilter = new Filter() {
-            @Override
-            public void handle(Request request, Response response) throws Exception {
-                if (request.session(false) == null) {
-                    //response.redirect("/",401);
-                    response.redirect("/");
-                }
-
-            }
-        };
 
         before("/profile/*", isConnectedFilter);
 
@@ -49,7 +48,9 @@ public class profileController {
 
                 return UserGUI.displayMyProfile(SessionManager.getConnectedUser(request, response).getId());
             }
-            return UserGUI.displayOtherProfile(Integer.parseInt(request.params(":id")));
+            UserEntity connectedUser = SessionManager.getConnectedUser(request, response);
+            System.out.println("Connected as user #"+connectedUser.getId());
+            return UserGUI.displayOtherProfile(Integer.parseInt(request.params(":id")), connectedUser);
         });
     }
 }

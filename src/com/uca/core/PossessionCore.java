@@ -15,7 +15,7 @@ public class PossessionCore {
         PossessionEntity possessionEntity = new PossessionEntity();
         possessionEntity.setOwner(user);
         possessionEntity.setDateAqui(new Date());
-        possessionEntity.setLevel(0);
+        possessionEntity.setLevel(1);
         possessionEntity.setIdPos(0);
         possessionEntity.setPokemon(pokemon);
         return new PossessionDAO().create(possessionEntity);
