@@ -1,5 +1,6 @@
+<#-- @ftlvariable name="users" type="java.util.Collection<com.uca.entity.UserEntity>" -->
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -8,8 +9,6 @@
     <title>Liste des utilisateurs</title>
 </head>
 <body>
-<body xmlns="http://www.w3.org/1999/html">
-
 <ul>
     <#list users as user>
         <li><a href="profile/${user.id}">
@@ -23,4 +22,3 @@
 
 </body>
 
-</body>

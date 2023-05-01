@@ -1,7 +1,6 @@
 package com.uca.core;
 
 import com.uca.dao.UserDAO;
-import com.uca.entity.PokemonEntity;
 import com.uca.entity.PossessionEntity;
 import com.uca.entity.UserEntity;
 
@@ -9,12 +8,15 @@ import spark.Request;
 import spark.Response;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 
 public class SessionManager {
 //TODO
 
-//TODO : move TryToConnect in another place,
+    //TODO : move TryToConnect in another place,
     public static boolean tryToConnect(Request request, Response response) {
         UserEntity user = new UserEntity();
         user.setPwd(request.queryParams("password"));
@@ -26,10 +28,14 @@ public class SessionManager {
             session.setAttribute("user", user);
             session.setMaxInactiveInterval(30 * 60);
 
-            //Let's handle the points number (used to pex everyday)
-            if (!user.getDateConnexion().equals(new Date())){
+            LocalDate today = LocalDate.now();
+            LocalDate lastLoginDate = user.getDateConnexion().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+            //Let's handle the points number (used to pex every day)
+            if  (!today.equals(lastLoginDate)){
+                System.out.println("This user haven't connected today, we give him 5 points");
                 user.setPoints(PossessionEntity.nb_point);
-                user.setDateConnexion(new Date());
+                user.setDateConnexion(new java.util.Date());
                 UserCore.update(user);
             }
             return true;
@@ -43,8 +49,9 @@ public class SessionManager {
         if (!isConnected(request, response)) {
             throw new IllegalAccessException("User is not connected, cannot retrieve user id ");
         }
-        return ((UserEntity)(request.session(false).attribute("user")));
+        return request.session(false).attribute("user");
     }
+
     public static boolean isConnected(Request request, Response response) {
         return request.session(false) != null;
     }

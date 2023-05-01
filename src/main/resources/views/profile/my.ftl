@@ -1,3 +1,4 @@
+<#-- @ftlvariable name="user" type="com.uca.entity.UserEntity" -->
 <!doctype html>
 <html lang="fr">
 <head>
@@ -8,12 +9,15 @@
     <title>Mon profil</title>
 </head>
 <body>
+
 <#include "../menu.ftl">
 <h1>Mon profil : </h1>
 
 
 Prénom  : ${user.getFirstName()}
 Nom : ${user.getLastName()}
+
+Il vous reste :${user.points} points
 <#include "possessions.ftl">
 
 <a href="/profile/${user.id}/trades"> Mes échanges </a>

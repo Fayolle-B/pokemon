@@ -2,7 +2,6 @@ package com.uca.gui;
 
 import com.uca.core.PossessionCore;
 import com.uca.entity.PossessionEntity;
-import com.uca.entity.UserEntity;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;

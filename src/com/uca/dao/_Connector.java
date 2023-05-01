@@ -11,17 +11,17 @@ public class _Connector {
     /**
      * The database URL string.
      */
-    private static String url = "jdbc:h2:~/test"; // in the user home directory
+    private static final String url = "jdbc:h2:~/test"; // in the user home directory
 
     /**
-     * The database user name.
+     * The database username.
      */
-    private static String user = "sa";
+    private static final String user = "sa";
 
     /**
      * The database password.
      */
-    private static String passwd = "";
+    private static final String passwd = "";
 
     /**
      * The singleton instance of the database connection.

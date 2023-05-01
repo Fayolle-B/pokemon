@@ -1,3 +1,6 @@
+<#-- @ftlvariable name="possessions" type="java.util.Collection<com.uca.entity.PossessionEntity>" -->
+<#-- @ftlvariable name="user" type="com.uca.entity.UserEntity" -->
+<#-- @ftlvariable name="recipientPossessionID" type="java.lang.Number" -->
 <!doctype html>
 <html lang="fr">
 <head>
@@ -31,8 +34,10 @@
                 <td>${possession.getDateAcquiAsString()}</td>
                 <td>${possession.datePerte!"En votre possession"}</td>
                 <td>
+                    <label for="${possession.idPos}">
+                    //TODO
+                    </label>
                     <input type="radio" name="applicantPossessionID" id="${possession.idPos}" value="${possession.idPos}">
-                </td>
 
             </tr>
 

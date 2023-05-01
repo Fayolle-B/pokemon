@@ -1,9 +1,12 @@
+<#-- @ftlvariable name="oldPossessions" type="java.util.Collection<com.uca.entity.PossessionEntity>" -->
+<#-- @ftlvariable name="activePossessions" type="java.util.Collection<com.uca.entity.PossessionEntity>" -->
+<#-- @ftlvariable name="user" type="com.uca.entity.UserEntity" -->
 
 <table>
-    <caption>Les possessions actuelle de ${user.firstName}</caption>
+    <caption>Possessions actuelle </caption>
     <tr>
         <th scope="col">id de la possessions</th>
-        <th scope="col">Nom du PKMN</th>
+        <th scope="col">Nom du Pokémon</th>
         <th scope="col">Niveau du pokémon</th>
         <th scope="col">Date d'acuisition</th>
         <th scope="col">Date de perte</th>
@@ -17,6 +20,11 @@
             <td>${possession.level}</td>
             <td>${possession.getDateAcquiAsString()}</td>
             <td>${possession.datePerte!"En votre possession"}</td>
+            <td>
+                <form action="/pex" method="post">
+                    <button value="${possession.idPos}" name="possessionID">Pex</button>
+                </form>
+            </td>
         </tr>
 
     </#list>
@@ -39,6 +47,7 @@
             <td>${possession.level}</td>
             <td>${possession.getDateAcquiAsString()}</td>
             <td>${possession.datePerte!"En votre possession"}</td>
+
         </tr>
 
     </#list>

@@ -4,7 +4,6 @@ import com.uca.entity.PossessionEntity;
 import com.uca.entity.TradeEntity;
 import com.uca.entity.TradeStatus;
 import com.uca.entity.UserEntity;
-import org.h2.engine.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -4,7 +4,6 @@ import com.uca.dao.PossessionDAO;
 import com.uca.entity.PokemonEntity;
 import com.uca.entity.PossessionEntity;
 import com.uca.entity.UserEntity;
-import org.h2.engine.User;
 
 import javax.management.InvalidAttributeValueException;
 import java.sql.SQLException;
@@ -60,5 +59,22 @@ public class PossessionCore {
             e.printStackTrace();
             throw new RuntimeException("Cannot recover any Possession for id="+id);
         }
+    }
+
+    public static boolean pexPossession(PossessionEntity possessionEntity) {
+        if(possessionEntity.getLevel()==100)return false;
+        possessionEntity.setLevel(possessionEntity.getLevel()+1);
+        try {
+            update(possessionEntity);
+        } catch (SQLException e) {
+            possessionEntity.setLevel(possessionEntity.getLevel()-1);
+            throw new RuntimeException("Unable to update the possession, pex not completed");
+
+        }
+        return true;
+
+    }
+    public  static PossessionEntity update(PossessionEntity possessionEntity) throws SQLException {
+        return new PossessionDAO().update(possessionEntity);
     }
 }

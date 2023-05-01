@@ -1,3 +1,7 @@
+<#-- @ftlvariable name="activePossessions" type="java.util.Collection<com.uca.entity.PossessionEntity>" -->
+<#-- @ftlvariable name="possessions" type="java.util.Collection<com.uca.entity.PossessionEntity>" -->
+<#-- @ftlvariable name="numberOfPossessions" type="int" -->
+<#-- @ftlvariable name="user" type="com.uca.entity.UserEntity" -->
 <!doctype html>
 <html lang="fr">
 <head>
@@ -13,7 +17,6 @@
 
 Prénom : ${user.getFirstName()}
 Nom : ${user.getLastName()}
-nombre de possession : ${numberOfPossessions!"0"}
 
 <table>
     <caption>Les possessions de ${user.firstName}</caption>
@@ -25,23 +28,28 @@ nombre de possession : ${numberOfPossessions!"0"}
         <th scope="col">Date de perte</th>
 
     </tr>
-    <form action="/trade" method="post">
 
-        <#list possessions as possession>
-            <tr>
-                <th scope="row">${possession.idPos}</th>
-                <td>${possession.pokemon.name}</td>
-                <td>${possession.level}</td>
-                <td>${possession.getDateAcquiAsString()}</td>
-                <td>${possession.datePerte!"JAMAIS"}</td>
-                <td>
+    <#list activePossessions as possession>
+        <tr>
+            <th scope="row">${possession.idPos}</th>
+            <td>${possession.pokemon.name}</td>
+            <td>${possession.level}</td>
+            <td>${possession.getDateAcquiAsString()}</td>
+            <td>${possession.datePerte!"JAMAIS"}</td>
+            <td>
+                <form action="/trade" method="post">
                     <button value="${possession.idPos}" name="recipientPossessionID">Trade</button>
-                </td>
-            </tr>
+                </form>
+            </td>
+            <td>
+                <form action="/pex" method="post">
+                    <button value="${possession.idPos}" name="possessionID">Pex</button>
+                </form>
+            </td>
+        </tr>
 
-        </#list>
+    </#list>
 
-    </form>
 </table>
 </body>
 </html>

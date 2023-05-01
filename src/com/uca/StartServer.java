@@ -1,14 +1,13 @@
 package com.uca;
 
+import com.uca.controller.PexController;
 import com.uca.controller.profileController;
 import com.uca.controller.tradesController;
 import com.uca.core.*;
-import com.uca.dao.UserDAO;
 import com.uca.dao._Initializer;
 import com.uca.entity.UserEntity;
 import com.uca.gui.UserGUI;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 
 import static spark.Spark.*;
@@ -51,7 +50,8 @@ public class StartServer {
             String pwd = req.queryParams("password");
             String email = req.queryParams("email");
             UserCore.newUser(firstname,lastname,login,pwd,email);
-            res.redirect("/users");
+            SessionManager.tryToConnect(req,res);
+            res.redirect("/");
             return null;
         });
         get("/register", (req, res)->{
@@ -67,7 +67,7 @@ public class StartServer {
 
         post("/login", ((request, response) -> {
             if(SessionManager.tryToConnect(request,response))response.redirect("/");
-            return false;
+            return "Utilisateur ou mot de passe incorrect";
         }));
 
         get("/profile/:userid/add/:pkmnid",((request, response) -> {
@@ -85,6 +85,7 @@ public class StartServer {
         } ));
 
         profileController.profileRoute();
+        PexController.pexRoute();
 
         tradesController.tradesRoutes();
 

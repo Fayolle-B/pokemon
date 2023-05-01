@@ -1,7 +1,6 @@
 package com.uca.entity;
 
 import java.util.Date;
-import java.util.Objects;
 
 public class UserEntity {
     private String firstName;
@@ -11,7 +10,7 @@ public class UserEntity {
     private String pwd;
     private String Email;
     private int points;
-    private Date dateConnexion;
+    private java.util.Date dateConnexion;
 
 
     public UserEntity() {
@@ -43,7 +42,8 @@ public class UserEntity {
     }
 
     public Date getDateConnexion() {
-        return this.dateConnexion;
+        System.out.println("This.date est une "+ this.dateConnexion.getClass());
+        return (java.util.Date)this.dateConnexion;
     }
 
     public String getPwd() {

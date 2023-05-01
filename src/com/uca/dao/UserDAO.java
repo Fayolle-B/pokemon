@@ -72,14 +72,15 @@ public class UserDAO extends _Generic<UserEntity> {
      * @param userEntity the "new" user (updated ver. of the user
      */
     public void update(UserEntity userEntity) throws SQLException {
-        PreparedStatement preparedStatement = this.connect.prepareStatement("UPDATE users SET FIRSTNAME = ?, LastName = ?, pwd = ?, login =?, email=? WHERE id = ?");
+        PreparedStatement preparedStatement = this.connect.prepareStatement("UPDATE users SET FIRSTNAME = ?, LastName = ?, pwd = ?, login =?, email=? ,POINTS=? WHERE id = ?");
 
         preparedStatement.setString(1, userEntity.getFirstName());
         preparedStatement.setString(2, userEntity.getLastName());
         preparedStatement.setString(3, userEntity.getPwd());
         preparedStatement.setString(4, userEntity.getLogin());
         preparedStatement.setString(5, userEntity.getEmail());
-        preparedStatement.setInt(6, userEntity.getId());
+        preparedStatement.setInt(6, userEntity.getPoints());
+        preparedStatement.setInt(7, userEntity.getId());
         preparedStatement.executeUpdate();
     }
 
@@ -102,7 +103,7 @@ public class UserDAO extends _Generic<UserEntity> {
             userEntity.setPoints(resultSet.getInt("points"));
             userEntity.setPwd(resultSet.getString("pwd"));
             userEntity.setLogin(resultSet.getString("login"));
-            userEntity.setDateConnexion(new Date(resultSet.getDate("DateConnexion").getTime()));
+            userEntity.setDateConnexion(new java.util.Date(resultSet.getDate("DateConnexion").getTime()));
 
 
         } catch (Exception e) {
@@ -137,7 +138,7 @@ public class UserDAO extends _Generic<UserEntity> {
             userEntity.setPoints(resultSet.getInt("points"));
             userEntity.setPwd(resultSet.getString("pwd"));
             userEntity.setLogin(resultSet.getString("login"));
-            userEntity.setDateConnexion(new Date(resultSet.getDate("DateConnexion").getTime()));
+            userEntity.setDateConnexion(new java.util.Date(resultSet.getDate("DateConnexion").getTime()));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

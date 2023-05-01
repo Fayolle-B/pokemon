@@ -41,7 +41,9 @@ public class PossessionDAO extends _Generic<PossessionEntity>{
 
     public PossessionEntity update(PossessionEntity obj) throws  SQLException{
         PreparedStatement preparedStatement = this.connect.prepareStatement("UPDATE POSSESSION SET LOSEDATE =?, LEVEL = ? where IDPOSS=?");
-        preparedStatement.setDate(1,new Date(obj.getDatePerte().getTime()));
+        if(obj.getDatePerte()!=null)preparedStatement.setDate(1,new Date(obj.getDatePerte().getTime()));
+        else preparedStatement.setDate(1,null);
+
         preparedStatement.setInt(2,obj.getLevel());
         preparedStatement.setInt(3,obj.getIdPos());
         preparedStatement.executeUpdate();
@@ -99,13 +101,13 @@ public class PossessionDAO extends _Generic<PossessionEntity>{
                 entity.setOwner(user);
                 entity.setLevel(resultSet.getInt("level"));
                 entity.setIdPos(resultSet.getInt("idposs"));
-                entity.setDateAqui(new Date(resultSet.getDate("AQUIREDATE").getTime()));
+                entity.setDateAqui(new java.util.Date(resultSet.getDate("AQUIREDATE").getTime()));
                 entity.setPokemon(new PokemonDAO().requestAPIFromId(resultSet.getInt("numPkmn")));
                 java.sql.Date sqlDate = resultSet.getDate("LOSEDATE");
                 if (sqlDate==null){
                     entity.setDatePerte(null);
                 }else {
-                    entity.setDatePerte(new Date((sqlDate).getTime()));
+                    entity.setDatePerte(new java.util.Date((sqlDate).getTime()));
                 }
                 entities.add(entity);
             }

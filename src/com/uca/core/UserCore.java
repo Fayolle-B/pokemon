@@ -72,16 +72,20 @@ public class UserCore {
     }
 
     /**
-     Updates a user entity in the database.
-     @param userEntity the UserEntity object to be updated
+     * Updates a user entity in the database.
+     *
+     * @param userEntity the UserEntity object to be updated
+     * @return
      */
-    public static void update(UserEntity userEntity) {
+    public static UserEntity update(UserEntity userEntity) {
         try {
             new UserDAO().update(userEntity);
+            System.err.println("Les points de cette entité : " + userEntity.getPoints());
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
+        return userEntity;
     }
 
 

@@ -1,11 +1,11 @@
 package com.uca.entity;
 
 
+import java.sql.SQLException;
 import java.util.Date;
 
-public  class PossessionEntity {
-    public static int nb_point=5;
-
+public class PossessionEntity {
+    public static int nb_point = 5;
 
 
     private UserEntity owner;
@@ -38,29 +38,35 @@ public  class PossessionEntity {
         this.owner = owner;
     }
 
-    public int getIdPos(){
+    public int getIdPos() {
         return this.idPos;
     }
-    public PokemonEntity getPokemon(){
+
+    public PokemonEntity getPokemon() {
         return this.pokemon;
     }
-    public int getLevel(){
+
+    public int getLevel() {
         return this.level;
     }
-    public Date getDateAqui(){
+
+    public Date getDateAqui() {
         return this.dateAcqui;
     }
 
-    public void setIdPos(int pos){
+    public void setIdPos(int pos) {
         this.idPos = pos;
     }
-    public void setPokemon(PokemonEntity pok){
+
+    public void setPokemon(PokemonEntity pok) {
         this.pokemon = pok;
     }
-    public void setLevel(int lev){
-        this.level= lev;
+
+    public void setLevel(int lev) {
+        this.level = lev;
     }
-    public void setDateAqui(Date date){
+
+    public void setDateAqui(Date date) {
         this.dateAcqui = date;
     }
 
@@ -72,7 +78,8 @@ public  class PossessionEntity {
         this.datePerte = datePerte;
     }
 
-    public String getDateAcquiAsString(){
+    public String getDateAcquiAsString() {
         return this.dateAcqui.toString();
     }
+
 }

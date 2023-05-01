@@ -1,3 +1,5 @@
+<#-- @ftlvariable name="pendingTrades" type="java.util.Collection<com.uca.entity.TradeEntity>" -->
+<#-- @ftlvariable name="user" type="com.uca.entity.UserEntity" -->
 <!doctype html>
 <html lang="fr">
 <head>
