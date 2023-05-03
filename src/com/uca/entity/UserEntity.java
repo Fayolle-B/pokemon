@@ -1,5 +1,6 @@
 package com.uca.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class UserEntity {
@@ -10,7 +11,7 @@ public class UserEntity {
     private String pwd;
     private String Email;
     private int points;
-    private java.util.Date dateConnexion;
+    private LocalDate dateConnexion;
 
 
     public UserEntity() {
@@ -41,9 +42,9 @@ public class UserEntity {
         return this.Email;
     }
 
-    public Date getDateConnexion() {
+    public LocalDate getDateConnexion() {
         System.out.println("This.date est une "+ this.dateConnexion.getClass());
-        return (java.util.Date)this.dateConnexion;
+        return this.dateConnexion;
     }
 
     public String getPwd() {
@@ -72,7 +73,7 @@ public class UserEntity {
         this.Email = E;
     }
 
-    public void setDateConnexion(Date date) {
+    public void setDateConnexion(LocalDate date) {
         // voir plus tard comment creer l'objet date
         this.dateConnexion = date;
     }

@@ -43,7 +43,8 @@ Nom : ${user.getLastName()}
             </td>
             <td>
                 <form action="/pex" method="post">
-                    <button value="${possession.idPos}" name="possessionID" <#if (connectedUser.points==0)>disabled style="color: red;background-color: darkgray; cursor: not-allowed" </#if>>Pex</button>                </form>
+                    <button value="${possession.idPos}" name="possessionID" <#if (connectedUser.points==0)>disabled style="color: red;background-color: darkgray; cursor: not-allowed" </#if>>Pex</button>
+                </form>
             </td>
         </tr>
 

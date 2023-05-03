@@ -9,24 +9,20 @@ public class UserDAO extends _Generic<UserEntity> {
 
     public ArrayList<UserEntity> getAllUsers() throws SQLException {
         ArrayList<UserEntity> entities = new ArrayList<>();
-        try {
-            PreparedStatement preparedStatement = this.connect.prepareStatement("SELECT * FROM users ORDER BY id ASC;");
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                UserEntity entity = new UserEntity();
-                entity.setFirstName(resultSet.getString("FirstName"));
-                entity.setLastName(resultSet.getString("LastName"));
-                entity.setId(resultSet.getInt("id"));
-                entity.setLogin(resultSet.getString("login"));
-                entity.setPwd(resultSet.getString("pwd"));
-                entity.setEmail(resultSet.getString("email"));
-                entity.setPoints(resultSet.getInt("points"));
-                entity.setDateConnexion(resultSet.getDate("DateConnexion"));
+        PreparedStatement preparedStatement = this.connect.prepareStatement("SELECT * FROM users ORDER BY id;");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            UserEntity entity = new UserEntity();
+            entity.setFirstName(resultSet.getString("FirstName"));
+            entity.setLastName(resultSet.getString("LastName"));
+            entity.setId(resultSet.getInt("id"));
+            entity.setLogin(resultSet.getString("login"));
+            entity.setPwd(resultSet.getString("pwd"));
+            entity.setEmail(resultSet.getString("email"));
+            entity.setPoints(resultSet.getInt("points"));
+            entity.setDateConnexion(resultSet.getDate("DateConnexion").toLocalDate());
 
-                entities.add(entity);
-            }
-        } catch (SQLException e) {
-            throw e;
+            entities.add(entity);
         }
 
         return entities;
@@ -43,7 +39,7 @@ public class UserDAO extends _Generic<UserEntity> {
         statement.setString(4, user.getPwd());
         statement.setString(5, user.getEmail());
         statement.setInt(6, user.getPoints());
-        statement.setDate(7, new java.sql.Date(user.getDateConnexion().getTime()));
+        statement.setDate(7, java.sql.Date.valueOf(user.getDateConnexion()));
         statement.executeUpdate();
         ResultSet rs = statement.getGeneratedKeys();
         if (rs.next()) {
@@ -72,7 +68,7 @@ public class UserDAO extends _Generic<UserEntity> {
      * @param userEntity the "new" user (updated ver. of the user
      */
     public void update(UserEntity userEntity) throws SQLException {
-        PreparedStatement preparedStatement = this.connect.prepareStatement("UPDATE users SET FIRSTNAME = ?, LastName = ?, pwd = ?, login =?, email=? ,POINTS=? WHERE id = ?");
+        PreparedStatement preparedStatement = this.connect.prepareStatement("UPDATE users SET FIRSTNAME = ?, LastName = ?, pwd = ?, login =?, email=? ,POINTS=?, DATECONNEXION=? WHERE id = ?");
 
         preparedStatement.setString(1, userEntity.getFirstName());
         preparedStatement.setString(2, userEntity.getLastName());
@@ -80,7 +76,8 @@ public class UserDAO extends _Generic<UserEntity> {
         preparedStatement.setString(4, userEntity.getLogin());
         preparedStatement.setString(5, userEntity.getEmail());
         preparedStatement.setInt(6, userEntity.getPoints());
-        preparedStatement.setInt(7, userEntity.getId());
+        preparedStatement.setDate(7, Date.valueOf(userEntity.getDateConnexion()));
+        preparedStatement.setInt(8, userEntity.getId());
         preparedStatement.executeUpdate();
     }
 
@@ -97,13 +94,8 @@ public class UserDAO extends _Generic<UserEntity> {
             System.out.println(resultSet.toString());
             resultSet.next();
             userEntity.setId(id);
-            userEntity.setFirstName(resultSet.getString("firstname"));
-            userEntity.setLastName(resultSet.getString("lastname"));
-            userEntity.setEmail(resultSet.getString("email"));
-            userEntity.setPoints(resultSet.getInt("points"));
-            userEntity.setPwd(resultSet.getString("pwd"));
-            userEntity.setLogin(resultSet.getString("login"));
-            userEntity.setDateConnexion(new java.util.Date(resultSet.getDate("DateConnexion").getTime()));
+            extractFromResultSet(userEntity, resultSet);
+            userEntity.setDateConnexion(resultSet.getDate("DateConnexion").toLocalDate());
 
 
         } catch (Exception e) {
@@ -132,13 +124,8 @@ public class UserDAO extends _Generic<UserEntity> {
         }
         try {
             userEntity.setId(resultSet.getInt("id"));
-            userEntity.setFirstName(resultSet.getString("firstname"));
-            userEntity.setLastName(resultSet.getString("lastname"));
-            userEntity.setEmail(resultSet.getString("email"));
-            userEntity.setPoints(resultSet.getInt("points"));
-            userEntity.setPwd(resultSet.getString("pwd"));
-            userEntity.setLogin(resultSet.getString("login"));
-            userEntity.setDateConnexion(new java.util.Date(resultSet.getDate("DateConnexion").getTime()));
+            extractFromResultSet(userEntity, resultSet);
+            userEntity.setDateConnexion(resultSet.getDate("DateConnexion").toLocalDate());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -147,6 +134,15 @@ public class UserDAO extends _Generic<UserEntity> {
 
         //TODO:
 
+    }
+
+    private void extractFromResultSet(UserEntity userEntity, ResultSet resultSet) throws SQLException {
+        userEntity.setFirstName(resultSet.getString("firstname"));
+        userEntity.setLastName(resultSet.getString("lastname"));
+        userEntity.setEmail(resultSet.getString("email"));
+        userEntity.setPoints(resultSet.getInt("points"));
+        userEntity.setPwd(resultSet.getString("pwd"));
+        userEntity.setLogin(resultSet.getString("login"));
     }
 }
 

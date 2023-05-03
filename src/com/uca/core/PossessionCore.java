@@ -7,6 +7,7 @@ import com.uca.entity.UserEntity;
 
 import javax.management.InvalidAttributeValueException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -14,7 +15,7 @@ public class PossessionCore {
     public static PossessionEntity addPossession(UserEntity user, PokemonEntity pokemon, int level) {
         PossessionEntity possessionEntity = new PossessionEntity();
         possessionEntity.setOwner(user);
-        possessionEntity.setDateAqui(new Date());
+        possessionEntity.setDateAqui(LocalDate.now());
         possessionEntity.setLevel(1);
         possessionEntity.setIdPos(0);
         possessionEntity.setPokemon(pokemon);

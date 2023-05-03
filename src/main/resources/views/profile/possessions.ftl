@@ -47,7 +47,7 @@
             <th scope="row">${possession.idPos}</th>
             <td>${possession.pokemon.name}</td>
             <td>${possession.level}</td>
-            <td>${possession.getDateAcquiAsString()}</td>
+            <td>${possession.getDateAqui()}</td>
             <td>${possession.datePerte!"En votre possession"}</td>
 
         </tr>

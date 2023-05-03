@@ -24,8 +24,8 @@ public class profileController {
 
     public static Filter isConnectedFilter = (request, response) -> {
         if (request.session(false) == null) {
-            //response.redirect("/",401);
-            response.redirect("/");
+            halt(401, "You need to be connected to access this ressource");
+            //response.redirect("/");
         }
 
     };

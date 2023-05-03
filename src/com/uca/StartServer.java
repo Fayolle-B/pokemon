@@ -7,6 +7,7 @@ import com.uca.core.*;
 import com.uca.dao._Initializer;
 import com.uca.entity.UserEntity;
 import com.uca.gui.UserGUI;
+import spark.Spark;
 
 import javax.servlet.http.HttpSession;
 
@@ -84,6 +85,10 @@ public class StartServer {
             return null;
         } ));
 
+        get("/stop", ((request, response) -> {
+            Spark.stop();
+            return  null;
+        }));
         profileController.profileRoute();
         PexController.pexRoute();
 

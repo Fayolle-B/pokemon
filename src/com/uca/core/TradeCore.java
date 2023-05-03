@@ -8,6 +8,7 @@ import com.uca.entity.TradeStatus;
 import com.uca.entity.UserEntity;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -58,12 +59,12 @@ public class TradeCore {
         if (tradeEntity.getStatus() != TradeStatus.PENDING)
             throw new IllegalStateException("Canno't accept this trade, wronge status");
         System.out.println("accept trade #" + tradeEntity.getId());
-        tradeEntity.setAcceptDate(new Date());
+        tradeEntity.setAcceptDate(LocalDate.now());
         tradeEntity.setStatus(TradeStatus.ACCEPTED);
         PossessionEntity appPoss = tradeEntity.getApplicantPossession();
         PossessionEntity recPoss = tradeEntity.getRecipientPossession();
-        appPoss.setDatePerte(new Date());
-        recPoss.setDatePerte(new Date());
+        appPoss.setDatePerte(LocalDate.now());
+        recPoss.setDatePerte(LocalDate.now());
 
         try {
             new TradeDAO().update(tradeEntity);

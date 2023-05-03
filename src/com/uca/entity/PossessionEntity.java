@@ -1,8 +1,7 @@
 package com.uca.entity;
 
 
-import java.sql.SQLException;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class PossessionEntity {
     public static int nb_point = 5;
@@ -12,10 +11,10 @@ public class PossessionEntity {
     private int idPos;
     private PokemonEntity pokemon;
     private int level;
-    private Date dateAcqui;
+    private LocalDate dateAcqui;
 
 
-    private Date datePerte;
+    private LocalDate datePerte;
 
 
     public PossessionEntity() {
@@ -50,7 +49,7 @@ public class PossessionEntity {
         return this.level;
     }
 
-    public Date getDateAqui() {
+    public LocalDate getDateAqui() {
         return this.dateAcqui;
     }
 
@@ -66,15 +65,15 @@ public class PossessionEntity {
         this.level = lev;
     }
 
-    public void setDateAqui(Date date) {
+    public void setDateAqui(LocalDate date) {
         this.dateAcqui = date;
     }
 
-    public Date getDatePerte() {
+    public LocalDate getDatePerte() {
         return datePerte;
     }
 
-    public void setDatePerte(Date datePerte) {
+    public void setDatePerte(LocalDate datePerte) {
         this.datePerte = datePerte;
     }
 

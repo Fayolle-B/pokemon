@@ -29,13 +29,14 @@ public class SessionManager {
             session.setMaxInactiveInterval(30 * 60);
 
             LocalDate today = LocalDate.now();
-            LocalDate lastLoginDate = user.getDateConnexion().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+            LocalDate lastLoginDate = user.getDateConnexion();
 
             //Let's handle the points number (used to pex every day)
             if  (!today.equals(lastLoginDate)){
                 System.out.println("This user haven't connected today, we give him 5 points");
                 user.setPoints(PossessionEntity.nb_point);
-                user.setDateConnexion(new java.util.Date());
+                user.setDateConnexion(LocalDate.now());
                 UserCore.update(user);
             }
             return true;

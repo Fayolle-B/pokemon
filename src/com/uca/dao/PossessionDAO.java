@@ -8,6 +8,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class PossessionDAO extends _Generic<PossessionEntity>{
@@ -19,7 +20,7 @@ public class PossessionDAO extends _Generic<PossessionEntity>{
             PreparedStatement statement =  this.connect.prepareStatement("INSERT INTO possession (level,numPkmn, AQUIREDATE,LOSEDATE, owner_id ) VALUES(?,?,?,?,?);");
             statement.setInt(1, obj.getLevel());
             statement.setLong(2, obj.getPokemon().getId());
-            statement.setDate(3, new java.sql.Date(obj.getDateAqui().getTime()));
+            statement.setDate(3,  java.sql.Date.valueOf(obj.getDateAqui()));
             statement.setDate(4, null);
             statement.setInt(5,obj.getOwner().getId());
             statement.executeUpdate();
@@ -41,7 +42,7 @@ public class PossessionDAO extends _Generic<PossessionEntity>{
 
     public PossessionEntity update(PossessionEntity obj) throws  SQLException{
         PreparedStatement preparedStatement = this.connect.prepareStatement("UPDATE POSSESSION SET LOSEDATE =?, LEVEL = ? where IDPOSS=?");
-        if(obj.getDatePerte()!=null)preparedStatement.setDate(1,new Date(obj.getDatePerte().getTime()));
+        if(obj.getDatePerte()!=null)preparedStatement.setDate(1,java.sql.Date.valueOf(obj.getDatePerte()));
         else preparedStatement.setDate(1,null);
 
         preparedStatement.setInt(2,obj.getLevel());
@@ -59,9 +60,9 @@ public class PossessionDAO extends _Generic<PossessionEntity>{
         }
         possessionEntity.setIdPos(id);
         possessionEntity.setLevel(resultSet.getInt("LEVEL"));
-        possessionEntity.setDateAqui(new java.util.Date(resultSet.getDate("AQUIREDATE").getTime()));
+        possessionEntity.setDateAqui((resultSet.getDate("AQUIREDATE")).toLocalDate());
         try {
-            possessionEntity.setDatePerte(new java.util.Date(resultSet.getDate("LOSEDATE").getTime()));
+            possessionEntity.setDatePerte(resultSet.getDate("LOSEDATE").toLocalDate());
         }catch (NullPointerException e){
             possessionEntity.setDatePerte(null);
         }
@@ -101,13 +102,13 @@ public class PossessionDAO extends _Generic<PossessionEntity>{
                 entity.setOwner(user);
                 entity.setLevel(resultSet.getInt("level"));
                 entity.setIdPos(resultSet.getInt("idposs"));
-                entity.setDateAqui(new java.util.Date(resultSet.getDate("AQUIREDATE").getTime()));
+                entity.setDateAqui(resultSet.getDate("AQUIREDATE").toLocalDate());
                 entity.setPokemon(new PokemonDAO().requestAPIFromId(resultSet.getInt("numPkmn")));
                 java.sql.Date sqlDate = resultSet.getDate("LOSEDATE");
                 if (sqlDate==null){
                     entity.setDatePerte(null);
                 }else {
-                    entity.setDatePerte(new java.util.Date((sqlDate).getTime()));
+                    entity.setDatePerte( (sqlDate).toLocalDate());
                 }
                 entities.add(entity);
             }

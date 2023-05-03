@@ -8,6 +8,7 @@ import com.uca.entity.PossessionEntity;
 
 import javax.management.InvalidAttributeValueException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
@@ -45,7 +46,7 @@ public class UserCore {
         newUser.setFirstName(firstname);
         newUser.setLastName(lastname);
         long millis=System.currentTimeMillis();
-        newUser.setDateConnexion(new Date());
+        newUser.setDateConnexion(LocalDate.now());
         newUser.setLogin(login);
         newUser.setPwd(pwd);
         newUser.setEmail(email);

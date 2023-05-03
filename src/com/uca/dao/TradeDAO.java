@@ -5,11 +5,11 @@ import com.uca.entity.TradeEntity;
 import com.uca.entity.TradeStatus;
 import com.uca.entity.UserEntity;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class TradeDAO extends _Generic<TradeEntity> {
 
@@ -19,9 +19,9 @@ public class TradeDAO extends _Generic<TradeEntity> {
         PreparedStatement statement = this.connect.prepareStatement("INSERT INTO TRADES ( APPOWNID, RECOWNID, SUBMITDATE, ACCEPTDATE, STATUS) VALUES ( ?,?,?,?,? )", PreparedStatement.RETURN_GENERATED_KEYS);
         statement.setInt(1, obj.getApplicantPossession().getIdPos());
         statement.setInt(2, obj.getRecipientPossession().getIdPos());
-        statement.setDate(3, new java.sql.Date(obj.getSubmitDate().getTime()));
+        statement.setDate(3,  java.sql.Date.valueOf(obj.getSubmitDate()));
         try {
-            statement.setDate(4, new java.sql.Date(obj.getAcceptDate().getTime()));
+            statement.setDate(4, java.sql.Date.valueOf(obj.getAcceptDate()));
         }catch (NullPointerException e){
             statement.setDate(4,null);
         }
@@ -42,7 +42,7 @@ public class TradeDAO extends _Generic<TradeEntity> {
 
     public void update(TradeEntity tradeEntity) throws SQLException {
         PreparedStatement preparedStatement = this.connect.prepareStatement("UPDATE TRADES set ACCEPTDATE = ?, STATUS = ? where ID=?");
-        preparedStatement.setDate(1,new java.sql.Date(tradeEntity.getAcceptDate().getTime()));
+        preparedStatement.setDate(1, java.sql.Date.valueOf(tradeEntity.getAcceptDate()));
         preparedStatement.setString(2,tradeEntity.getStatus().toString());
         System.out.println("Le status est : " + tradeEntity.getStatus().toString());
         preparedStatement.setInt(3, tradeEntity.getId());
@@ -63,11 +63,11 @@ public class TradeDAO extends _Generic<TradeEntity> {
         tradeEntity.setId(id);
         tradeEntity.setApplicantPossession(possessionDAO.getPossessionById(resultSet.getInt("APPOWNID")));
         tradeEntity.setRecipientPossession(possessionDAO.getPossessionById(resultSet.getInt("RECOWNID")));
-        tradeEntity.setSubmitDate(new Date(resultSet.getDate("SUBMITDATE").getTime()));
+        tradeEntity.setSubmitDate(java.sql.Date.valueOf(resultSet.getDate("SUBMITDATE").toLocalDate()).toLocalDate());
         if(resultSet.getDate("ACCEPTDATE")==null){
             tradeEntity.setAcceptDate(null);
         }else{
-            tradeEntity.setAcceptDate(new Date(resultSet.getDate("ACCEPTDATE").getTime()));
+            tradeEntity.setAcceptDate(java.sql.Date.valueOf(resultSet.getDate("ACCEPTDATE").toLocalDate()).toLocalDate());
         }
         tradeEntity.setStatus(TradeStatus.valueOf(resultSet.getString("STATUS")));
         return  tradeEntity;
@@ -95,11 +95,11 @@ public class TradeDAO extends _Generic<TradeEntity> {
                     tradeEntity.setId(resultSet.getInt("ID"));
                     tradeEntity.setApplicantPossession(appPoss);
                     tradeEntity.setRecipientPossession(recPoss);
-                    tradeEntity.setSubmitDate(new Date(resultSet.getDate("SUBMITDATE").getTime()));
+                    tradeEntity.setSubmitDate(java.sql.Date.valueOf(resultSet.getDate("SUBMITDATE").toLocalDate()).toLocalDate());
                     if(resultSet.getDate("ACCEPTDATE")==null){
                         tradeEntity.setAcceptDate(null);
                     }else{
-                        tradeEntity.setAcceptDate(new Date(resultSet.getDate("ACCEPTDATE").getTime()));
+                        tradeEntity.setAcceptDate((resultSet.getDate("ACCEPTDATE")).toLocalDate());
                     }
                     tradeEntity.setStatus(TradeStatus.valueOf(resultSet.getString("STATUS")));
                     tradeEntities.add(tradeEntity);
