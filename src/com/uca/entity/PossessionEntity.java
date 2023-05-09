@@ -1,7 +1,10 @@
 package com.uca.entity;
 
 
+import com.uca.core.TradeCore;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class PossessionEntity {
     public static int nb_point = 5;
@@ -24,8 +27,8 @@ public class PossessionEntity {
 
     @Override
     public String toString() {
-        String stringBuilder = "La possession n°" + idPos + "appartient à " +
-                owner.getId() + "et correspond au pokemon " + pokemon.getName() + "\n";
+        String stringBuilder = "Poss n°" + idPos + " ( " +
+                owner.getLogin() + " ) :  " + pokemon.getName() + "\n";
         return stringBuilder;
     }
 
@@ -79,6 +82,34 @@ public class PossessionEntity {
 
     public String getDateAcquiAsString() {
         return this.dateAcqui.toString();
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PossessionEntity that)) return false;
+
+        return getIdPos() == that.getIdPos();
+    }
+
+    @Override
+    public int hashCode() {
+        return getIdPos();
+    }
+
+    /**
+     * know if a user already applied for a trade with this possession
+     * @return  a boolean
+     */
+    public boolean isProposed(){
+        ArrayList<TradeEntity> tradeEntityArrayList = TradeCore.getAllTradesOf(this.owner);
+        for(TradeEntity tradeEntity : tradeEntityArrayList){
+            if(tradeEntity.getApplicantPossession().equals(this)){
+                return true;
+            }
+        }
+        return false;
     }
 
 }

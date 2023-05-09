@@ -80,7 +80,6 @@ public class PossessionDAO extends _Generic<PossessionEntity>{
             ResultSet res = prep.executeQuery();
             while (res.next()){
                 System.out.println( "id poss : "+res.getInt("idposs")+ "\t\n \t");
-                System.out.println(res.getInt("owner_id"));
             }
             System.out.println("Fini");
 

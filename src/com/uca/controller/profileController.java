@@ -16,7 +16,9 @@ public class profileController {
         @Override
         public void handle(Request request, Response response) throws Exception {
             if (!(SessionManager.getConnectedUser(request, response).getId() == Integer.parseInt(request.params(":id")))) {
-                halt(401, "Unauthorized");
+                //halt(401, "Unauthorized");
+                response.status(403);
+                response.redirect("/");
             }
 
         }
@@ -24,8 +26,14 @@ public class profileController {
 
     public static Filter isConnectedFilter = (request, response) -> {
         if (request.session(false) == null) {
-            halt(401, "You need to be connected to access this ressource");
-            //response.redirect("/");
+
+            response.status(401);
+            response.cookie("error", "Vousdevezvousconnecter");
+            response.redirect("/");
+
+          //  response.status(403);
+          //  response.redirect("/");
+
         }
 
     };

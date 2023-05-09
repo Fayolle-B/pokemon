@@ -5,9 +5,11 @@ import com.uca.dao.UserDAO;
 import com.uca.entity.PokemonEntity;
 import com.uca.entity.UserEntity;
 import com.uca.entity.PossessionEntity;
+import com.uca.exception.BadEmailException;
 
 import javax.management.InvalidAttributeValueException;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -51,14 +53,16 @@ public class UserCore {
         newUser.setPwd(pwd);
         newUser.setEmail(email);
         newUser.setPoints(PossessionEntity.nb_point);
-        newUser = new UserDAO().create(newUser);
-
+        try {
+            newUser = new UserDAO().create(newUser);
+        }catch (SQLIntegrityConstraintViolationException integrityConstraintViolationException){
+            throw new BadEmailException("Email already exist");
+        }
         try {
             pkmn = PokemonCore.getPokemon(new Random().nextLong(PokemonEntity.MAX_POKEMON_ID+1));
         } catch (InvalidAttributeValueException e) {
             throw new RuntimeException(e);
         }
-        System.out.println(pkmn.getName());
         PossessionCore.addPossession(newUser,pkmn,0);
         return newUser;
 

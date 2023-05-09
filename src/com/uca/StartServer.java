@@ -6,10 +6,17 @@ import com.uca.controller.tradesController;
 import com.uca.core.*;
 import com.uca.dao._Initializer;
 import com.uca.entity.UserEntity;
+import com.uca.exception.BadEmailException;
+import com.uca.gui.ErrorPagesGui;
 import com.uca.gui.UserGUI;
+import com.uca.gui._FreeMarkerInitializer;
+import spark.Service;
 import spark.Spark;
 
 import javax.servlet.http.HttpSession;
+
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import static spark.Spark.*;
 
@@ -31,8 +38,9 @@ public class StartServer {
                 res.redirect("/myProfile");
                 return null;
             };
-            res.redirect("accueil.html");
-            return null;
+            String message = req.cookie("error");
+            System.out.println("le message : "+ message);
+            return UserGUI.getHomePage(message);
         });
         get("/myProfile", (request, response) -> {
             if(request.session(false)!=null){
@@ -45,12 +53,18 @@ public class StartServer {
             return null;
         } );
         post("/register",(req,res) -> {
+
+            //TODO : create a template for the register page, so we can display error message
             String firstname = req.queryParams("firstname");
             String lastname = req.queryParams("lastname");
             String login = req.queryParams("login");
             String pwd = req.queryParams("password");
             String email = req.queryParams("email");
-            UserCore.newUser(firstname,lastname,login,pwd,email);
+            try {
+                UserCore.newUser(firstname, lastname, login, pwd, email);
+            }catch (BadEmailException e){
+                res.redirect("/register");
+            }
             SessionManager.tryToConnect(req,res);
             res.redirect("/");
             return null;
@@ -94,6 +108,18 @@ public class StartServer {
 
         tradesController.tradesRoutes();
 
+
+
+        notFound((req, res) -> {
+            res.status(404);
+            return ErrorPagesGui.notFound();
+
+        });
+        //exception(); //TODO: use this to handle exception the wright way
+        Spark.internalServerError((request, response) ->{
+            response.status(500);
+            return  ErrorPagesGui.internalServerError();
+        });
     }
 
 }

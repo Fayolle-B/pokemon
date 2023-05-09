@@ -15,6 +15,8 @@ import spark.Filter;
 import spark.Request;
 import spark.Response;
 
+import java.sql.SQLException;
+
 import static spark.Spark.*;
 
 public class PexController {
@@ -25,9 +27,14 @@ public class PexController {
 
             try{
                 possID = Integer.parseInt(request.queryParams("possessionID"));
-            }catch (Exception e){
+            }catch (NumberFormatException e){
                 e.printStackTrace();
+            }catch (NullPointerException f ){
+                System.err.println("Errur de format");
+                throw  new RuntimeException();
+
             }
+
 
             PossessionEntity possessionEntity = PossessionCore.getPossessionById(possID);
             UserEntity userEntity = SessionManager.getConnectedUser(request, response);

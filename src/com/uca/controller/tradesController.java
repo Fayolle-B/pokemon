@@ -16,7 +16,6 @@ public class tradesController {
 
     public static void tradesRoutes(){
         post("/trade",((request, response) -> {
-            System.out.println("on veut créer un trade");
             if(request.queryParams("applicantPossessionID")==null){
                 System.err.println("There is not applicantPossessionID, so we display possessionPicker"+ request.queryParams());
                 return UserGUI.possessionPicker(SessionManager.getConnectedUser(request,response), Integer.parseInt(request.queryParams("recipientPossessionID")));
@@ -46,9 +45,7 @@ public class tradesController {
                 TradeCore.newTradeFromIDs(id1,id2);
             }else {
                 System.out.println("Not a part, abort");
-                System.out.println(SessionManager.isConnected(request,response));
-                System.out.println(SessionManager.getConnectedUser(request,response).getId());
-                System.out.println(poss1.getOwner().getId());
+
 
             }
             response.redirect("/");

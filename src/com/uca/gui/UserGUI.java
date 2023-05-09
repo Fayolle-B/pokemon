@@ -1,21 +1,20 @@
  package com.uca.gui;
 
 import com.uca.core.PossessionCore;
-import com.uca.core.SessionManager;
 import com.uca.core.TradeCore;
 import com.uca.core.UserCore;
 import com.uca.entity.PossessionEntity;
+import com.uca.entity.TradeEntity;
 import com.uca.entity.TradeStatus;
 import com.uca.entity.UserEntity;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
-import spark.Request;
-import spark.Session;
 
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -133,7 +132,8 @@ public class UserGUI {
         Map<String,Object>input = new HashMap<>();
         input.put("user",userEntity);
         try {
-            input.put("pendingTrades", TradeCore.getTradesOfHavingStatus(userEntity, TradeStatus.PENDING));
+            input.put("proposedPendingTrades", userEntity.getProposedPendingTrades());
+            input.put("receivedPendingTrades", userEntity.getReceivedPendingTrades());
             input.put("acceptedTrades", TradeCore.getTradesOfHavingStatus(userEntity, TradeStatus.ACCEPTED));
             input.put("refusedTrades", TradeCore.getTradesOfHavingStatus(userEntity, TradeStatus.REFUSED));
         }catch(Exception e){
@@ -160,17 +160,26 @@ public class UserGUI {
         Map<String, Object> input = new HashMap<>();
         ArrayList<PossessionEntity> possessions=null;
         try {
-            possessions= PossessionCore.possessionOf(userEntity);
+            possessions= userEntity.getAvailableForTrade();
+            System.out.println("BZZZZZZZZz"+possessions);
         }catch(Exception e){
             System.err.println("Cannot retrieve the possession list, przinting the Stack Trace ");
             e.printStackTrace();
         }
         input.put("user", userEntity);
         input.put("possessions", possessions);
-        input.put("recipientPossessionID", recipientPossessionID);
+
+        try {
+            input.put("recipientPossession", PossessionCore.getPossessionById(recipientPossessionID));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         Writer output = new StringWriter();
         try {
-            Template template = configuration.getTemplate("profile/possessionPicker.ftl");
+            Template template;
+            if(userEntity.getAvailableForTrade().isEmpty()){
+                template=configuration.getTemplate("profile/noPossToTrade.ftl");
+            }else template = configuration.getTemplate("profile/possessionPicker.ftl");
             template.setOutputEncoding("UTF-8");
             template.process(input,output);
         } catch (TemplateException | IOException e) {
@@ -188,6 +197,25 @@ public class UserGUI {
 
 
 
+
+    public static String getHomePage(String errorMessage){
+        Configuration configuration= _FreeMarkerInitializer.getContext();
+        Map<String, Object> input = new HashMap<>();
+        input.put("errorMessage", errorMessage);
+        Template template;
+        Writer output = new StringWriter();
+        try {
+            template=configuration.getTemplate("accueil.ftl");
+            template.setOutputEncoding("UTF-8");
+            template.process(input, output);
+        } catch (IOException | TemplateException e) {
+            throw new RuntimeException(e);
+        }
+        return output.toString();
+    }
+    public  static String getHomePage(){
+        return getHomePage(null);
+    }
 
 
 }

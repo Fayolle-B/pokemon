@@ -3,13 +3,14 @@ package com.uca.core;
 import com.uca.dao.PossessionDAO;
 import com.uca.entity.PokemonEntity;
 import com.uca.entity.PossessionEntity;
+import com.uca.entity.TradeEntity;
 import com.uca.entity.UserEntity;
 
 import javax.management.InvalidAttributeValueException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.List;
 
 public class PossessionCore {
     public static PossessionEntity addPossession(UserEntity user, PokemonEntity pokemon, int level) {
@@ -42,6 +43,8 @@ public class PossessionCore {
         possessionEntities.removeIf(possessionEntity -> possessionEntity.getDatePerte() != null);
         return possessionEntities;
     }
+
+
 
     public static ArrayList<PossessionEntity> oldPossessionOf(UserEntity user) {
         ArrayList<PossessionEntity> possessionEntities = possessionOf(user);

@@ -16,7 +16,8 @@
                 ${user.dateConnexion}
             </a>
 
-        </li>
+        </li
+        >
     </#list>
 </ul>
 

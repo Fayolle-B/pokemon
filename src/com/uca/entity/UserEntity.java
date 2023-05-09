@@ -1,6 +1,12 @@
 package com.uca.entity;
 
+import com.uca.core.PossessionCore;
+import com.uca.core.TradeCore;
+import com.uca.core.UserCore;
+
+import java.lang.reflect.Array;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class UserEntity {
@@ -43,7 +49,6 @@ public class UserEntity {
     }
 
     public LocalDate getDateConnexion() {
-        System.out.println("This.date est une "+ this.dateConnexion.getClass());
         return this.dateConnexion;
     }
 
@@ -77,6 +82,7 @@ public class UserEntity {
         // voir plus tard comment creer l'objet date
         this.dateConnexion = date;
     }
+
     public void setPwd(String pwd) {
         this.pwd = pwd;
     }
@@ -95,9 +101,40 @@ public class UserEntity {
     }
 
     @Override
+
     public int hashCode() {
         int result = getPwd().hashCode();
         result = 31 * result + getEmail().hashCode();
         return result;
+    }
+
+    /**
+     * A méthod to get the trades this user proposed, having the PENDING status
+     *
+     * @return
+     */
+    public ArrayList<TradeEntity> getProposedPendingTrades() {
+        ArrayList<TradeEntity> tradeEntities = TradeCore.getTradesOfHavingStatus(this, TradeStatus.PENDING);
+        for (TradeEntity tradeEntity : tradeEntities) {
+            System.out.println(tradeEntity.getApplicantPossession().getOwner().getId() + "and " + this.getId());
+        }
+        tradeEntities.removeIf(tradeEntity -> tradeEntity.getApplicantPossession().getOwner().getId() != this.getId());
+        return tradeEntities;
+    }
+
+    public ArrayList<TradeEntity> getReceivedPendingTrades() {
+        ArrayList<TradeEntity> tradeEntities = TradeCore.getTradesOfHavingStatus(this, TradeStatus.PENDING);
+        tradeEntities.removeIf((tradeEntity -> tradeEntity.getRecipientPossession().getOwner().getId() != this.getId()));
+        return tradeEntities;
+    }
+
+    public ArrayList<PossessionEntity> getAvailableForTrade() {
+        ArrayList<PossessionEntity> possessionEntities = new ArrayList<>();
+        for (PossessionEntity possessionEntity : PossessionCore.activPossessionOf(this)) {
+            if (!possessionEntity.isProposed())
+                possessionEntities.add(possessionEntity);
+        }
+        return possessionEntities;
+
     }
 }

@@ -175,19 +175,18 @@
     </user>
     <table id="165" parent="163" name="FRIENDS"/>
     <table id="166" parent="163" name="POSSESSION"/>
-    <table id="167" parent="163" name="TRADES"/>
-    <table id="168" parent="163" name="USERS"/>
-    <column id="169" parent="165" name="ID1">
+    <table id="167" parent="163" name="USERS"/>
+    <column id="168" parent="165" name="ID1">
       <DasType>INTEGER|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="170" parent="165" name="ID2">
+    <column id="169" parent="165" name="ID2">
       <DasType>INTEGER|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <foreign-key id="171" parent="165" name="CONSTRAINT_7">
+    <foreign-key id="170" parent="165" name="CONSTRAINT_7">
       <ColNames>ID1</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <OnDelete>restrict</OnDelete>
@@ -195,7 +194,7 @@
       <RefKeyName>CONSTRAINT_4</RefKeyName>
       <RefTableName>USERS</RefTableName>
     </foreign-key>
-    <foreign-key id="172" parent="165" name="CONSTRAINT_70">
+    <foreign-key id="171" parent="165" name="CONSTRAINT_70">
       <ColNames>ID2</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <OnDelete>restrict</OnDelete>
@@ -203,59 +202,59 @@
       <RefKeyName>CONSTRAINT_4</RefKeyName>
       <RefTableName>USERS</RefTableName>
     </foreign-key>
-    <index id="173" parent="165" name="PRIMARY_KEY_7">
+    <index id="172" parent="165" name="PRIMARY_KEY_7">
       <ColNames>ID1
 ID2</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="174" parent="165" name="CONSTRAINT_INDEX_7">
+    <index id="173" parent="165" name="CONSTRAINT_INDEX_7">
       <ColNames>ID1</ColNames>
       <NameSurrogate>1</NameSurrogate>
     </index>
-    <index id="175" parent="165" name="CONSTRAINT_INDEX_70">
+    <index id="174" parent="165" name="CONSTRAINT_INDEX_70">
       <ColNames>ID2</ColNames>
       <NameSurrogate>1</NameSurrogate>
     </index>
-    <key id="176" parent="165" name="CONSTRAINT_706">
+    <key id="175" parent="165" name="CONSTRAINT_706">
       <ColNames>ID1
 ID2</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="177" parent="166" name="IDPOSS">
+    <column id="176" parent="166" name="IDPOSS">
       <ColumnKind>generated-stored</ColumnKind>
       <DasType>INTEGER|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <SequenceInline>1</SequenceInline>
       <SequenceDasType>INTEGER|0s</SequenceDasType>
-      <SequenceSequenceIdentity>1(7)</SequenceSequenceIdentity>
+      <SequenceSequenceIdentity>1(4)</SequenceSequenceIdentity>
       <SequenceStartValue>1</SequenceStartValue>
     </column>
-    <column id="178" parent="166" name="NUMPKMN">
+    <column id="177" parent="166" name="NUMPKMN">
       <DasType>BIGINT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="179" parent="166" name="LEVEL">
+    <column id="178" parent="166" name="LEVEL">
       <DasType>INTEGER|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="180" parent="166" name="AQUIREDATE">
+    <column id="179" parent="166" name="AQUIREDATE">
       <DasType>DATE|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="181" parent="166" name="LOSEDATE">
+    <column id="180" parent="166" name="LOSEDATE">
       <DasType>DATE|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="182" parent="166" name="OWNER_ID">
+    <column id="181" parent="166" name="OWNER_ID">
       <DasType>INTEGER|0s</DasType>
       <Position>6</Position>
     </column>
-    <foreign-key id="183" parent="166" name="CONSTRAINT_67">
+    <foreign-key id="182" parent="166" name="CONSTRAINT_67">
       <ColNames>OWNER_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <OnDelete>restrict</OnDelete>
@@ -263,119 +262,76 @@ ID2</ColNames>
       <RefKeyName>CONSTRAINT_4</RefKeyName>
       <RefTableName>USERS</RefTableName>
     </foreign-key>
-    <index id="184" parent="166" name="PRIMARY_KEY_6">
+    <index id="183" parent="166" name="PRIMARY_KEY_6">
       <ColNames>IDPOSS</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="185" parent="166" name="CONSTRAINT_INDEX_6">
+    <index id="184" parent="166" name="CONSTRAINT_INDEX_6">
       <ColNames>OWNER_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
     </index>
-    <key id="186" parent="166" name="CONSTRAINT_6">
+    <key id="185" parent="166" name="CONSTRAINT_6">
       <ColNames>IDPOSS</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="187" parent="167" name="ID">
+    <column id="186" parent="167" name="FIRSTNAME">
+      <DasType>CHARACTER VARYING(100)|0s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="187" parent="167" name="LASTNAME">
+      <DasType>CHARACTER VARYING(100)|0s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="188" parent="167" name="ID">
       <ColumnKind>generated-stored</ColumnKind>
       <DasType>INTEGER|0s</DasType>
       <NotNull>1</NotNull>
-      <Position>1</Position>
+      <Position>3</Position>
       <SequenceInline>1</SequenceInline>
       <SequenceDasType>INTEGER|0s</SequenceDasType>
-      <SequenceSequenceIdentity>1(2)</SequenceSequenceIdentity>
+      <SequenceSequenceIdentity>1(4)</SequenceSequenceIdentity>
       <SequenceStartValue>1</SequenceStartValue>
     </column>
-    <column id="188" parent="167" name="APPOWNID">
-      <DasType>INTEGER|0s</DasType>
-      <Position>2</Position>
-    </column>
-    <column id="189" parent="167" name="RECOWNID">
-      <DasType>INTEGER|0s</DasType>
-      <Position>3</Position>
-    </column>
-    <column id="190" parent="167" name="SUBMITDATE">
-      <DasType>DATE|0s</DasType>
+    <column id="189" parent="167" name="LOGIN">
+      <DasType>CHARACTER VARYING(100)|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="191" parent="167" name="ACCEPTDATE">
-      <DasType>DATE|0s</DasType>
+    <column id="190" parent="167" name="PWD">
+      <DasType>CHARACTER VARYING(100)|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="192" parent="167" name="STATUS">
-      <DasType>CHARACTER VARYING(100)|0s</DasType>
+    <column id="191" parent="167" name="POINTS">
+      <DasType>INTEGER|0s</DasType>
       <Position>6</Position>
     </column>
-    <foreign-key id="193" parent="167" name="CONSTRAINT_93">
-      <ColNames>APPOWNID</ColNames>
-      <NameSurrogate>1</NameSurrogate>
-      <OnDelete>restrict</OnDelete>
-      <OnUpdate>restrict</OnUpdate>
-      <RefKeyName>CONSTRAINT_6</RefKeyName>
-      <RefTableName>POSSESSION</RefTableName>
-    </foreign-key>
-    <index id="194" parent="167" name="PRIMARY_KEY_9">
+    <column id="192" parent="167" name="EMAIL">
+      <DasType>CHARACTER VARYING(100)|0s</DasType>
+      <Position>7</Position>
+    </column>
+    <column id="193" parent="167" name="DATECONNEXION">
+      <DasType>DATE|0s</DasType>
+      <Position>8</Position>
+    </column>
+    <index id="194" parent="167" name="PRIMARY_KEY_4">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="195" parent="167" name="CONSTRAINT_INDEX_9">
-      <ColNames>APPOWNID</ColNames>
+    <index id="195" parent="167" name="CONSTRAINT_INDEX_4">
+      <ColNames>EMAIL</ColNames>
       <NameSurrogate>1</NameSurrogate>
+      <Unique>1</Unique>
     </index>
-    <key id="196" parent="167" name="CONSTRAINT_9">
+    <key id="196" parent="167" name="CONSTRAINT_4">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="197" parent="168" name="FIRSTNAME">
-      <DasType>CHARACTER VARYING(100)|0s</DasType>
-      <Position>1</Position>
-    </column>
-    <column id="198" parent="168" name="LASTNAME">
-      <DasType>CHARACTER VARYING(100)|0s</DasType>
-      <Position>2</Position>
-    </column>
-    <column id="199" parent="168" name="ID">
-      <ColumnKind>generated-stored</ColumnKind>
-      <DasType>INTEGER|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>3</Position>
-      <SequenceInline>1</SequenceInline>
-      <SequenceDasType>INTEGER|0s</SequenceDasType>
-      <SequenceSequenceIdentity>1(5)</SequenceSequenceIdentity>
-      <SequenceStartValue>1</SequenceStartValue>
-    </column>
-    <column id="200" parent="168" name="LOGIN">
-      <DasType>CHARACTER VARYING(100)|0s</DasType>
-      <Position>4</Position>
-    </column>
-    <column id="201" parent="168" name="PWD">
-      <DasType>CHARACTER VARYING(100)|0s</DasType>
-      <Position>5</Position>
-    </column>
-    <column id="202" parent="168" name="POINTS">
-      <DasType>INTEGER|0s</DasType>
-      <Position>6</Position>
-    </column>
-    <column id="203" parent="168" name="EMAIL">
-      <DasType>CHARACTER VARYING(100)|0s</DasType>
-      <Position>7</Position>
-    </column>
-    <column id="204" parent="168" name="DATECONNEXION">
-      <DasType>DATE|0s</DasType>
-      <Position>8</Position>
-    </column>
-    <index id="205" parent="168" name="PRIMARY_KEY_4">
-      <ColNames>ID</ColNames>
+    <key id="197" parent="167" name="CONSTRAINT_4D">
+      <ColNames>EMAIL</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <Unique>1</Unique>
-    </index>
-    <key id="206" parent="168" name="CONSTRAINT_4">
-      <ColNames>ID</ColNames>
-      <NameSurrogate>1</NameSurrogate>
-      <Primary>1</Primary>
     </key>
   </database-model>
 </dataSource>

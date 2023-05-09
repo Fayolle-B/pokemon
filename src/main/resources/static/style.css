@@ -14,3 +14,6 @@
 .button:focus {
     background-color: #c2c7c7;
     border-color: #7aa8b7;}
+
+td{
+    padding: 0.5em 2em}

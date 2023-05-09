@@ -91,7 +91,6 @@ public class UserDAO extends _Generic<UserEntity> {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.isLast())
                 throw new Exception("Can't do a request on this id\nResult of select query is" + resultSet.toString());
-            System.out.println(resultSet.toString());
             resultSet.next();
             userEntity.setId(id);
             extractFromResultSet(userEntity, resultSet);
