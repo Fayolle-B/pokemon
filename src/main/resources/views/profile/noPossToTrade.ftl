@@ -5,8 +5,9 @@
     <title>Pas de possessions</title>
 </head>
 <body>
-Vous n'avez pas de possession à échanger (ou alors vous les avez déja proposée dans un échange.
-Gagner de nouveaux pokemon ou annuler un échange pour pouvoir proposer un nouvel échange.
+<p>Vous n'avez pas de possession à échanger</p>
+<p>(ou alors, vous les avez deja proposée dans un échange)</p>
+<p>Gagnez de nouveaux pokemon ou annulez un échange pour pouvoir proposer un nouvel échange.</p>
 <a href="/myProfile" class="button">Retourner à mon profil</a>
 
 

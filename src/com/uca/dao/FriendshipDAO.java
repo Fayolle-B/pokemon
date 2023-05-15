@@ -19,7 +19,7 @@ public class FriendshipDAO extends  _Generic<FriendShipEntity>{
             preparedStatement.setInt(2, user.getId());
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                friends.add(UserCore.getUserFromId(resultSet.getInt("id")));
+                friends.add(UserCore.getUserByID(resultSet.getInt("id")));
             }
         } catch (SQLException e) {
             e.printStackTrace();

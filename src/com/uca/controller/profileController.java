@@ -3,11 +3,11 @@ package com.uca.controller;
 import com.uca.core.SessionManager;
 import com.uca.core.UserCore;
 import com.uca.entity.UserEntity;
+import com.uca.exception.FailedLoginException;
 import com.uca.gui.UserGUI;
 import spark.Filter;
 import spark.Request;
 import spark.Response;
-import spark.Session;
 
 import static spark.Spark.*;
 
@@ -29,7 +29,7 @@ public class profileController {
 
             response.status(401);
             response.cookie("error", "Vousdevezvousconnecter");
-            response.redirect("/");
+            throw new FailedLoginException();
 
           //  response.status(403);
           //  response.redirect("/");
@@ -43,8 +43,8 @@ public class profileController {
         before("/profile/*", isConnectedFilter);
 
         get("/profile/:id/trades", (request, response) -> {
-            if (SessionManager.getConnectedUser(request, response).equals(UserCore.getUserFromId(Integer.parseInt(request.params(":id"))))) {
-                return UserGUI.displayProfileTrade(UserCore.getUserFromId(Integer.parseInt(request.params(":id"))));
+            if (SessionManager.getConnectedUser(request, response).equals(UserCore.getUserByID(Integer.parseInt(request.params(":id"))))) {
+                return UserGUI.displayProfileTrade(UserCore.getUserByID(Integer.parseInt(request.params(":id"))));
             }
             response.redirect("/profile/"+request.params(":id"));
             return null;
@@ -52,9 +52,10 @@ public class profileController {
 
         });
         get("/profile/:id", (request, response) -> {
-            if (SessionManager.getConnectedUser(request, response).equals(UserCore.getUserFromId(Integer.parseInt(request.params(":id"))))) {
+            UserEntity user = SessionManager.getConnectedUser(request,response);
+            if (user.getId()==(Integer.parseInt(request.params(":id")))) {
 
-                return UserGUI.displayMyProfile(SessionManager.getConnectedUser(request, response).getId());
+                return UserGUI.displayMyProfile(user.getId());
             }
             UserEntity connectedUser = SessionManager.getConnectedUser(request, response);
             System.out.println("Connected as user #"+connectedUser.getId());

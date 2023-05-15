@@ -20,10 +20,9 @@
         <caption>Les possessions de ${user.firstName}</caption>
         <tr>
             <th scope="col">id de la possessions</th>
-            <th scope="col">numero du PKMN</th>
+            <th scope="col">Nom du PKMN</th>
             <th scope="col">Niveau du pokémon</th>
             <th scope="col">Date d'acuisition</th>
-            <th scope="col">Date de perte</th>
 
         </tr>
 

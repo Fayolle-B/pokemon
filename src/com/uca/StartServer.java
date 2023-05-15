@@ -7,16 +7,13 @@ import com.uca.core.*;
 import com.uca.dao._Initializer;
 import com.uca.entity.UserEntity;
 import com.uca.exception.BadEmailException;
+import com.uca.exception.FailedLoginException;
 import com.uca.gui.ErrorPagesGui;
 import com.uca.gui.UserGUI;
-import com.uca.gui._FreeMarkerInitializer;
-import spark.Service;
+import org.mindrot.jbcrypt.BCrypt;
 import spark.Spark;
 
 import javax.servlet.http.HttpSession;
-
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 import static spark.Spark.*;
 
@@ -44,7 +41,7 @@ public class StartServer {
         });
         get("/myProfile", (request, response) -> {
             if(request.session(false)!=null){
-                response.redirect("/profile/"+((UserEntity)(request.session(false).attribute("user"))).getId());
+                response.redirect("/profile/"+SessionManager.getConnectedUser(request,response).getId());
             }
             else {
                 halt(401,"Il vous faut créer un compte pour accéder à votre profile");
@@ -58,14 +55,16 @@ public class StartServer {
             String firstname = req.queryParams("firstname");
             String lastname = req.queryParams("lastname");
             String login = req.queryParams("login");
-            String pwd = req.queryParams("password");
+            String salt = BCrypt.gensalt();
+            String pwdHash = BCrypt.hashpw(req.queryParams("password"), salt);
             String email = req.queryParams("email");
+            UserEntity user=null;
             try {
-                UserCore.newUser(firstname, lastname, login, pwd, email);
+                user = UserCore.newUser(firstname, lastname, login, pwdHash, email);
+                SessionManager.connect(req.session().raw(),user);
             }catch (BadEmailException e){
                 res.redirect("/register");
             }
-            SessionManager.tryToConnect(req,res);
             res.redirect("/");
             return null;
         });
@@ -80,19 +79,23 @@ public class StartServer {
             return  null;
         }));
 
-        post("/login", ((request, response) -> {
-            if(SessionManager.tryToConnect(request,response))response.redirect("/");
-            return "Utilisateur ou mot de passe incorrect";
-        }));
+        post("/login", (request, response) -> {
+            if(SessionManager.tryToConnect(request, response)) {
+
+                response.redirect("/myProfile");
+                return null;
+            }
+            throw   new FailedLoginException();
+        });
+
 
         get("/profile/:userid/add/:pkmnid",((request, response) -> {
-            PossessionCore.addPossession(UserCore.getUserFromId(Integer.parseInt(request.params(":userid"))), Integer.parseInt(request.params(":pkmnid")),0);
+            PossessionCore.addPossession(UserCore.getUserByID(Integer.parseInt(request.params(":userid"))), Integer.parseInt(request.params(":pkmnid")),0);
             response.redirect("/profile/"+request.params("userid"));
             return null;
         } ));
         get("/logout", ((request, response) -> {
-            HttpSession httpSession = request.session().raw();
-            httpSession.invalidate();
+            SessionManager.disconnect(request, response);
             response.redirect("/");
 
 
@@ -108,7 +111,23 @@ public class StartServer {
 
         tradesController.tradesRoutes();
 
+        //handle bad creadentials
+        exception(BadEmailException.class, (((exception, request, response) -> {
+            System.err.println("executioné");
+            exception.printStackTrace();
+            response.status(401);
+            response.body(exception.getMessage());
 
+        })));
+
+
+
+        exception(FailedLoginException.class, (((exception, request, response) -> {
+            System.err.println("Catched FailedLoginException, display login error page");
+            response.status(401);
+            response.body(ErrorPagesGui.loginError());
+
+        })));
 
         notFound((req, res) -> {
             res.status(404);

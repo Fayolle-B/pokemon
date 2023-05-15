@@ -35,8 +35,7 @@ public class ErrorPagesGui {
         }
         return output.toString();
     }
-    public static  String internalServerError()
-    {
+    public static  String internalServerError() {
         Configuration configuration = _FreeMarkerInitializer.getContext();
 
         Writer output = new StringWriter();
@@ -51,10 +50,30 @@ public class ErrorPagesGui {
         template.setOutputEncoding("UTF-8");
 
         try {
-            template.process(null, output);
+            template.process(input, output);
         } catch (TemplateException | IOException e) {
             throw new RuntimeException(e);
         }
         return output.toString();
+    }
+
+    public static String loginError(){
+        Configuration configuration = _FreeMarkerInitializer.getContext();
+        Writer writer = new StringWriter();
+        Template template=null;
+        Map<String, Object> input = new HashMap<>();
+        try {
+            template=configuration.getTemplate("ErrorPages/loginError.ftl");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        template.setOutputEncoding("UTF-8");
+
+        try {
+            template.process(input,writer);
+        } catch (TemplateException | IOException e) {
+            throw new RuntimeException(e);
+        }
+        return  writer.toString();
     }
 }

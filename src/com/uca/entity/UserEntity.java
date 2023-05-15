@@ -2,22 +2,19 @@ package com.uca.entity;
 
 import com.uca.core.PossessionCore;
 import com.uca.core.TradeCore;
-import com.uca.core.UserCore;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class UserEntity {
-    private String firstName;
-    private String lastName;
-    private int id;
-    private String login;
-    private String pwd;
-    private String Email;
-    private int points;
-    private LocalDate dateConnexion;
+    private String      firstName;
+    private String      lastName;
+    private int         id;
+    private String      login;
+    private String      pwdHash;
+    private String      Email;
+    private int         points;
+    private LocalDate   dateConnexion;
 
 
     public UserEntity() {
@@ -52,8 +49,8 @@ public class UserEntity {
         return this.dateConnexion;
     }
 
-    public String getPwd() {
-        return this.pwd;
+    public String getPwdHash() {
+        return this.pwdHash;
     }
 
 
@@ -83,8 +80,8 @@ public class UserEntity {
         this.dateConnexion = date;
     }
 
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
+    public void setPwdHash(String pwdHash) {
+        this.pwdHash = pwdHash;
     }
 
     public void setPoints(int p) {
@@ -96,14 +93,14 @@ public class UserEntity {
         if (this == o) return true;
         if (!(o instanceof UserEntity that)) return false;
 
-        if (!getPwd().equals(that.getPwd())) return false;
-        return getEmail().equals(that.getEmail());
+        if (!getPwdHash().equals(that.getPwdHash())) return false;
+        return getLogin().equals(that.getLogin());
     }
 
     @Override
 
     public int hashCode() {
-        int result = getPwd().hashCode();
+        int result = getPwdHash().hashCode();
         result = 31 * result + getEmail().hashCode();
         return result;
     }

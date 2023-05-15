@@ -4,7 +4,6 @@ import com.uca.core.PossessionCore;
 import com.uca.core.TradeCore;
 import com.uca.core.UserCore;
 import com.uca.entity.PossessionEntity;
-import com.uca.entity.TradeEntity;
 import com.uca.entity.TradeStatus;
 import com.uca.entity.UserEntity;
 import freemarker.template.Configuration;
@@ -56,7 +55,7 @@ public class UserGUI {
     public static String displayOtherProfile(int id, UserEntity connectedUser) throws IOException, TemplateException{
         Configuration configuration = _FreeMarkerInitializer.getContext();
         Map<String,Object>input = new HashMap<>();
-        UserEntity userEntity=UserCore.getUserFromId(id);
+        UserEntity userEntity=UserCore.getUserByID(id);
 
         input.put("user",userEntity);
         ArrayList<PossessionEntity> activePossessions=null;
@@ -88,7 +87,7 @@ public class UserGUI {
 
         Configuration configuration = _FreeMarkerInitializer.getContext();
         Map<String,Object>input = new HashMap<>();
-        UserEntity userEntity=UserCore.getUserFromId(id);
+        UserEntity userEntity=UserCore.getUserByID(id);
 
         input.put("user",userEntity);
         ArrayList<PossessionEntity> activePossessions=null;

@@ -15,7 +15,17 @@ public class _Initializer {
 
 
             //Init articles table
-            statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS users(Firstname varchar(100), LastName varchar(100), id int primary key auto_increment, login varchar(100), pwd varchar(100), points int , email varchar(100) UNIQUE ,DateConnexion date); ");
+            statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS " +
+                    "users(" +
+                    "id int primary key auto_increment," +
+                    "Firstname varchar(100)," +
+                    " LastName varchar(100), " +
+                    " login varchar(100)," +
+                    " pwd varchar(100)," +
+                    " points int ," +
+                    " email varchar(100) UNIQUE ," +
+                    "DateConnexion date ," +
+                    "SALT varChar(100)); ");
             statement.execute();            //Init users table
             statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS possession(idPoss int PRIMARY KEY AUTO_INCREMENT,numPkmn long NOT NULL ,level int, aquireDate DATE NOT NULL, loseDate DATE, owner_id int, FOREIGN KEY (owner_id) REFERENCES  users(id)); ");
             statement.execute();

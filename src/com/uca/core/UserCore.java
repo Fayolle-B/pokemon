@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Random;
 
 
@@ -40,17 +39,16 @@ public class UserCore {
      @param lastname the lastname of the new user
      @return the newly created UserEntity object
      */
-    public static UserEntity newUser(String firstname, String lastname, String login, String pwd, String  email) throws SQLException {
+    public static UserEntity newUser(String firstname, String lastname, String login, String pwdHash, String  email) throws SQLException {
         UserEntity newUser = new UserEntity();
         PokemonEntity pkmn;
         System.out.println(firstname + "+ "+ lastname);
 
         newUser.setFirstName(firstname);
         newUser.setLastName(lastname);
-        long millis=System.currentTimeMillis();
         newUser.setDateConnexion(LocalDate.now());
         newUser.setLogin(login);
-        newUser.setPwd(pwd);
+        newUser.setPwdHash(pwdHash);
         newUser.setEmail(email);
         newUser.setPoints(PossessionEntity.nb_point);
         try {
@@ -80,7 +78,7 @@ public class UserCore {
      * Updates a user entity in the database.
      *
      * @param userEntity the UserEntity object to be updated
-     * @return
+     * @return the updated user entity
      */
     public static UserEntity update(UserEntity userEntity) {
         try {
@@ -96,14 +94,7 @@ public class UserCore {
 
 
     //Added
-    public static UserEntity getUserFromId(int id){
+    public static UserEntity getUserByID(int id){
         return new UserDAO().getUserById(id);
     }
-
-    public static boolean canBeLoggedIn(UserEntity user){
-        boolean aBoolean =user.equals(new UserDAO().getUserByEmail(user.getEmail()));
-        System.out.println("can be logged in  : "+ aBoolean);
-        return (aBoolean);
-    }
-
 }
