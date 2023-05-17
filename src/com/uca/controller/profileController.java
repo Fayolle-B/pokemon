@@ -4,6 +4,7 @@ import com.uca.core.SessionManager;
 import com.uca.core.UserCore;
 import com.uca.entity.UserEntity;
 import com.uca.exception.FailedLoginException;
+import com.uca.exception.NeedToConnectException;
 import com.uca.gui.UserGUI;
 import spark.Filter;
 import spark.Request;
@@ -27,13 +28,7 @@ public class profileController {
     public static Filter isConnectedFilter = (request, response) -> {
         if (request.session(false) == null) {
 
-            response.status(401);
-            response.cookie("error", "Vousdevezvousconnecter");
-            throw new FailedLoginException();
-
-          //  response.status(403);
-          //  response.redirect("/");
-
+            throw new NeedToConnectException();
         }
 
     };

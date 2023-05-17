@@ -8,6 +8,7 @@ import com.uca.dao._Initializer;
 import com.uca.entity.UserEntity;
 import com.uca.exception.BadEmailException;
 import com.uca.exception.FailedLoginException;
+import com.uca.exception.NeedToConnectException;
 import com.uca.gui.ErrorPagesGui;
 import com.uca.gui.UserGUI;
 import org.mindrot.jbcrypt.BCrypt;
@@ -113,14 +114,18 @@ public class StartServer {
 
         //handle bad creadentials
         exception(BadEmailException.class, (((exception, request, response) -> {
-            System.err.println("executioné");
             exception.printStackTrace();
             response.status(401);
             response.body(exception.getMessage());
 
         })));
 
+        exception(NeedToConnectException.class, (((exception, request, response) -> {
+            System.err.println("Catched NeedToConnectException, display login page");
+            response.status(401);
+            response.body(ErrorPagesGui.needToConnectError());
 
+        })));
 
         exception(FailedLoginException.class, (((exception, request, response) -> {
             System.err.println("Catched FailedLoginException, display login error page");
