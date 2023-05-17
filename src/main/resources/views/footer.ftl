@@ -1,4 +1,7 @@
 <p>
 
-footer
+<small>
+
+    footer
+</small>
 </p>

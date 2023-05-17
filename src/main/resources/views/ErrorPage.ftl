@@ -22,12 +22,12 @@
     <h1>
         ${HTTPErrorCode}
     </h1>
-</header>
-<main>
     <p>
         ${message}
 
     </p>
+</header>
+<main>
     <#if additionalLinks??>
         <#list additionalLinks as additionalLink>
             <a class="additionalLink"

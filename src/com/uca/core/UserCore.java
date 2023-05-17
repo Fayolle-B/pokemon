@@ -57,7 +57,7 @@ public class UserCore {
             throw new badPseudoException("Pseudo already exist");
         }
         try {
-            pkmn = PokemonCore.getPokemon(new Random().nextLong(PokemonEntity.MAX_POKEMON_ID+1));
+            pkmn = PokemonCore.getPokemon(new Random().nextLong(PokemonEntity.MAX_POKEMON_ID)+1);
         } catch (InvalidAttributeValueException e) {
             throw new RuntimeException(e);
         }

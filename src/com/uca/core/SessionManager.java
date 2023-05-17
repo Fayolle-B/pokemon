@@ -74,7 +74,7 @@ public class SessionManager {
             UserCore.update(user);
             PokemonEntity pkmn;
             try {
-                pkmn = PokemonCore.getPokemon(new Random().nextLong(PokemonEntity.MAX_POKEMON_ID+1));
+                pkmn = PokemonCore.getPokemon(new Random().nextLong(PokemonEntity.MAX_POKEMON_ID)+1);
             } catch (InvalidAttributeValueException e) {
                 throw new RuntimeException(e);
             }
