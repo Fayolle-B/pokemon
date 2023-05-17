@@ -1,5 +1,6 @@
 package com.uca.gui;
 
+import com.uca.ErrorPages;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -7,10 +8,10 @@ import freemarker.template.TemplateException;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-
-import static spark.Spark.staticFiles;
 
 public class ErrorPagesGui {
 
@@ -26,7 +27,7 @@ public class ErrorPagesGui {
 
         try {
 
-            template = configuration.getTemplate("ErrorPages/ErrorPage.ftl");
+            template = configuration.getTemplate("ErrorPage.ftl");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -48,7 +49,7 @@ public class ErrorPagesGui {
         input.put("HTTPErrorCode","500");
         input.put("title","Erreur interne");
         try {
-            template = configuration.getTemplate("ErrorPages/ErrorPage.ftl");
+            template = configuration.getTemplate("ErrorPage.ftl");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -71,7 +72,11 @@ public class ErrorPagesGui {
             input.put("message","Login ou mot de passe incorrect");
             input.put("HTTPErrorCode","401");
             input.put("title","Erreur de connexion");
-            template=configuration.getTemplate("ErrorPages/ErrorPage.ftl");
+            List<ErrorPages> links = new ArrayList<>();
+            links.add(ErrorPages.LOGIN);
+            links.add(ErrorPages.REGISTER);
+            input.put("additionalLinks",links);
+            template=configuration.getTemplate("ErrorPage.ftl");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -95,7 +100,11 @@ public class ErrorPagesGui {
             input.put("message","Vous devez vous connecter pour accéder à cette page");
             input.put("HTTPErrorCode","401");
             input.put("title","Erreur de connexion");
-            template=configuration.getTemplate("ErrorPages/ErrorPage.ftl");
+            List<ErrorPages> links = new ArrayList<>();
+            links.add(ErrorPages.LOGIN);
+            links.add(ErrorPages.REGISTER);
+            input.put("additionalLinks",links);
+            template=configuration.getTemplate("ErrorPage.ftl");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

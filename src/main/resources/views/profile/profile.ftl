@@ -9,11 +9,17 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Profile ${user.id} </title>
+    <link rel="stylesheet" href="/style.css">
+
+    <title>Profile ${user.id} | PokeMy </title>
 </head>
 <body>
+<header>
+
 <#include "../menu.ftl">
 <h1>${user.id}</h1>
+</header>
+<main>
 
 Prénom : ${user.getFirstName()}
 Nom : ${user.getLastName()}
@@ -51,5 +57,6 @@ Nom : ${user.getLastName()}
     </#list>
 
 </table>
+</main>
 </body>
 </html>

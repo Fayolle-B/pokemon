@@ -9,7 +9,6 @@ public class UserDAO extends _Generic<UserEntity> {
 
 
     private UserEntity extractFromResultSet(UserEntity userEntity, ResultSet resultSet) throws SQLException {
-        System.out.println("l a ligne : "+resultSet.getRow());
         userEntity.setId(resultSet.getInt("ID"));
         userEntity.setFirstName(resultSet.getString("firstname"));
         userEntity.setLastName(resultSet.getString("lastname"));

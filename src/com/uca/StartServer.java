@@ -96,7 +96,10 @@ public class StartServer {
             return null;
         } ));
         get("/logout", ((request, response) -> {
-            SessionManager.disconnect(request, response);
+
+            if (SessionManager.isConnected(request, response)) {
+                SessionManager.disconnect(request, response);
+            }
             response.redirect("/");
 
 

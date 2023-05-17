@@ -1,5 +1,6 @@
  package com.uca.gui;
 
+import com.uca.ErrorPages;
 import com.uca.core.PossessionCore;
 import com.uca.core.TradeCore;
 import com.uca.core.UserCore;
@@ -16,6 +17,7 @@ import java.io.Writer;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -200,6 +202,10 @@ public class UserGUI {
     public static String getHomePage(String errorMessage){
         Configuration configuration= _FreeMarkerInitializer.getContext();
         Map<String, Object> input = new HashMap<>();
+        List<ErrorPages> links = new ArrayList<>();
+        links.add(ErrorPages.REGISTER);
+        links.add(ErrorPages.LOGIN);
+        input.put("links",links);
         input.put("errorMessage", errorMessage);
         Template template;
         Writer output = new StringWriter();
