@@ -20,10 +20,10 @@ public class _Initializer {
                     "id int primary key auto_increment," +
                     "Firstname varchar(100)," +
                     " LastName varchar(100), " +
-                    " login varchar(100)," +
+                    " login varchar(100) UNIQUE," +
                     " pwd varchar(100)," +
                     " points int ," +
-                    " email varchar(100) UNIQUE ," +
+                    " email varchar(100) ," +
                     "DateConnexion date ," +
                     "SALT varChar(100)); ");
             statement.execute();            //Init users table

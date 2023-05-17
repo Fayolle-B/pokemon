@@ -57,10 +57,15 @@ public class StartServer {
             String salt = BCrypt.gensalt();
             String pwdHash = BCrypt.hashpw(req.queryParams("password"), salt);
             String email = req.queryParams("email");
-            UserEntity user = null;
-            user = UserCore.newUser(firstname, lastname, login, pwdHash, email);
-            SessionManager.connect(req.session().raw(), user);
-
+            UserEntity user=null;
+            try {
+                user = UserCore.newUser(firstname, lastname, login, pwdHash, email);
+                SessionManager.connect(req.session().raw(),user);
+                res.redirect("/");
+            }catch (badPseudoException e){
+                e.printStackTrace();
+                throw new badPseudoException("Pseudo already exist");
+            }
 
             return null;
         });
