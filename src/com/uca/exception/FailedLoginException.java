@@ -1,5 +1,9 @@
 package com.uca.exception;
 
+
+/**
+ * Thrown when a user attempts to connect with an invalid login or passwor, or when the database is unreachable, or any other error occurs while attempting to connect.
+ */
 public class FailedLoginException extends Exception{
     public FailedLoginException() {
         super();

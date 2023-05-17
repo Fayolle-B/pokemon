@@ -6,15 +6,13 @@ import com.uca.controller.tradesController;
 import com.uca.core.*;
 import com.uca.dao._Initializer;
 import com.uca.entity.UserEntity;
-import com.uca.exception.BadEmailException;
+import com.uca.exception.badPseudoException;
 import com.uca.exception.FailedLoginException;
 import com.uca.exception.NeedToConnectException;
 import com.uca.gui.ErrorPagesGui;
 import com.uca.gui.UserGUI;
 import org.mindrot.jbcrypt.BCrypt;
 import spark.Spark;
-
-import javax.servlet.http.HttpSession;
 
 import static spark.Spark.*;
 
@@ -59,14 +57,11 @@ public class StartServer {
             String salt = BCrypt.gensalt();
             String pwdHash = BCrypt.hashpw(req.queryParams("password"), salt);
             String email = req.queryParams("email");
-            UserEntity user=null;
-            try {
-                user = UserCore.newUser(firstname, lastname, login, pwdHash, email);
-                SessionManager.connect(req.session().raw(),user);
-            }catch (BadEmailException e){
-                res.redirect("/register");
-            }
-            res.redirect("/");
+            UserEntity user = null;
+            user = UserCore.newUser(firstname, lastname, login, pwdHash, email);
+            SessionManager.connect(req.session().raw(), user);
+
+
             return null;
         });
         get("/register", (req, res)->{
@@ -81,7 +76,7 @@ public class StartServer {
         }));
 
         post("/login", (request, response) -> {
-            if(SessionManager.tryToConnect(request, response)) {
+            if(SessionManager.tryToConnect(request)) {
 
                 response.redirect("/myProfile");
                 return null;
@@ -116,7 +111,7 @@ public class StartServer {
         tradesController.tradesRoutes();
 
         //handle bad creadentials
-        exception(BadEmailException.class, (((exception, request, response) -> {
+        exception(badPseudoException.class, (((exception, request, response) -> {
             exception.printStackTrace();
             response.status(401);
             response.body(exception.getMessage());

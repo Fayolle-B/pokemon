@@ -5,7 +5,7 @@ import com.uca.dao.UserDAO;
 import com.uca.entity.PokemonEntity;
 import com.uca.entity.UserEntity;
 import com.uca.entity.PossessionEntity;
-import com.uca.exception.BadEmailException;
+import com.uca.exception.badPseudoException;
 
 import javax.management.InvalidAttributeValueException;
 import java.sql.SQLException;
@@ -54,7 +54,7 @@ public class UserCore {
         try {
             newUser = new UserDAO().create(newUser);
         }catch (SQLIntegrityConstraintViolationException integrityConstraintViolationException){
-            throw new BadEmailException("Email already exist");
+            throw new badPseudoException("Pseudo already exist");
         }
         try {
             pkmn = PokemonCore.getPokemon(new Random().nextLong(PokemonEntity.MAX_POKEMON_ID+1));
@@ -92,8 +92,11 @@ public class UserCore {
     }
 
 
-
-    //Added
+    /**
+     * Get a user by his id
+     * @param id the id of the user
+     * @return  the user
+     */
     public static UserEntity getUserByID(int id){
         return new UserDAO().getUserById(id);
     }

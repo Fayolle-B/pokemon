@@ -5,9 +5,19 @@ import com.uca.entity.UserEntity;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * Provides methods to interact with userDAO (and database) and perform Create/Read/Update/Delete operations w/ userEntity
+ */
 public class UserDAO extends _Generic<UserEntity> {
 
 
+    /**
+     * Extracts a userEntity from a ResultSet. (Helper function)
+      * @param userEntity the userEntity to be extracted
+     * @param resultSet the ResultSet
+     * @return the extracted userEntity
+     * @throws SQLException if an error occurs while extracting the userEntity
+     */
     private UserEntity extractFromResultSet(UserEntity userEntity, ResultSet resultSet) throws SQLException {
         userEntity.setId(resultSet.getInt("ID"));
         userEntity.setFirstName(resultSet.getString("firstname"));
@@ -16,9 +26,17 @@ public class UserDAO extends _Generic<UserEntity> {
         userEntity.setPoints(resultSet.getInt("points"));
         userEntity.setPwdHash(resultSet.getString("pwd"));
         userEntity.setLogin(resultSet.getString("login"));
+        userEntity.setDateConnexion(resultSet.getDate("dateConnexion").toLocalDate());
         return userEntity;
 
     }
+
+
+    /**
+     * Returns a list of all user entities in the database.
+     * @return an ArrayList of UserEntity objects
+     * @throws SQLException if an error occurs while extracting the userEntity
+     */
 
     public ArrayList<UserEntity> getAllUsers() throws SQLException {
         ArrayList<UserEntity> entities = new ArrayList<>();
@@ -41,6 +59,13 @@ public class UserDAO extends _Generic<UserEntity> {
         return entities;
     }
 
+
+    /**
+     * Create a new user in the database. (write the given user in the database)
+     * @param user the user to be created (to be written in the database)
+     * @return the newly created user (with the id attribute set from the database)
+     * @throws SQLException if an error occurs while creating the user
+     */
     @Override
     /* ----------------------------------------- Ajouter ou creer un un user------------------------------------------------------------------------------------------------------------  */
     public UserEntity create(UserEntity user) throws SQLException {
@@ -61,6 +86,11 @@ public class UserDAO extends _Generic<UserEntity> {
         return user;
     }
 
+
+    /**
+     * Delete the given user from the database
+     * @param obj the user to be deleted
+     */
     @Override
     public void delete(UserEntity obj) {
         PreparedStatement statement = null;
@@ -110,7 +140,7 @@ public class UserDAO extends _Generic<UserEntity> {
             ResultSet resultSet = preparedStatement.executeQuery();
             assert resultSet!=null;
             resultSet.next();
-            userEntity=extractFromResultSet(userEntity, resultSet);
+            extractFromResultSet(userEntity, resultSet);
             userEntity.setDateConnexion(resultSet.getDate("DateConnexion").toLocalDate());
 
 
@@ -125,7 +155,7 @@ public class UserDAO extends _Generic<UserEntity> {
     /**
      * Retrieve users from the email, null otherwise
      * @param email we want to test
-     * @return
+     * @return the user, null if user with this email don't exist
      */
     public ArrayList<UserEntity> getUsersByEmail(String email) {
         UserEntity userEntity = new UserEntity();
@@ -152,6 +182,13 @@ public class UserDAO extends _Generic<UserEntity> {
         if(userEntities.isEmpty())return  null;
         else return userEntities;
     }
+
+
+    /**
+     * Retrieve users from the login, null otherwise
+     * @param pseudo we want to test
+     * @return the user, null if user with this login don't exist
+     */
     public UserEntity getUserByPseudo(String pseudo){
         UserEntity userEntity=new UserEntity();
         ResultSet resultSet;
@@ -163,7 +200,7 @@ public class UserDAO extends _Generic<UserEntity> {
             if(resultSet.isLast())return  null;
             if(resultSet.next()){
                 assert resultSet.isLast();
-                userEntity=extractFromResultSet(userEntity, resultSet);
+                extractFromResultSet(userEntity, resultSet);
             }
 
         } catch (SQLException e) {

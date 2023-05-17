@@ -10,7 +10,8 @@
         <th scope="col">Nom du Pokémon</th>
         <th scope="col">Niveau du pokémon</th>
         <th scope="col">Date d'acuisition</th>
-        <th scope="col">Date de perte</th>
+        <th scope="col">Pex</th>
+        <th scope="col"></th>
 
     </tr>
 
@@ -20,7 +21,6 @@
             <td>${possession.pokemon.name}</td>
             <td>${possession.level}</td>
             <td>${possession.getDateAcquiAsString()}</td>
-            <td>${possession.datePerte!"En votre possession"}</td>
             <td>
 
                 <form action="/pex" method="post">

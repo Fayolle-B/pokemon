@@ -5,14 +5,24 @@ import com.uca.entity.TradeEntity;
 import com.uca.entity.TradeStatus;
 import com.uca.entity.UserEntity;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
+/**
+ * Provides methods to interact with Trades database.
+ */
 public class TradeDAO extends _Generic<TradeEntity> {
 
+
+    /**
+     * Creates a new TradeEntity in the database. The TradeEntity's id is set automatically.
+     * @param obj the TradeEntity to be created
+     * @return the newly created TradeEntity object
+     * @throws SQLException if the creation fails
+     */
     @Override
     public TradeEntity create(TradeEntity obj) throws SQLException {
         //TODO: le faire quoi
@@ -35,11 +45,22 @@ public class TradeDAO extends _Generic<TradeEntity> {
         return  obj;
     }
 
+    /**
+     * Deletes a TradeEntity from the database.
+     * @param obj the TradeEntity to be deleted
+     */
+
     @Override
     public void delete(TradeEntity obj) {;;
 
     }
 
+
+    /**
+     * Updates a TradeEntity in the database
+     * @param tradeEntity the TradeEntity to be updated
+     * @throws SQLException if the update fails
+     */
     public void update(TradeEntity tradeEntity) throws SQLException {
         PreparedStatement preparedStatement = this.connect.prepareStatement("UPDATE TRADES set ACCEPTDATE = ?, STATUS = ? where ID=?");
         preparedStatement.setDate(1, java.sql.Date.valueOf(tradeEntity.getAcceptDate()));
@@ -50,6 +71,13 @@ public class TradeDAO extends _Generic<TradeEntity> {
 
     }
 
+
+    /**
+     * Retrieve the list of all TradeEntity in the database.
+     * @param id the id of the user
+     * @return the list of all TradeEntity in the database
+     * @throws SQLException if the retrieval fails
+     */
     public TradeEntity getTradeById(int id) throws SQLException {
         TradeEntity tradeEntity = new TradeEntity(null,null);
         PreparedStatement preparedStatement = this.connect.prepareStatement("SELECT ID, APPOWNID, RECOWNID, SUBMITDATE, ACCEPTDATE, STATUS from TRADES where id=?");
@@ -74,6 +102,12 @@ public class TradeDAO extends _Generic<TradeEntity> {
 
     }
 
+
+    /**
+     * Retrieve all trads of a user
+     * @param userEntity the user
+     * @return the list of all TradeEntity of the user
+     */
     public ArrayList<TradeEntity> getAllTradesOf(UserEntity userEntity) {
         ArrayList<TradeEntity> tradeEntities = new ArrayList<>();
         ResultSet resultSet;

@@ -1,21 +1,27 @@
 package com.uca.dao;
 
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.uca.entity.PokemonEntity;
 
 import java.io.IOException;
 import java.net.*;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
-
+/**
+ * Provides methods to interact with the PokeAPI.
+ */
 public class PokemonDAO {
     public PokemonDAO() {
     }
 
+    /**
+     * Retrieves a PokemonEntity from the PokeAPI.
+     * @param pokemonId the ID of the Pokemon to retrieve
+     * @return the PokemonEntity object corresponding to the given ID.
+     */
     public  PokemonEntity requestAPIFromId(long pokemonId) {
-        // Choose a random Pokémon ID between 1 and 1008 (the number of Pokemon currently in the PokeAPI)
 
         // Construct the URL for the Pokémon API
         String pokemonUrl = "https://pokeapi.co/api/v2/pokemon-species/" + pokemonId;

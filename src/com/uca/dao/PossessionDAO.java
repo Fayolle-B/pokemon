@@ -2,18 +2,23 @@ package com.uca.dao;
 
 import com.uca.entity.PossessionEntity;
 import com.uca.entity.UserEntity;
-import com.uca.dao.PokemonDAO;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * Provides methods to interact with Possessionn database.
+ */
 public class PossessionDAO extends _Generic<PossessionEntity>{
 
 
+    /**
+     * Creates a new PossessionEntity in the database. (Write in the database)
+     * @param obj the PossessionEntity to be created
+     * @return the newly created PossessionEntity object
+     */
     @Override
     public PossessionEntity create(PossessionEntity obj) {
         try {
@@ -33,6 +38,11 @@ public class PossessionDAO extends _Generic<PossessionEntity>{
         return obj;
     }
 
+
+    /**
+     * Deletes a PossessionEntity from the database.
+     * @param obj the PossessionEntity to be deleted
+     */
     @Override
     public void delete(PossessionEntity obj) {
         return ;
@@ -40,6 +50,13 @@ public class PossessionDAO extends _Generic<PossessionEntity>{
     }
 
 
+    /**
+     * Updates a PossessionEntity in the database.
+     * @param obj the PossessionEntity to be updated
+     * @return the updated PossessionEntity object
+     * @throws SQLException if the update fails
+     * <p> Update the possession in the database by using the id of the  given possession</p>
+     */
     public PossessionEntity update(PossessionEntity obj) throws  SQLException{
         PreparedStatement preparedStatement = this.connect.prepareStatement("UPDATE POSSESSION SET LOSEDATE =?, LEVEL = ? where IDPOSS=?");
         if(obj.getDatePerte()!=null)preparedStatement.setDate(1,java.sql.Date.valueOf(obj.getDatePerte()));
@@ -50,6 +67,13 @@ public class PossessionDAO extends _Generic<PossessionEntity>{
         preparedStatement.executeUpdate();
         return obj;
     }
+
+    /**
+     * retrieve a possession by its id
+     * @param id the id of the possession
+     * @return the possession
+     * @throws SQLException if the request fails
+     */
     public PossessionEntity getPossessionById(int id) throws SQLException {
         PossessionEntity possessionEntity = new PossessionEntity();
         PreparedStatement preparedStatement = this.connect.prepareStatement("SELECT IDPOSS, NUMPKMN, LEVEL, AQUIREDATE, LOSEDATE, OWNER_ID from POSSESSION where IDPOSS = ?");
@@ -72,6 +96,11 @@ public class PossessionDAO extends _Generic<PossessionEntity>{
         return possessionEntity;
 
     }
+
+    /**
+     * retrieve all the possessions
+     * Display all the existing possesion in the database in the console
+     */
     public void getAllPossessions()
     {
         System.out.println("On va essayer de lire toutes les possessionss");
@@ -89,6 +118,11 @@ public class PossessionDAO extends _Generic<PossessionEntity>{
 
     }
 
+    /**
+     * retrieve all the possessions of a user
+     * @param user the user
+     * @return the list of the possessions of the user
+     */
     public ArrayList<PossessionEntity> possessionOf(UserEntity user) {
         ArrayList<PossessionEntity> entities = new ArrayList<>();
 

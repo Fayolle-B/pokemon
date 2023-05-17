@@ -3,28 +3,22 @@ package com.uca.controller;
 import com.uca.core.SessionManager;
 import com.uca.core.UserCore;
 import com.uca.entity.UserEntity;
-import com.uca.exception.FailedLoginException;
 import com.uca.exception.NeedToConnectException;
 import com.uca.gui.UserGUI;
 import spark.Filter;
-import spark.Request;
-import spark.Response;
 
-import static spark.Spark.*;
+import static spark.Spark.before;
+import static spark.Spark.get;
 
+/**
+ * This class is the controller for the profile route
+ * @see com.uca.controller
+ */
 public class profileController {
-    public static Filter  concernedUserFilter = new Filter() {
-        @Override
-        public void handle(Request request, Response response) throws Exception {
-            if (!(SessionManager.getConnectedUser(request, response).getId() == Integer.parseInt(request.params(":id")))) {
-                //halt(401, "Unauthorized");
-                response.status(403);
-                response.redirect("/");
-            }
 
-        }
-    };
-
+    /**
+     * This filter is used to check if the user is connected
+     */
     public static Filter isConnectedFilter = (request, response) -> {
         if (request.session(false) == null) {
 
@@ -33,6 +27,16 @@ public class profileController {
 
     };
 
+
+    /**
+     * This method is the controller for the profile route
+     * @see com.uca.controller
+     *
+     * The routes are :
+     * /profile/:id : display the profile of the user with the id :id
+     * /profile/:id/trades : display the trades of the user with the id :id
+     *
+     */
     public static void profileRoute() {
 
         before("/profile/*", isConnectedFilter);

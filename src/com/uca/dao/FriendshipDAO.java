@@ -9,12 +9,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * Provides methods to interact with UserDAO and perform Create/Read/Update/Delete operations w/ userEntity
+ */
 public class FriendshipDAO extends  _Generic<FriendShipEntity>{
 
+
+    /**
+     * Returns a list of all friends of a user.
+     * @param user  the user
+     * @return an ArrayList of UserEntity objects
+     */
     public ArrayList<UserEntity> getAllFriends(UserEntity user) {
         ArrayList<UserEntity> friends = new ArrayList<>();
         try {
-            PreparedStatement preparedStatement = this.connect.prepareStatement("SELECT * FROM friends where id1 =? or id2=? ORDER BY id ASC;");
+            PreparedStatement preparedStatement = this.connect.prepareStatement("SELECT * FROM friends where id1 =? or id2=? ORDER BY ID1 ASC;");
             preparedStatement.setInt(1, user.getId());
             preparedStatement.setInt(2, user.getId());
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -28,6 +37,12 @@ public class FriendshipDAO extends  _Generic<FriendShipEntity>{
         return friends;
     }
 
+
+    /**
+     * Creates a new FriendShipEntity in the database.
+     * @param obj the FriendShipEntity to be created
+     * @return the newly created FriendShipEntity object
+     */
     @Override
     public FriendShipEntity create(FriendShipEntity obj) {
         try {
@@ -41,6 +56,10 @@ public class FriendshipDAO extends  _Generic<FriendShipEntity>{
         return null;
     }
 
+    /**
+     * Deletes a FriendShipEntity from the database.
+     * @param friendShip the FriendShipEntity to be deleted
+     */
     @Override
     public void delete(FriendShipEntity friendShip) {
         try {

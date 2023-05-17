@@ -5,21 +5,24 @@ import com.uca.core.SessionManager;
 import com.uca.core.UserCore;
 import com.uca.entity.PossessionEntity;
 import com.uca.entity.UserEntity;
-import spark.Request;
-import spark.Response;
 
-import static spark.route.HttpMethod.before;
-import static spark.route.HttpMethod.post;
+import static spark.Spark.post;
+//documentation for this file
 
-import spark.Filter;
-import spark.Request;
-import spark.Response;
+/**
+ * This class is the controller for the pex route
+ * @see com.uca.controller
+ */
 
-import java.sql.SQLException;
-
-import static spark.Spark.*;
 
 public class PexController {
+    /**
+     * This method is the controller for the pex route
+     * @see com.uca.controller
+     * Routes are :
+     *  /pex : add a pex to a possession
+     *  /pex/:id : add a pex to a possession
+     */
     public static void pexRoute(){
         //before("/pex", profileController.isConnectedFilter);
         post("/pex", ((request, response) -> {
@@ -44,7 +47,7 @@ public class PexController {
                 UserCore.update(userEntity);
                 PossessionCore.pexPossession(possessionEntity);
                 PossessionCore.update(possessionEntity);
-            };
+            }
             response.redirect("/profile/"+possessionEntity.getOwner().getId());
             return null;
         }));

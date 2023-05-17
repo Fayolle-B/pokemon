@@ -18,14 +18,12 @@
 
 <#include "../menu.ftl">
 <h1>${user.id}</h1>
+    <p> ${user.login}</p>
 </header>
 <main>
 
-Prénom : ${user.getFirstName()}
-Nom : ${user.getLastName()}
-
 <table>
-    <caption>Les possessions de ${user.firstName}</caption>
+    <caption>Les possessions de ${user.login}</caption>
     <tr>
         <th scope="col">id de la possessions</th>
         <th scope="col">Nom du pokemon</th>
