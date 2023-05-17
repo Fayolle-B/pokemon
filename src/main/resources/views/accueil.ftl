@@ -1,4 +1,4 @@
-<#-- @ftlvariable name="links" type="com.uca.ErrorPages[]" -->
+<#-- @ftlvariable name="links" type="com.uca.Pages[]" -->
 <!doctype html>
 <html lang="fr">
 <head>

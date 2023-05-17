@@ -9,6 +9,7 @@ import javax.management.InvalidAttributeValueException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 /**
  * The Class PossessionCore is the core class for the possession entity.
@@ -101,15 +102,13 @@ public class PossessionCore {
      * getPossessionById returns a possession from its id.
      * @param id the id of the possession.
      * @return the possession corresponding to the id.
-     * @throws SQLException if the id is not valid.
      */
 
-    public static PossessionEntity getPossessionById(int id) throws SQLException {
+    public static PossessionEntity getPossessionById(int id) {
         try {
             return new PossessionDAO().getPossessionById(id);
         } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Cannot recover any Possession for id="+id);
+            throw new NoSuchElementException("The possession with the id "+id+" does not exist");
         }
     }
 

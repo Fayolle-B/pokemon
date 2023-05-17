@@ -3,7 +3,7 @@ package com.uca;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public enum ErrorPages {
+public enum Pages {
     LOGIN("/login", "Se connecter", "login"),
     REGISTER("/register", "S'inscrire", "register"),
     MYPROFILE("/myProfile", "Mon profil", "myProfile");
@@ -15,14 +15,14 @@ public enum ErrorPages {
 
     private final ArrayList<String> ids;
 
-    ErrorPages(String uri, String text, String... args) {
+    Pages(String uri, String text, String... args) {
         this.uri = uri;
         this.text = text;
         this.ids = new ArrayList<>();
         this.ids.addAll(Arrays.asList(args));
     }
 
-    ErrorPages(String uri, String text) {
+    Pages(String uri, String text) {
         this.uri = uri;
         this.text = text;
         this.ids=new ArrayList<>();

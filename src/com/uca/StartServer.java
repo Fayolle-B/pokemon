@@ -6,6 +6,7 @@ import com.uca.controller.tradesController;
 import com.uca.core.*;
 import com.uca.dao._Initializer;
 import com.uca.entity.UserEntity;
+import com.uca.exception.IllegalRouteException;
 import com.uca.exception.badPseudoException;
 import com.uca.exception.FailedLoginException;
 import com.uca.exception.NeedToConnectException;
@@ -124,7 +125,7 @@ public class StartServer {
         })));
 
         exception(NeedToConnectException.class, (((exception, request, response) -> {
-            System.err.println("Catched NeedToConnectException, display login page");
+            System.err.println("Catched NeedToConnectException,, with the following message : \n\t\t"+exception.getMessage()+"\n\tdisplaying login page");
             response.status(401);
             response.body(ErrorPagesGui.needToConnectError());
 
@@ -134,6 +135,12 @@ public class StartServer {
             System.err.println("Catched FailedLoginException, display login error page");
             response.status(401);
             response.body(ErrorPagesGui.loginError());
+
+        })));
+        exception(IllegalRouteException.class, (((exception, request, response) -> {
+            System.err.println("Catched IllegalRouteException, display 404 page");
+            response.status(400);
+            response.body(ErrorPagesGui.badRequest());
 
         })));
 

@@ -9,7 +9,6 @@ import freemarker.template.TemplateException;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,11 +21,7 @@ public class PossessionGUI {
         Configuration configuration = _FreeMarkerInitializer.getContext();
         Map<String, Object> input = new HashMap<>();
         PossessionEntity possessionEntity= null;
-        try {
-            possessionEntity = PossessionCore.getPossessionById(id);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        possessionEntity = PossessionCore.getPossessionById(id);
         input.put("possession", possessionEntity);
         Writer output = new StringWriter();
         Template template = configuration.getTemplate("possession.ftl");

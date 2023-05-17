@@ -46,12 +46,8 @@ public class TradeCore {
      */
     public static TradeEntity newTradeFromIDs(int id1, int id2) {
         PossessionEntity applicantPossession, recipientPossession;
-        try {
-            applicantPossession = PossessionCore.getPossessionById(id1);
-            recipientPossession = PossessionCore.getPossessionById(id2);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        applicantPossession = PossessionCore.getPossessionById(id1);
+        recipientPossession = PossessionCore.getPossessionById(id2);
         return newTrade(applicantPossession, recipientPossession);
     }
 

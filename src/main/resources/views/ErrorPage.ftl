@@ -1,4 +1,4 @@
-<#-- @ftlvariable name="additionalLinks" type="java.util.Collection<com.uca.ErrorPages>" -->
+<#-- @ftlvariable name="additionalLinks" type="java.util.Collection<com.uca.Pages>" -->
 
 <#-- @ftlvariable name="message" type="java.lang.String" -->
 <#-- @ftlvariable name="HTTPErrorCode" type="java.lang.Number" -->
