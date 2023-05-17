@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="4">
+  <component name="AdditionalModuleElements">
+    <content url="file://$MODULE_DIR$" dumb="true">
+      <excludeFolder url="file://$MODULE_DIR$/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/bin/default/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/bin/default/bin/default/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/bin/default/bin/default/bin/default/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/bin/default/bin/default/bin/default/build" />
+      <excludeFolder url="file://$MODULE_DIR$/bin/default/bin/default/build" />
+      <excludeFolder url="file://$MODULE_DIR$/bin/default/build" />
+      <excludeFolder url="file://$MODULE_DIR$/bin/default/src/.idea/dataSources" />
+    </content>
+  </component>
+</module>
