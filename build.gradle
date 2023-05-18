@@ -6,7 +6,7 @@ plugins {
 
 apply plugin: 'application'
 
-mainClassName='com.uca.StartServer'
+mainClassName='java.com.uca.StartServer'
 
 
 
@@ -27,6 +27,8 @@ dependencies{
     implementation 'org.slf4j:slf4j-simple:2.0.7'
     implementation 'org.jetbrains:annotations:24.0.0'
     implementation 'org.jetbrains:annotations:24.0.0'
+    testImplementation 'junit:junit:4.13.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
 }
 //test {
 //    useJUnitPlatform()
@@ -40,5 +42,5 @@ jar {
     }
 }
 
-sourceSets.main.java.srcDirs = ['src']
-sourceSets.test.java.srcDirs = ['src']
+sourceSets.main.java.srcDirs = ['src/main']
+sourceSets.test.java.srcDirs = ['src/test']
