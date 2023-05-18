@@ -6,7 +6,10 @@ import java.util.Arrays;
 public enum Pages {
     LOGIN("/login", "Se connecter", "login"),
     REGISTER("/register", "S'inscrire", "register"),
-    MYPROFILE("/myProfile", "Mon profil", "myProfile");
+    MYPROFILE("/myProfile", "Mon profil", "myProfile"),
+
+    LANDINDPAGE("/","Accueil","Accueil");
+
 
     // Ajoutez d'autres constantes de pages d'erreur avec des attributs si nécessaire
 
@@ -38,5 +41,14 @@ public enum Pages {
 
     public ArrayList<String> getIds() {
         return ids;
+    }
+
+    @Override
+    public String toString() {
+        return "Pages{" +
+                "uri='" + uri + '\'' +
+                ", text='" + text + '\'' +
+                ", ids=" + ids +
+                '}';
     }
 }

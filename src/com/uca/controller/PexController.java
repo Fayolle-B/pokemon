@@ -1,5 +1,6 @@
 package com.uca.controller;
 
+import com.uca.Pages;
 import com.uca.core.PossessionCore;
 import com.uca.core.SessionManager;
 import com.uca.core.UserCore;
@@ -10,6 +11,7 @@ import com.uca.exception.NeedToConnectException;
 import com.uca.exception.NotFoundException;
 
 import static spark.Spark.post;
+import static spark.Spark.get;
 //documentation for this file
 
 /**
@@ -29,6 +31,10 @@ public class PexController {
      * /pex/:id : add a pex to a possession
      */
     public static void pexRoute() {
+        get( "/pex",( (req, res) -> {
+            res.redirect(Pages.LANDINDPAGE.getUri());
+            return null;
+        }));
         //before("/pex", profileController.isConnectedFilter);
         post("/pex", ((request, response) -> {
             int possID = 0;
@@ -62,9 +68,14 @@ public class PexController {
                     PossessionCore.pexPossession(possessionEntity);
                     PossessionCore.update(possessionEntity);
                 }
-                response.redirect("/profile/" + possessionEntity.getOwner().getId());
+                response.status(201);
+
+                // Redirect the user to the profile page
+                response.redirect("/profile/" + userEntity.getId());
                 return null;
             }
         }));
+
+
     }
 }

@@ -139,9 +139,11 @@ public class StartServer {
             response.status(400);
             response.body(ErrorPagesGui.badRequest());
 
+
         })));
 
         exception(NotFoundException.class, (((exception, request, response) -> {
+            System.out.println("Request : \n "+ request.raw());
             System.err.println("Catched NotFoundException, display 404 page");
             response.status(404);
             response.body(ErrorPagesGui.notFound());
@@ -154,12 +156,19 @@ public class StartServer {
             response.body(ErrorPagesGui.internalServerError());
         })));
         notFound((req, res) -> {
-            throw new NotFoundException();
+            System.out.println("Request : \n "+ res.body() + res.raw());
+
+
+
+
+            res.status(404);
+            return  ErrorPagesGui.notFound()    ;
         });
-        //exception(); //TODO: use this to handle exception the wright way
         Spark.internalServerError((request, response) -> {
-            throw new ErrorServerException();
+            response.status(500);
+            return ErrorPagesGui.internalServerError();
         });
     }
+
 
 }
