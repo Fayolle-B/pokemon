@@ -6,10 +6,7 @@ import com.uca.controller.tradesController;
 import com.uca.core.*;
 import com.uca.dao._Initializer;
 import com.uca.entity.UserEntity;
-import com.uca.exception.IllegalRouteException;
-import com.uca.exception.badPseudoException;
-import com.uca.exception.FailedLoginException;
-import com.uca.exception.NeedToConnectException;
+import com.uca.exception.*;
 import com.uca.gui.ErrorPagesGui;
 import com.uca.gui.UserGUI;
 import org.mindrot.jbcrypt.BCrypt;
@@ -31,25 +28,25 @@ public class StartServer {
             return UserGUI.getAllUsers();
         });
         get("/", (req, res) -> {
-            if(SessionManager.isConnected(req, res)){
+            if (SessionManager.isConnected(req, res)) {
                 res.redirect("/myProfile");
                 return null;
-            };
+            }
+            ;
             String message = req.cookie("error");
-            System.out.println("le message : "+ message);
+            System.out.println("le message : " + message);
             return UserGUI.getHomePage(message);
         });
         get("/myProfile", (request, response) -> {
-            if(request.session(false)!=null){
-                response.redirect("/profile/"+SessionManager.getConnectedUser(request,response).getId());
-            }
-            else {
-                halt(401,"Il vous faut créer un compte pour accéder à votre profile");
+            if (request.session(false) != null) {
+                response.redirect("/profile/" + SessionManager.getConnectedUser(request, response).getId());
+            } else {
+                halt(401, "Il vous faut créer un compte pour accéder à votre profile");
                 response.redirect("/");
             }
             return null;
-        } );
-        post("/register",(req,res) -> {
+        });
+        post("/register", (req, res) -> {
 
             //TODO : create a template for the register page, so we can display error message
             String firstname = req.queryParams("firstname");
@@ -58,19 +55,19 @@ public class StartServer {
             String salt = BCrypt.gensalt();
             String pwdHash = BCrypt.hashpw(req.queryParams("password"), salt);
             String email = req.queryParams("email");
-            UserEntity user=null;
+            UserEntity user = null;
             try {
                 user = UserCore.newUser(firstname, lastname, login, pwdHash, email);
-                SessionManager.connect(req.session().raw(),user);
+                SessionManager.connect(req.session().raw(), user);
                 res.redirect("/");
-            }catch (badPseudoException e){
+            } catch (badPseudoException e) {
                 e.printStackTrace();
                 throw new badPseudoException("Pseudo already exist");
             }
 
             return null;
         });
-        get("/register", (req, res)->{
+        get("/register", (req, res) -> {
             res.redirect("register.html");
             return null;
         });
@@ -78,24 +75,24 @@ public class StartServer {
 
         get("/login", ((request, response) -> {
             response.redirect("login.html");
-            return  null;
+            return null;
         }));
 
         post("/login", (request, response) -> {
-            if(SessionManager.tryToConnect(request)) {
+            if (SessionManager.tryToConnect(request)) {
 
                 response.redirect("/myProfile");
                 return null;
             }
-            throw   new FailedLoginException();
+            throw new FailedLoginException();
         });
 
 
-        get("/profile/:userid/add/:pkmnid",((request, response) -> {
-            PossessionCore.addPossession(UserCore.getUserByID(Integer.parseInt(request.params(":userid"))), Integer.parseInt(request.params(":pkmnid")),0);
-            response.redirect("/profile/"+request.params("userid"));
+        get("/profile/:userid/add/:pkmnid", ((request, response) -> {
+            PossessionCore.addPossession(UserCore.getUserByID(Integer.parseInt(request.params(":userid"))), Integer.parseInt(request.params(":pkmnid")), 0);
+            response.redirect("/profile/" + request.params("userid"));
             return null;
-        } ));
+        }));
         get("/logout", ((request, response) -> {
 
             if (SessionManager.isConnected(request, response)) {
@@ -105,11 +102,11 @@ public class StartServer {
 
 
             return null;
-        } ));
+        }));
 
         get("/stop", ((request, response) -> {
             Spark.stop();
-            return  null;
+            return null;
         }));
         profileController.profileRoute();
         PexController.pexRoute();
@@ -125,7 +122,7 @@ public class StartServer {
         })));
 
         exception(NeedToConnectException.class, (((exception, request, response) -> {
-            System.err.println("Catched NeedToConnectException,, with the following message : \n\t\t"+exception.getMessage()+"\n\tdisplaying login page");
+            System.err.println("Catched NeedToConnectException,, with the following message : \n\t\t" + exception.getMessage() + "\n\tdisplaying login page");
             response.status(401);
             response.body(ErrorPagesGui.needToConnectError());
 
@@ -138,21 +135,30 @@ public class StartServer {
 
         })));
         exception(IllegalRouteException.class, (((exception, request, response) -> {
-            System.err.println("Catched IllegalRouteException, display 404 page");
+            System.err.println("Catched IllegalRouteException, display 400 page");
             response.status(400);
             response.body(ErrorPagesGui.badRequest());
 
         })));
 
-        notFound((req, res) -> {
-            res.status(404);
-            return ErrorPagesGui.notFound();
+        exception(NotFoundException.class, (((exception, request, response) -> {
+            System.err.println("Catched NotFoundException, display 404 page");
+            response.status(404);
+            response.body(ErrorPagesGui.notFound());
 
+        })));
+
+        exception(ErrorServerException.class, (((exception, request, response) -> {
+            System.err.println("Catched ErrorServerException, display 500 page");
+            response.status(500);
+            response.body(ErrorPagesGui.internalServerError());
+        })));
+        notFound((req, res) -> {
+            throw new NotFoundException();
         });
         //exception(); //TODO: use this to handle exception the wright way
-        Spark.internalServerError((request, response) ->{
-            response.status(500);
-            return  ErrorPagesGui.internalServerError();
+        Spark.internalServerError((request, response) -> {
+            throw new ErrorServerException();
         });
     }
 

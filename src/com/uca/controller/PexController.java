@@ -7,6 +7,7 @@ import com.uca.entity.PossessionEntity;
 import com.uca.entity.UserEntity;
 import com.uca.exception.IllegalRouteException;
 import com.uca.exception.NeedToConnectException;
+import com.uca.exception.NotFoundException;
 
 import static spark.Spark.post;
 //documentation for this file
@@ -47,7 +48,7 @@ public class PexController {
 
                 possessionEntity = PossessionCore.getPossessionById(possID);
             } catch (Exception e) {
-                throw new IllegalRouteException("Cannot find possession with id " + possID);
+                throw new NotFoundException("Cannot find possession with id " + possID);
             }
             if (!SessionManager.isConnected(request, response)) {
                 throw new NeedToConnectException("You need to be connected to pex a possession");
