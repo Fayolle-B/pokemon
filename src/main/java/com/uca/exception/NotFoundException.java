@@ -1,4 +1,4 @@
-package java.com.uca.exception;
+package com.uca.exception;
 
 public class NotFoundException extends  Exception{
     public NotFoundException() {

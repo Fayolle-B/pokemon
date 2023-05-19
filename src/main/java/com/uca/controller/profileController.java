@@ -1,19 +1,19 @@
-package java.com.uca.controller;
+package com.uca.controller;
 
 import spark.Filter;
 
-import java.com.uca.core.SessionManager;
-import java.com.uca.core.UserCore;
-import java.com.uca.entity.UserEntity;
-import java.com.uca.exception.NeedToConnectException;
-import java.com.uca.gui.UserGUI;
+import com.uca.core.SessionManager;
+import com.uca.core.UserCore;
+import com.uca.entity.UserEntity;
+import com.uca.exception.NeedToConnectException;
+import com.uca.gui.UserGUI;
 
 import static spark.Spark.before;
 import static spark.Spark.get;
 
 /**
  * This class is the controller for the profile route
- * @see java.com.uca.controller
+ * @see com.uca.controller
  */
 public class profileController {
 
@@ -31,7 +31,7 @@ public class profileController {
 
     /**
      * This method is the controller for the profile route
-     * @see java.com.uca.controller
+     * @see com.uca.controller
      *
      * The routes are :
      * /profile/:id : display the profile of the user with the id :id

@@ -1,4 +1,4 @@
-package java.com.uca;
+package com.uca;
 import java.util.ArrayList;
 import java.util.Arrays;
 

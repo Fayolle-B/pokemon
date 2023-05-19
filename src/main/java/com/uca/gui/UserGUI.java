@@ -1,12 +1,12 @@
- package java.com.uca.gui;
+ package com.uca.gui;
 
- import java.com.uca.Pages;
- import java.com.uca.core.PossessionCore;
- import java.com.uca.core.TradeCore;
- import java.com.uca.core.UserCore;
- import java.com.uca.entity.PossessionEntity;
- import java.com.uca.entity.TradeStatus;
- import java.com.uca.entity.UserEntity;
+ import com.uca.Pages;
+ import com.uca.core.PossessionCore;
+ import com.uca.core.TradeCore;
+ import com.uca.core.UserCore;
+ import com.uca.entity.PossessionEntity;
+ import com.uca.entity.TradeStatus;
+ import com.uca.entity.UserEntity;
  import freemarker.template.Configuration;
  import freemarker.template.Template;
  import freemarker.template.TemplateException;

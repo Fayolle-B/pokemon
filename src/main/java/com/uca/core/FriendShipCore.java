@@ -1,8 +1,8 @@
-package java.com.uca.core;
+package com.uca.core;
 
-import java.com.uca.dao.FriendshipDAO;
-import java.com.uca.entity.FriendShipEntity;
-import java.com.uca.entity.UserEntity;
+import com.uca.entity.FriendShipEntity;
+import com.uca.entity.UserEntity;
+import com.uca.dao.FriendshipDAO;
 
 import java.util.ArrayList;
 

@@ -1,7 +1,7 @@
-package java.com.uca.dao;
+package com.uca.dao;
 
-import java.com.uca.entity.PossessionEntity;
-import java.com.uca.entity.UserEntity;
+import com.uca.entity.PossessionEntity;
+import com.uca.entity.UserEntity;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

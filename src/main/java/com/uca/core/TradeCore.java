@@ -1,11 +1,11 @@
-package java.com.uca.core;
+package com.uca.core;
 
-import java.com.uca.dao.PossessionDAO;
-import java.com.uca.dao.TradeDAO;
-import java.com.uca.entity.PossessionEntity;
-import java.com.uca.entity.TradeEntity;
-import java.com.uca.entity.TradeStatus;
-import java.com.uca.entity.UserEntity;
+import com.uca.entity.PossessionEntity;
+import com.uca.entity.TradeEntity;
+import com.uca.entity.TradeStatus;
+import com.uca.entity.UserEntity;
+import com.uca.dao.PossessionDAO;
+import com.uca.dao.TradeDAO;
 
 import java.sql.SQLException;
 import java.time.LocalDate;

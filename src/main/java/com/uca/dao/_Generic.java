@@ -1,4 +1,4 @@
-package java.com.uca.dao;
+package com.uca.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;

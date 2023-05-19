@@ -1,4 +1,4 @@
-package java.com.uca.exception;
+package com.uca.exception;
 
 
 /**

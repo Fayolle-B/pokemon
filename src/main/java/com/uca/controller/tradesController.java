@@ -1,13 +1,13 @@
-package java.com.uca.controller;
+package com.uca.controller;
 
-import java.com.uca.core.PossessionCore;
-import java.com.uca.core.SessionManager;
-import java.com.uca.core.TradeCore;
-import java.com.uca.entity.PossessionEntity;
-import java.com.uca.entity.TradeEntity;
-import java.com.uca.entity.UserEntity;
-import java.com.uca.exception.IllegalRouteException;
-import java.com.uca.gui.UserGUI;
+import com.uca.core.PossessionCore;
+import com.uca.core.SessionManager;
+import com.uca.core.TradeCore;
+import com.uca.entity.PossessionEntity;
+import com.uca.entity.TradeEntity;
+import com.uca.entity.UserEntity;
+import com.uca.exception.IllegalRouteException;
+import com.uca.gui.UserGUI;
 
 import static spark.Spark.halt;
 import static spark.Spark.post;
@@ -15,7 +15,7 @@ import static spark.Spark.post;
 
 /**
  * This class is the controller for the trades route
- * @see java.com.uca.controller
+ * @see com.uca.controller
     */
 public class tradesController {
 
@@ -23,7 +23,7 @@ public class tradesController {
 
     /**
      * This method is the controller for the trades route
-     * @see java.com.uca.controller
+     * @see com.uca.controller
      *
      * The routes are :
      * /trade : create a new trade

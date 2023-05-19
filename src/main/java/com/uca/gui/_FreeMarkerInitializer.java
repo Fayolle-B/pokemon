@@ -1,9 +1,9 @@
-package java.com.uca.gui;
+package com.uca.gui;
 
+import com.uca.StartServer;
 import freemarker.template.Configuration;
 import freemarker.template.TemplateExceptionHandler;
 
-import java.com.uca.StartServer;
 import java.util.Locale;
 public class _FreeMarkerInitializer {
 

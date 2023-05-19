@@ -1,11 +1,13 @@
-package java.com.uca.core;
+package com.uca.core;
 
+
+import com.uca.entity.PokemonEntity;
+import com.uca.entity.PossessionEntity;
+import com.uca.entity.UserEntity;
 
 import javax.management.InvalidAttributeValueException;
-import java.com.uca.dao.PossessionDAO;
-import java.com.uca.entity.PokemonEntity;
-import java.com.uca.entity.PossessionEntity;
-import java.com.uca.entity.UserEntity;
+import com.uca.dao.PossessionDAO;
+
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;

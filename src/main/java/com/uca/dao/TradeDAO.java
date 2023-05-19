@@ -1,9 +1,9 @@
-package java.com.uca.dao;
+package com.uca.dao;
 
-import java.com.uca.entity.PossessionEntity;
-import java.com.uca.entity.TradeEntity;
-import java.com.uca.entity.TradeStatus;
-import java.com.uca.entity.UserEntity;
+import com.uca.entity.PossessionEntity;
+import com.uca.entity.TradeEntity;
+import com.uca.entity.TradeStatus;
+import com.uca.entity.UserEntity;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

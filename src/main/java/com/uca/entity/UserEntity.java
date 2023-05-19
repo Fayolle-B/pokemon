@@ -1,7 +1,7 @@
-package java.com.uca.entity;
+package com.uca.entity;
 
-import java.com.uca.core.PossessionCore;
-import java.com.uca.core.TradeCore;
+import com.uca.core.PossessionCore;
+import com.uca.core.TradeCore;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

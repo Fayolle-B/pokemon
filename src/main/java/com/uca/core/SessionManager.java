@@ -1,11 +1,11 @@
-package java.com.uca.core;
+package com.uca.core;
 
-import java.com.uca.dao.UserDAO;
-import java.com.uca.entity.PokemonEntity;
-import java.com.uca.entity.PossessionEntity;
-import java.com.uca.entity.UserEntity;
+import com.uca.dao.UserDAO;
+import com.uca.entity.PokemonEntity;
+import com.uca.entity.PossessionEntity;
+import com.uca.entity.UserEntity;
 
-import java.com.uca.exception.FailedLoginException;
+import com.uca.exception.FailedLoginException;
 import org.jetbrains.annotations.NotNull;
 import org.mindrot.jbcrypt.BCrypt;
 import spark.Request;

@@ -1,8 +1,8 @@
-package java.com.uca.dao;
+package com.uca.dao;
 
-import java.com.uca.core.UserCore;
-import java.com.uca.entity.FriendShipEntity;
-import java.com.uca.entity.UserEntity;
+import com.uca.core.UserCore;
+import com.uca.entity.FriendShipEntity;
+import com.uca.entity.UserEntity;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -1,4 +1,4 @@
-package java.com.uca.exception;
+package com.uca.exception;
 
 /**
  * Thrown when the user attempts to access a route that is not allowed for him, or a route that is not constructed correctly.

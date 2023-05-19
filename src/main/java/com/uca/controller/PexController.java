@@ -1,14 +1,14 @@
-package java.com.uca.controller;
+package com.uca.controller;
 
-import java.com.uca.Pages;
-import java.com.uca.core.PossessionCore;
-import java.com.uca.core.SessionManager;
-import java.com.uca.core.UserCore;
-import java.com.uca.entity.PossessionEntity;
-import java.com.uca.entity.UserEntity;
-import java.com.uca.exception.IllegalRouteException;
-import java.com.uca.exception.NeedToConnectException;
-import java.com.uca.exception.NotFoundException;
+import com.uca.Pages;
+import com.uca.core.PossessionCore;
+import com.uca.core.SessionManager;
+import com.uca.core.UserCore;
+import com.uca.entity.PossessionEntity;
+import com.uca.entity.UserEntity;
+import com.uca.exception.IllegalRouteException;
+import com.uca.exception.NeedToConnectException;
+import com.uca.exception.NotFoundException;
 
 import static spark.Spark.post;
 import static spark.Spark.get;
@@ -17,7 +17,7 @@ import static spark.Spark.get;
 /**
  * This class is the controller for the pex route
  *
- * @see java.com.uca.controller
+ * @see com.uca.controller
  */
 
 
@@ -25,7 +25,7 @@ public class PexController {
     /**
      * This method is the controller for the pex route
      *
-     * @see java.com.uca.controller
+     * @see com.uca.controller
      * Routes are :
      * /pex : add a pex to a possession
      * /pex/:id : add a pex to a possession

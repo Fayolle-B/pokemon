@@ -1,9 +1,9 @@
-package java.com.uca.dao;
+package com.uca.dao;
 
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.com.uca.entity.PokemonEntity;
+import com.uca.entity.PokemonEntity;
 
 import java.io.IOException;
 import java.net.*;
@@ -21,7 +21,7 @@ public class PokemonDAO {
      * @param pokemonId the ID of the Pokemon to retrieve
      * @return the PokemonEntity object corresponding to the given ID.
      */
-    public  PokemonEntity requestAPIFromId(long pokemonId) {
+    public PokemonEntity requestAPIFromId(long pokemonId) {
 
         // Construct the URL for the Pokémon API
         String pokemonUrl = "https://pokeapi.co/api/v2/pokemon-species/" + pokemonId;

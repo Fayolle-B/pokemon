@@ -1,19 +1,19 @@
-package java.com.uca;
+package com.uca;
 
 import org.mindrot.jbcrypt.BCrypt;
 import spark.Spark;
 
-import java.com.uca.controller.PexController;
-import java.com.uca.controller.profileController;
-import java.com.uca.controller.tradesController;
-import java.com.uca.core.PossessionCore;
-import java.com.uca.core.SessionManager;
-import java.com.uca.core.UserCore;
-import java.com.uca.dao._Initializer;
-import java.com.uca.entity.UserEntity;
-import java.com.uca.exception.*;
-import java.com.uca.gui.ErrorPagesGui;
-import java.com.uca.gui.UserGUI;
+import com.uca.controller.PexController;
+import com.uca.controller.profileController;
+import com.uca.controller.tradesController;
+import com.uca.core.PossessionCore;
+import com.uca.core.SessionManager;
+import com.uca.core.UserCore;
+import com.uca.dao._Initializer;
+import com.uca.entity.UserEntity;
+import com.uca.exception.*;
+import com.uca.gui.ErrorPagesGui;
+import com.uca.gui.UserGUI;
 
 import static spark.Spark.*;
 
@@ -90,12 +90,15 @@ public class StartServer {
             throw new FailedLoginException();
         });
 
-
+/*
+// a route binding to manually add a pokemon to a given user, (for testing purpose)
         get("/profile/:userid/add/:pkmnid", ((request, response) -> {
             PossessionCore.addPossession(UserCore.getUserByID(Integer.parseInt(request.params(":userid"))), Integer.parseInt(request.params(":pkmnid")), 0);
             response.redirect("/profile/" + request.params("userid"));
             return null;
         }));
+
+ */
         get("/logout", ((request, response) -> {
 
             if (SessionManager.isConnected(request, response)) {

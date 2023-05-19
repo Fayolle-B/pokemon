@@ -1,9 +1,10 @@
-package java.com.uca.core;
+package com.uca.core;
 
+
+import com.uca.dao.PokemonDAO;
+import com.uca.entity.PokemonEntity;
 
 import javax.management.InvalidAttributeValueException;
-import java.com.uca.dao.PokemonDAO;
-import java.com.uca.entity.PokemonEntity;
 
 /**
  * The Class PokemonCore is the core class for the pokemon entity.
