@@ -8,15 +8,14 @@ public abstract class _Generic<T> {
     public Connection connect = _Connector.getInstance();
 
     /**
-     * Permet de créer une entrée dans la base de données
-     * par rapport à un objet
-     * @param obj
+     * Create an entry in the database
+     * @param obj the object to create
      */
     public abstract T create(T obj) throws SQLException;
 
     /**
-     * Permet la suppression d'une entrée de la base
-     * @param obj
+     * delete an entry in the database
+     * @param obj the object to delete
      */
     public abstract void delete(T obj);
 
