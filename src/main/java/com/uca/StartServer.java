@@ -1,12 +1,8 @@
 package com.uca;
 
-import org.mindrot.jbcrypt.BCrypt;
-import spark.Spark;
-
 import com.uca.controller.PexController;
 import com.uca.controller.profileController;
 import com.uca.controller.tradesController;
-import com.uca.core.PossessionCore;
 import com.uca.core.SessionManager;
 import com.uca.core.UserCore;
 import com.uca.dao._Initializer;
@@ -14,6 +10,8 @@ import com.uca.entity.UserEntity;
 import com.uca.exception.*;
 import com.uca.gui.ErrorPagesGui;
 import com.uca.gui.UserGUI;
+import org.mindrot.jbcrypt.BCrypt;
+import spark.Spark;
 
 import static spark.Spark.*;
 
@@ -54,7 +52,9 @@ public class StartServer {
             //TODO : create a template for the register page, so we can display error message
             String firstname = req.queryParams("firstname");
             String lastname = req.queryParams("lastname");
+            System.out.println(req.body());
             String login = req.queryParams("login");
+
             String salt = BCrypt.gensalt();
             String pwdHash = BCrypt.hashpw(req.queryParams("password"), salt);
             String email = req.queryParams("email");

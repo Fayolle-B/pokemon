@@ -112,4 +112,6 @@ public class PossessionEntity {
         return false;
     }
 
+    public void setId(int i) {
+    }
 }

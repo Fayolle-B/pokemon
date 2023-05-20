@@ -39,7 +39,3 @@ jar {
                 'Main-Class': 'com.uca.StartServer'
     }
 }
-/*
-sourceSets.main.java.srcDirs = ['src/main']
-sourceSets.test.java.srcDirs = ['src/test']
-*/

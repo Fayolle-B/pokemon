@@ -5,6 +5,7 @@ import com.uca.entity.TradeEntity;
 import com.uca.entity.TradeStatus;
 import com.uca.entity.UserEntity;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,6 +16,15 @@ import java.util.ArrayList;
  * Provides methods to interact with Trades database.
  */
 public class TradeDAO extends _Generic<TradeEntity> {
+
+
+    public TradeDAO() {
+        this.connect = _Connector.getInstance();
+    }
+
+    public TradeDAO(Connection connection) {
+        this.connect = connection;
+    }
 
 
     /**
