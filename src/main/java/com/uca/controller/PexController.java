@@ -31,10 +31,7 @@ public class PexController {
      * /pex/:id : add a pex to a possession
      */
     public static void pexRoute() {
-        get( "/pex",( (req, res) -> {
-            res.redirect(Pages.LANDINDPAGE.getUri());
-            return null;
-        }));
+
         //before("/pex", profileController.isConnectedFilter);
         post("/pex", ((request, response) -> {
             int possID = 0;
